@@ -47,9 +47,9 @@ namespace EVARest
             app.UseOAuthBearerTokens(OAuthOptions);
 
             // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
+            app.UseMicrosoftAccountAuthentication(
+                clientId: "000000004C16836C",
+                clientSecret: "R2GPxr8k-dIftBnAEhLRXLjuTsiIxNpl");
 
             //app.UseTwitterAuthentication(
             //    consumerKey: "",
@@ -59,11 +59,11 @@ namespace EVARest
                 appId: "1645027742443677",
                 appSecret: "96812e9708c5d15833ff63830a2c3f93");
 
-            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            {
-                ClientId = "000000004C16836C",
-                ClientSecret = "R2GPxr8k-dIftBnAEhLRXLjuTsiIxNpl"
-            });
+            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            //{
+            //    ClientId = "",
+            //    ClientSecret = ""
+            //});
         }
     }
 }
