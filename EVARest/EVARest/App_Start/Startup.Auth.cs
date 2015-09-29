@@ -55,15 +55,15 @@ namespace EVARest
             //    consumerKey: "",
             //    consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //    appId: "",
-            //    appSecret: "");
+            app.UseFacebookAuthentication(
+                appId: "1645027742443677",
+                appSecret: "96812e9708c5d15833ff63830a2c3f93");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "000000004C16836C",
+                ClientSecret = "R2GPxr8k-dIftBnAEhLRXLjuTsiIxNpl"
+            });
         }
     }
 }
