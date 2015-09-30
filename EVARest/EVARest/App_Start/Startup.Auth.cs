@@ -51,9 +51,9 @@ namespace EVARest
                 clientId: "000000004C16836C",
                 clientSecret: "R2GPxr8k-dIftBnAEhLRXLjuTsiIxNpl");
 
-            //app.UseTwitterAuthentication(
-            //    consumerKey: "",
-            //    consumerSecret: "");
+            app.UseTwitterAuthentication(
+                consumerKey: "wOS8t5pPraOLwTH79OlgyttW6",
+                consumerSecret: "gj9iMcmsixA8UvcsTRqxxoCkzkrpDKc4vuzKGpFjTRiNv3aldl");
 
             app.UseFacebookAuthentication(
                 appId: "1645027742443677",
