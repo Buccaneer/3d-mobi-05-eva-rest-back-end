@@ -59,11 +59,11 @@ namespace EVARest
                 appId: "1645027742443677",
                 appSecret: "96812e9708c5d15833ff63830a2c3f93");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "867920998848-tgeip4e4n8figle6rgrhmedkiuok09gk.apps.googleusercontent.com",
+                ClientSecret = "Mb5yGgVYjgPcb_Nf8bmJAyLz"
+            });
         }
     }
 }
