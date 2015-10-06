@@ -10,6 +10,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using EVARest.Models;
+using EVARest.Models.Domain;
 
 namespace EVARest.Providers
 {

@@ -10,6 +10,7 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using EVARest.Providers;
 using EVARest.Models;
+using EVARest.Models.DAL;
 
 namespace EVARest
 {
@@ -23,8 +24,10 @@ namespace EVARest
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure the db context and user manager to use a single instance per request
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
+            app.CreatePerOwinContext(RestContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
+            app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
+            app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider

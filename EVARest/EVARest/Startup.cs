@@ -4,8 +4,7 @@ using System.Linq;
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(EVARest.Startup))]
-
+[assembly: OwinStartupAttribute(typeof(EVARest.Startup))]
 namespace EVARest
 {
     public partial class Startup

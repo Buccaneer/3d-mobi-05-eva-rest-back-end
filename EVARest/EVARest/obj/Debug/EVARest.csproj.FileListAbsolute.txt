@@ -1,4 +1,3 @@
-D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\obj\Debug\EVARest.csprojResolveAssemblyReference.cache
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\roslyn\csc.exe
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -152,3 +151,7 @@ D:\Projecten 3\EVA REST api\EVARest\EVARest\bin\System.Web.Http.Owin.xml
 D:\Projecten 3\EVA REST api\EVARest\EVARest\obj\Debug\EVARest.csprojResolveAssemblyReference.cache
 D:\Projecten 3\EVA REST api\EVARest\EVARest\obj\Debug\EVARest.dll
 D:\Projecten 3\EVA REST api\EVARest\EVARest\obj\Debug\EVARest.pdb
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\obj\Debug\EVARest.csprojResolveAssemblyReference.cache
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\MySql.Data.dll
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\mysql.data.entity.EF6.dll
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\System.Data.dll
