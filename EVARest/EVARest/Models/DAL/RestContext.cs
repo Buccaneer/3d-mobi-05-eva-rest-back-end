@@ -16,9 +16,9 @@ namespace EVARest.Models.DAL
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class RestContext:IdentityDbContext<ApplicationUser>
     {
-        public RestContext() : base(nameOrConnectionString: "EvaRest") { }
+        public RestContext() : base(nameOrConnectionString: "server=localhost;port=3306;database=evarest;uid=root;password=vulhierjewachtwoordin") { }
 
-        public RestContext(DbConnection existingConnection, bool contextOwnsConnection):base(existingConnection, contextOwnsConnection) { }
+        
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
