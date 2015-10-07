@@ -7,7 +7,7 @@ using System.Web;
 
 namespace EVARest.Models.DAL
 {
-    public class RestInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<RestContext>
+    public class RestInitializer : System.Data.Entity.DropCreateDatabaseAlways<RestContext>
     {
         protected override void Seed(RestContext context)
         {

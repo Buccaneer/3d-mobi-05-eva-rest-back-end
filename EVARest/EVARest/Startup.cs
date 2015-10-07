@@ -13,9 +13,7 @@ namespace EVARest
     {
         public void Configuration(IAppBuilder app)
         {
-            DbConfiguration.SetConfiguration(new MySqlEFConfiguration());
             ConfigureAuth(app);
-            
         }
     }
 }
