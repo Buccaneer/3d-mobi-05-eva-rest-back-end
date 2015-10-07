@@ -155,3 +155,6 @@ D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\obj\Debug\EVARest.csprojResol
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\MySql.Data.dll
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\mysql.data.entity.EF6.dll
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\System.Data.dll
+D:\Projecten 3\EVA REST api\EVARest\EVARest\bin\MySql.Data.dll
+D:\Projecten 3\EVA REST api\EVARest\EVARest\bin\mysql.data.entity.EF6.dll
+D:\Projecten 3\EVA REST api\EVARest\EVARest\bin\System.Data.dll
