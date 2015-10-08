@@ -1,17 +1,16 @@
-﻿using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
+﻿using System;
+using System.Web;
+using System.Web.Services;
+using System.Web.Services.Protocols;
+using System.ComponentModel;
+
 using System.Collections.Generic;
-using System;
 
-namespace EVARest.Models
+namespace EVARest
 {
-    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
-    public class ApplicationUser : IdentityUser
+    public class Recipe
     {
-        public IList<Challenge> Challenges
+        public IList<Component> Ingredients
         {
             get
             {
@@ -23,7 +22,7 @@ namespace EVARest.Models
             }
         }
 
-        public DateTime StartedAt
+        public string Name
         {
             get
             {
@@ -35,7 +34,7 @@ namespace EVARest.Models
             }
         }
 
-        public byte Children
+        public string Description
         {
             get
             {
@@ -47,7 +46,7 @@ namespace EVARest.Models
             }
         }
 
-        public Sex Sex
+        public string Image
         {
             get
             {
@@ -59,7 +58,7 @@ namespace EVARest.Models
             }
         }
 
-        public DateTime Birthday
+        public int RecipeId
         {
             get
             {
@@ -71,7 +70,7 @@ namespace EVARest.Models
             }
         }
 
-        public bool IsStudent
+        public Difficulty Difficulty
         {
             get
             {
@@ -83,7 +82,7 @@ namespace EVARest.Models
             }
         }
 
-        public bool IsMarried
+        public int NumberPpl
         {
             get
             {
@@ -95,7 +94,7 @@ namespace EVARest.Models
             }
         }
 
-        public System.Collections.Generic.IList<EVARest.Dislike> Dislikes
+        public IList<RecipeProperty> Properties
         {
             get
             {
@@ -107,7 +106,7 @@ namespace EVARest.Models
             }
         }
 
-        public IList<Badge> Badges
+        public RecipeProperty Type
         {
             get
             {
@@ -119,7 +118,7 @@ namespace EVARest.Models
             }
         }
 
-        public int Points
+        public CookingTime CookingTime
         {
             get
             {
@@ -129,27 +128,6 @@ namespace EVARest.Models
             set
             {
             }
-        }
-
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
-        {
-            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
-            var userIdentity = await manager.CreateIdentityAsync(this, authenticationType);
-            // Add custom user claims here
-            return userIdentity;
-        }
-    }
-
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-    {
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
-        {
-        }
-        
-        public static ApplicationDbContext Create()
-        {
-            return new ApplicationDbContext();
         }
     }
 }
