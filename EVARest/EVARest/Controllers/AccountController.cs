@@ -126,7 +126,7 @@ namespace EVARest.Controllers
 
             IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
-            
+
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
@@ -259,7 +259,7 @@ namespace EVARest.Controllers
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                
+
                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager, OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager, CookieAuthenticationDefaults.AuthenticationType);
 
@@ -351,6 +351,7 @@ namespace EVARest.Controllers
             }
 
             var info = await Authentication.GetExternalLoginInfoAsync();
+            //var info = await AuthenticationManager_GetExternalLoginInfoAsync_Workaround();
             if (info == null)
             {
                 return InternalServerError();
@@ -367,7 +368,7 @@ namespace EVARest.Controllers
             result = await UserManager.AddLoginAsync(user.Id, info.Login);
             if (!result.Succeeded)
             {
-                return GetErrorResult(result); 
+                return GetErrorResult(result);
             }
             return Ok();
         }
@@ -462,7 +463,7 @@ namespace EVARest.Controllers
                 {
                     LoginProvider = providerKeyClaim.Issuer,
                     ProviderKey = providerKeyClaim.Value,
-                    UserName = identity.FindFirstValue(ClaimTypes.Name)
+                    UserName = identity.FindFirstValue(ClaimTypes.Email) == null ? identity.FindFirstValue(ClaimTypes.NameIdentifier) : identity.FindFirstValue(ClaimTypes.Email)
                 };
             }
         }
@@ -486,6 +487,27 @@ namespace EVARest.Controllers
                 _random.GetBytes(data);
                 return HttpServerUtility.UrlTokenEncode(data);
             }
+        }
+
+        private async Task<ExternalLoginInfo> AuthenticationManager_GetExternalLoginInfoAsync_Workaround()
+        {
+            ExternalLoginInfo loginInfo = null;
+
+            var result = await Authentication.AuthenticateAsync(DefaultAuthenticationTypes.ExternalCookie);
+
+            if (result != null && result.Identity != null)
+            {
+                var idClaim = result.Identity.FindFirst(ClaimTypes.NameIdentifier);
+                if (idClaim != null)
+                {
+                    loginInfo = new ExternalLoginInfo()
+                    {
+                        DefaultUserName = result.Identity.Name == null ? "" : result.Identity.Name.Replace(" ", ""),
+                        Login = new UserLoginInfo(idClaim.Issuer, idClaim.Value)
+                    };
+                }
+            }
+            return loginInfo;
         }
 
         #endregion
