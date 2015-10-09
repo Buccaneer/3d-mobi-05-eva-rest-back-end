@@ -351,7 +351,7 @@ namespace EVARest.Controllers
             }
 
             var info = await Authentication.GetExternalLoginInfoAsync();
-            //var info = await AuthenticationManager_GetExternalLoginInfoAsync_Workaround();
+            
             if (info == null)
             {
                 return InternalServerError();
@@ -488,28 +488,6 @@ namespace EVARest.Controllers
                 return HttpServerUtility.UrlTokenEncode(data);
             }
         }
-
-        private async Task<ExternalLoginInfo> AuthenticationManager_GetExternalLoginInfoAsync_Workaround()
-        {
-            ExternalLoginInfo loginInfo = null;
-
-            var result = await Authentication.AuthenticateAsync(DefaultAuthenticationTypes.ExternalCookie);
-
-            if (result != null && result.Identity != null)
-            {
-                var idClaim = result.Identity.FindFirst(ClaimTypes.NameIdentifier);
-                if (idClaim != null)
-                {
-                    loginInfo = new ExternalLoginInfo()
-                    {
-                        DefaultUserName = result.Identity.Name == null ? "" : result.Identity.Name.Replace(" ", ""),
-                        Login = new UserLoginInfo(idClaim.Issuer, idClaim.Value)
-                    };
-                }
-            }
-            return loginInfo;
-        }
-
         #endregion
     }
 }

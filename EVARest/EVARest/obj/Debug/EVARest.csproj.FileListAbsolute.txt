@@ -241,3 +241,4 @@ D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\Microsoft.Owin.Security.M
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\System.Web.Http.Owin.xml
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\obj\Debug\EVARest.dll
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\obj\Debug\EVARest.pdb
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\obj\Debug\EVARest.csprojResolveAssemblyReference.cache
