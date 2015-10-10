@@ -4,12 +4,9 @@ using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.ComponentModel;
 
-namespace EVARest.Models
+namespace EVARest.Models.Domain
 {
-    public enum TargetSubject
+    public class RegionRestaurantChallenge : Challenge
     {
-        Self,
-        Friends,
-        LovedOnes
     }
 }

@@ -4,12 +4,9 @@ using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.ComponentModel;
 
-namespace EVARest.Models
+namespace EVARest.Models.Domain
 {
-    public enum Sex
+    public class NewsletterChallenge : Challenge
     {
-        Female,
-        Male,
-        NotShared
     }
 }

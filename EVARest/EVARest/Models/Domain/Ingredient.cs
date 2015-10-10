@@ -4,18 +4,23 @@ using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.ComponentModel;
 
-namespace EVARest.Models
+namespace EVARest.Models.Domain
 {
-    public class Badge
+    public class Ingredient
     {
         public string Name
         {
             get; set;
         }
 
-        public string Description
+        public string Unit
         {
             get; set;
+        }
+
+        public int IngredientId
+        {
+            get;set;
         }
     }
 }

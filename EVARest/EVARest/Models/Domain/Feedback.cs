@@ -3,32 +3,34 @@ using System.Web;
 using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.ComponentModel;
+using EVARest.Models;
+using EVARest.Models.Domain;
 
-namespace EVARest.Models
+namespace EVARest.Models.Domain
 {
-    public class OverrideLanguageSpecification
+    public class Feedback
     {
-        public int LanguageStringId
+        public TimeSpan TimeSpan
         {
             get; set;
         }
 
-        public int EntityPrimaryKey
+        public ApplicationUser User
         {
             get; set;
         }
 
-        public string Language
+        public bool StillVegan
         {
             get; set;
         }
 
-        public string Content
+        public DateTime Date
         {
             get; set;
         }
 
-        public string PropertyKey
+        public string Comment
         {
             get; set;
         }

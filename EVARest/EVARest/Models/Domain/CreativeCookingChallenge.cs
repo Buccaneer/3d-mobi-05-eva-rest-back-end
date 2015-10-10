@@ -3,17 +3,13 @@ using System.Web;
 using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.ComponentModel;
+using System.Collections.Generic;
 
-namespace EVARest.Models
+namespace EVARest.Models.Domain
 {
-    public class Dislike
+    public class CreativeCookingChallenge : Challenge
     {
-        public Ingredient Ingredient
-        {
-            get; set;
-        }
-
-        public Reason Reason
+        public virtual ICollection<Ingredient> Ingredients
         {
             get; set;
         }

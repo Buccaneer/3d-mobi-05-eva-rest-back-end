@@ -4,23 +4,18 @@ using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.ComponentModel;
 
-namespace EVARest.Models
+namespace EVARest.Models.Domain
 {
-    public class Ingredient
+    public class Fact
     {
-        public string Name
-        {
-            get; set;
-        }
-
-        public string Unit
-        {
-            get; set;
-        }
-
-        public int IngredientId
+        public string Description
         {
             get;set;
+        }
+
+        public int FactId
+        {
+            get; set;
         }
     }
 }

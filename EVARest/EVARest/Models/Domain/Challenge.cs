@@ -3,33 +3,32 @@ using System.Web;
 using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.ComponentModel;
-using EVARest.Models;
 
-namespace EVARest.Models
+namespace EVARest.Models.Domain
 {
-    public class Feedback
+    public abstract class Challenge
     {
-        public TimeSpan TimeSpan
-        {
-            get; set;
-        }
-
-        public ApplicationUser User
-        {
-            get; set;
-        }
-
-        public bool StillVegan
-        {
-            get; set;
-        }
-
         public DateTime Date
         {
             get; set;
         }
 
-        public string Comment
+        public string Name
+        {
+            get; set;
+        }
+
+        public bool Done
+        {
+            get; set;
+        }
+
+        public int Earnings
+        {
+            get; set;
+        }
+
+        public int ChallengeId
         {
             get; set;
         }

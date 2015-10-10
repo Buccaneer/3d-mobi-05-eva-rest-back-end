@@ -4,31 +4,31 @@ using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.ComponentModel;
 
-namespace EVARest.Models
+namespace EVARest.Models.Domain.I18n
 {
-    public abstract class Challenge
+    public class OverrideLanguageSpecification
     {
-        public DateTime Date
+        public int LanguageStringId
         {
             get; set;
         }
 
-        public string Name
+        public int EntityPrimaryKey
         {
             get; set;
         }
 
-        public bool Done
+        public string Language
         {
             get; set;
         }
 
-        public int Earnings
+        public string Content
         {
             get; set;
         }
 
-        public int ChallengeId
+        public string PropertyKey
         {
             get; set;
         }

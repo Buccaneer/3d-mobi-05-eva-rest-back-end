@@ -4,9 +4,10 @@ using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.ComponentModel;
 
-namespace EVARest.Models
+namespace EVARest.Models.Domain.I18n
 {
-    public class NewsletterChallenge : Challenge
+    public interface ILanguageProvider
     {
+        void TranslateRecipe(Recipe recipe, string language);
     }
 }

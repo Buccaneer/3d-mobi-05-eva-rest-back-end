@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 using System.Collections.Generic;
 
-namespace EVARest.Models
+namespace EVARest.Models.Domain
 {
     public class Recipe
     {

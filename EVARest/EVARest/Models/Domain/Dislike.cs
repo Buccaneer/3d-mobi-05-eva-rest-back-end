@@ -4,11 +4,16 @@ using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.ComponentModel;
 
-namespace EVARest.Models
+namespace EVARest.Models.Domain
 {
-    public class RegionRecipeChallenge : RecipeChallenge
+    public class Dislike
     {
-        public RecipeProperty Region
+        public Ingredient Ingredient
+        {
+            get; set;
+        }
+
+        public Reason Reason
         {
             get; set;
         }
