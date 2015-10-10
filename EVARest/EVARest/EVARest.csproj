@@ -77,7 +77,9 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -294,6 +296,8 @@
     <None Include="Properties\PublishProfiles\evavzwrest - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\evavzwrest - Web Deploy %282%29.pubxml" />
     <Content Include="Models\CD.cd" />
+    <None Include="Properties\PublishProfiles\evavzwrest - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\evavzwrest - Web Deploy %282%29.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -331,6 +335,9 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
