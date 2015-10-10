@@ -47,40 +47,5 @@ namespace EVARest
             return manager;
         }
     }
-
-    public class ApplicationRoleManager : RoleManager<IdentityRole>, IDisposable
-    {
-        public ApplicationRoleManager(RoleStore<IdentityRole> store)
-            : base(store)
-        {
-        }
-
-
-        public static ApplicationRoleManager Create(
-        IdentityFactoryOptions<ApplicationRoleManager> options,
-        IOwinContext context)
-        {
-            return new ApplicationRoleManager(new
-            RoleStore<IdentityRole>(context.Get<RestContext>()));
-        }
-    }
-
-    // Configure the application sign-in manager which is used in this application.
-    public class ApplicationSignInManager : SignInManager<ApplicationUser, string>
-    {
-        public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager)
-            : base(userManager, authenticationManager)
-        {
-        }
-
-        public override Task<ClaimsIdentity> CreateUserIdentityAsync(ApplicationUser user)
-        {
-            return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager);
-        }
-
-        public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)
-        {
-            return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
-        }
-    }
 }
+

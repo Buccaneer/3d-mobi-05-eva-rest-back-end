@@ -126,7 +126,7 @@ namespace EVARest.Controllers
 
             IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
-            
+
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
@@ -259,7 +259,7 @@ namespace EVARest.Controllers
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                
+
                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager, OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager, CookieAuthenticationDefaults.AuthenticationType);
 
@@ -351,6 +351,7 @@ namespace EVARest.Controllers
             }
 
             var info = await Authentication.GetExternalLoginInfoAsync();
+            
             if (info == null)
             {
                 return InternalServerError();
@@ -367,7 +368,7 @@ namespace EVARest.Controllers
             result = await UserManager.AddLoginAsync(user.Id, info.Login);
             if (!result.Succeeded)
             {
-                return GetErrorResult(result); 
+                return GetErrorResult(result);
             }
             return Ok();
         }
@@ -462,7 +463,7 @@ namespace EVARest.Controllers
                 {
                     LoginProvider = providerKeyClaim.Issuer,
                     ProviderKey = providerKeyClaim.Value,
-                    UserName = identity.FindFirstValue(ClaimTypes.Name)
+                    UserName = identity.FindFirstValue(ClaimTypes.Email) == null ? identity.FindFirstValue(ClaimTypes.NameIdentifier) : identity.FindFirstValue(ClaimTypes.Email)
                 };
             }
         }
@@ -487,7 +488,6 @@ namespace EVARest.Controllers
                 return HttpServerUtility.UrlTokenEncode(data);
             }
         }
-
         #endregion
     }
 }
