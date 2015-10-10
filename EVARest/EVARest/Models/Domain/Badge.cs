@@ -4,7 +4,7 @@ using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.ComponentModel;
 
-namespace EVARest.Models.Domain.Domain
+namespace EVARest.Models.Domain
 {
     public class Badge
     {

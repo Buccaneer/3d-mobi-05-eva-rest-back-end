@@ -198,6 +198,7 @@ D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\Owin.dll
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\System.Data.dll
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\System.IdentityModel.Tokens.Jwt.dll
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\System.Net.Http.Formatting.dll
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\System.Web.dll
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\System.Web.Helpers.dll
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\System.Web.Http.dll
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\System.Web.Http.Owin.dll
@@ -239,6 +240,6 @@ D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\Microsoft.Owin.Security.G
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\Microsoft.Owin.Security.Twitter.xml
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\System.Web.Http.Owin.xml
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\obj\Debug\EVARest.csprojResolveAssemblyReference.cache
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\obj\Debug\EVARest.dll
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\obj\Debug\EVARest.pdb
-D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\obj\Debug\EVARest.csprojResolveAssemblyReference.cache
