@@ -4,9 +4,11 @@ using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.ComponentModel;
 
-namespace EVARest
+namespace EVARest.Models
 {
-    public class NewsletterChallenge : Challenge
+    public enum Reason
     {
+        Allergy = 1,
+        Dislike = 2
     }
 }

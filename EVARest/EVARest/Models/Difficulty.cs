@@ -4,12 +4,13 @@ using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.ComponentModel;
 
-namespace EVARest
+namespace EVARest.Models
 {
-    public enum CookingTime
+    public enum Difficulty
     {
-        Fast,
-        Medium,
-        Long
+        Starter,
+        Beginner,
+        Intermediate,
+        Expert
     }
 }

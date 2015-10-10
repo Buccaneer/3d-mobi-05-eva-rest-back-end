@@ -4,35 +4,28 @@ using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.ComponentModel;
 
-namespace EVARest
-{
-    public abstract class Challenge
-    {
-        public DateTime Date
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
+using System.Collections.Generic;
 
-            set
-            {
-            }
+namespace EVARest.Models
+{
+    public class Recipe
+    {
+        public virtual ICollection<Component> Ingredients
+        {
+            get; set;
         }
 
         public string Name
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-
-            set
-            {
-            }
+            get; set;
         }
 
-        public bool Done
+        public string Description
+        {
+            get; set;
+        }
+
+        public string Image
         {
             get
             {
@@ -44,7 +37,7 @@ namespace EVARest
             }
         }
 
-        public int Earnings
+        public int RecipeId
         {
             get
             {
@@ -56,7 +49,55 @@ namespace EVARest
             }
         }
 
-        public int ChallengeId
+        public Difficulty Difficulty
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+
+            set
+            {
+            }
+        }
+
+        public int NumberPpl
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+
+            set
+            {
+            }
+        }
+
+        public IList<RecipeProperty> Properties
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+
+            set
+            {
+            }
+        }
+
+        public RecipeProperty Type
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+
+            set
+            {
+            }
+        }
+
+        public CookingTime CookingTime
         {
             get
             {

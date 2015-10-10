@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace EVARest
+namespace EVARest.Models
 {
     public interface IRecipeRepository
     {

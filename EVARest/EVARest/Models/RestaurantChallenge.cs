@@ -4,20 +4,13 @@ using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.ComponentModel;
 
-namespace EVARest
+namespace EVARest.Models
 {
     public class RestaurantChallenge : Challenge
     {
         public Restaurant Restaurant
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-
-            set
-            {
-            }
+            get;set;
         }
     }
 }

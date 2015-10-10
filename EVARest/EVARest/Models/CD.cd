@@ -3,21 +3,21 @@
   <Comment CommentText="Alle nederlands talige dingen naar engels&#xD;&#xA;&#xD;&#xA;Kijken voor taalsysteem (eventueel eens kijken naar designpatterns hiervoor)">
     <Position X="11.625" Y="0.865" Height="1.333" Width="2.377" />
   </Comment>
-  <Class Name="EVARest.Component">
+  <Class Name="EVARest.Models.Component">
     <Position X="3.25" Y="7.5" Width="4" />
     <TypeIdentifier>
       <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
-      <FileName>Component.cs</FileName>
+      <FileName>Models\Component.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Ingredient" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="EVARest.Recipe">
+  <Class Name="EVARest.Models.Recipe">
     <Position X="3.5" Y="10.25" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAiAQAAAAAAACQAAAAAABAAAQAACAECAAA=</HashCode>
-      <FileName>Recipe.cs</FileName>
+      <HashCode>AAAAAAAAAAAiQQAAAAAAACQAAAAAABAAAQAACAACAAA=</HashCode>
+      <FileName>Models\Recipe.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Difficulty" />
@@ -40,7 +40,6 @@
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="Challenges" />
-      <Property Name="Dislikes" />
       <Property Name="Badges" />
     </ShowAsCollectionAssociation>
   </Class>
@@ -51,183 +50,181 @@
       <FileName>Models\IdentityModels.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EVARest.Challenge">
+  <Class Name="EVARest.Models.Challenge">
     <Position X="7.75" Y="11" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AABAAAAAAAAAAIAAAAAAAAQAAAAAAAABAAAAAAIAAAA=</HashCode>
-      <FileName>Challenge.cs</FileName>
+      <FileName>Models\Challenge.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EVARest.Ingredient">
+  <Class Name="EVARest.Models.Ingredient">
     <Position X="4.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAgAAAAAAAAIAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Ingredient.cs</FileName>
+      <FileName>Models\Ingredient.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EVARest.Dislike">
+  <Class Name="EVARest.Models.Dislike">
     <Position X="4.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAABAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Dislike.cs</FileName>
+      <FileName>Models\Dislike.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Ingredient" />
-      <Property Name="Reason" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="EVARest.Restaurant">
+  <Class Name="EVARest.Models.Restaurant">
     <Position X="9.25" Y="16" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAggAAAAAAIAARAAAAAAAAAAAAEAAAAAAA=</HashCode>
-      <FileName>Restaurant.cs</FileName>
+      <FileName>Models\Restaurant.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EVARest.RecipeChallenge">
+  <Class Name="EVARest.Models.RecipeChallenge">
     <Position X="6.5" Y="13.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>RecipeChallenge.cs</FileName>
+      <FileName>Models\RecipeChallenge.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Recipe" />
       <Property Name="PreparesFor" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="EVARest.RestaurantChallenge">
+  <Class Name="EVARest.Models.RestaurantChallenge">
     <Position X="9.25" Y="13.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>RestaurantChallenge.cs</FileName>
+      <FileName>Models\RestaurantChallenge.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Restaurant" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="EVARest.Fact" Collapsed="true">
+  <Class Name="EVARest.Models.Fact" Collapsed="true">
     <Position X="18.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAgAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Fact.cs</FileName>
+      <FileName>Models\Fact.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EVARest.Feedback">
+  <Class Name="EVARest.Models.Feedback">
     <Position X="12.75" Y="5.25" Width="3" />
     <TypeIdentifier>
       <HashCode>AAABAAAEAAAAAAAAAAAAAAAAAAAAAAgBAAQAAAAAAAA=</HashCode>
-      <FileName>Feedback.cs</FileName>
+      <FileName>Models\Feedback.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="User" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="EVARest.Badge">
+  <Class Name="EVARest.Models.Badge">
     <Position X="8.75" Y="2.5" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Badge.cs</FileName>
+      <FileName>Models\Badge.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EVARest.CreativeCookingChallenge">
+  <Class Name="EVARest.Models.CreativeCookingChallenge">
     <Position X="3.25" Y="13.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>CreativeCookingChallenge.cs</FileName>
+      <FileName>Models\CreativeCookingChallenge.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EVARest.RecipeProperty">
+  <Class Name="EVARest.Models.RecipeProperty">
     <Position X="8.25" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
-      <FileName>RecipeProperty.cs</FileName>
+      <FileName>Models\RecipeProperty.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EVARest.WorkshopChallenge">
+  <Class Name="EVARest.Models.WorkshopChallenge">
     <Position X="13.75" Y="13.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>WorkshopChallenge.cs</FileName>
+      <FileName>Models\WorkshopChallenge.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EVARest.NewsletterChallenge">
+  <Class Name="EVARest.Models.NewsletterChallenge">
     <Position X="11.5" Y="13.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>NewsletterChallenge.cs</FileName>
-      <NewMemberFileName>NewsLetterChallenge.cs</NewMemberFileName>
+      <FileName>Models\NewsletterChallenge.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EVARest.RegionRecipeChallenge">
+  <Class Name="EVARest.Models.RegionRecipeChallenge">
     <Position X="6.25" Y="15.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>RegionRecipeChallenge.cs</FileName>
+      <FileName>Models\RegionRecipeChallenge.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Region" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="EVARest.OverrideLanguageSpecification" Collapsed="true">
+  <Class Name="EVARest.Models.OverrideLanguageSpecification" Collapsed="true">
     <Position X="16.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAEAAACgAAAAAAAAAAAAAAAAAAQgAAAAAAAAAAAAA=</HashCode>
-      <FileName>OverrideLanguageSpecification.cs</FileName>
+      <FileName>Models\OverrideLanguageSpecification.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="EVARest.IRecipeRepository">
+  <Interface Name="EVARest.Models.IRecipeRepository">
     <Position X="18.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAIAAICAAAAAAAAIAAAACAAAAYAAAAAAAAAAAA=</HashCode>
-      <FileName>IRecipeRepository.cs</FileName>
+      <FileName>Models\IRecipeRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="EVARest.IRestaurantRepository">
+  <Interface Name="EVARest.Models.IRestaurantRepository">
     <Position X="14.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAABAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>IRestaurantRepository.cs</FileName>
+      <FileName>Models\IRestaurantRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="EVARest.ILanguageProvider">
+  <Interface Name="EVARest.Models.ILanguageProvider">
     <Position X="16.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
-      <FileName>ILanguageProvider.cs</FileName>
+      <FileName>Models\ILanguageProvider.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Enum Name="EVARest.Sex">
+  <Enum Name="EVARest.Models.Sex">
     <Position X="11.5" Y="9.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
-      <FileName>Sex.cs</FileName>
+      <FileName>Models\Sex.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="EVARest.Reason">
+  <Enum Name="EVARest.Models.Reason">
     <Position X="4.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Reason.cs</FileName>
+      <FileName>Models\Reason.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="EVARest.Difficulty">
+  <Enum Name="EVARest.Models.Difficulty">
     <Position X="0.5" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAAAAAAAAAAAAAAAABAAAAAAAAgAAAAAAAAAAAAAQ=</HashCode>
-      <FileName>Difficulty.cs</FileName>
+      <FileName>Models\Difficulty.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="EVARest.CookingTime">
+  <Enum Name="EVARest.Models.CookingTime">
     <Position X="0.5" Y="10.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAEAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAEAAA=</HashCode>
-      <FileName>CookingTime.cs</FileName>
+      <FileName>Models\CookingTime.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="EVARest.TargetSubject">
+  <Enum Name="EVARest.Models.TargetSubject">
     <Position X="3.5" Y="16.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAgAABAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>TargetSubject.cs</FileName>
+      <FileName>Models\TargetSubject.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

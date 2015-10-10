@@ -4,9 +4,9 @@ using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.ComponentModel;
 
-namespace EVARest
+namespace EVARest.Models
 {
-    public class RecipeType
+    public class NewsletterChallenge : Challenge
     {
     }
 }

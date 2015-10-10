@@ -4,13 +4,9 @@ using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.ComponentModel;
 
-namespace EVARest
+namespace EVARest.Models
 {
-    public enum Difficulty
+    public class RegionRestaurantChallenge : Challenge
     {
-        Starter,
-        Beginner,
-        Intermediate,
-        Expert
     }
 }
