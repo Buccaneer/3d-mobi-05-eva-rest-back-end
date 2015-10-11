@@ -12,58 +12,27 @@ namespace EVARest.Models.Domain
 {
     public class ApplicationUser : IdentityUser
     {
+        public virtual ICollection<Challenge> Challenges { get; set; }
 
-        //public virtual ICollection<Challenge> Challenges
-        //{
-        //    get; set;
-        //}
-      
-        //public DateTime StartedAt
-        //{
-        //    get; set;
-        //}
+        public DateTime StartedAt { get; set; }
 
-        //public byte Children
-        //{
-        //    get; set;
-        //}
+        public byte Children { get; set; }
 
-        //public Sex Sex
-        //{
-        //    get; set;
-        //}
+        public Sex Sex { get; set; }
 
-        //public DateTime Birthday
-        //{
-        //    get; set;
-        //}
+        public DateTime Birthday { get; set; }
 
-        //public bool IsStudent
-        //{
-        //    get; set;
-        //}
+        public bool IsStudent { get; set; }
 
-        //public bool IsMarried
-        //{
-        //    get; set;
-        //}
+        public bool IsMarried { get; set; }
 
-        //public virtual System.Collections.Generic.ICollection<Dislike> Dislikes
-        //{
-        //    get; set;
-        //}
+        public virtual System.Collections.Generic.ICollection<Dislike> Dislikes { get; set; }
 
-        //public virtual ICollection<Badge> Badges
-        //{
-        //    get; set;
-        //}
+        public virtual ICollection<Badge> Badges { get; set; }
 
-        //public int Points
-        //{
-        //    get; set;
-        //}
+        public int Points { get; set; }
 
-        //    public virtual Customer Customer { get; set; }
+        //public virtual Customer Customer { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -72,7 +41,8 @@ namespace EVARest.Models.Domain
             return userIdentity;
         }
 
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(ApplicationUserManager userManager, string authenticationType)
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(ApplicationUserManager userManager,
+            string authenticationType)
         {
             var userIdentity = await userManager.CreateIdentityAsync(this, authenticationType);
             return userIdentity;

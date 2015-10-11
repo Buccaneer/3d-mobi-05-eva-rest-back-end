@@ -17,5 +17,7 @@ namespace EVARest.Models.Domain
         {
             get; set;
         }
+
+        public int BadgeId { get; set; }
     }
 }
