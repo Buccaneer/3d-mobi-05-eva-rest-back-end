@@ -26,12 +26,15 @@ namespace EVARest.Models.DAL
             
             modelBuilder.Entity<Badge>().ToTable("Badges");
             modelBuilder.Entity<Badge>().HasKey(k => k.BadgeId);
-            modelBuilder.Entity<Badge>().Property(p => p.Description).IsRequired();
-            modelBuilder.Entity<Badge>().Property(p => p.Name).IsRequired();
+            //modelBuilder.Entity<Badge>().Property(p => p.Description).IsRequired();
+            //modelBuilder.Entity<Badge>().Property(p => p.Name).IsRequired();
+            
+            modelBuilder.Entity<Feedback>().ToTable("Feedback");
+            modelBuilder.Entity<Feedback>().HasKey(k => k.FeedbackId);
 
             modelBuilder.Entity<Challenge>().ToTable("Challenges");
             modelBuilder.Entity<Challenge>().HasKey(k => k.ChallengeId);
-            modelBuilder.Entity<Challenge>().Property(p => p.Name).IsRequired();
+            //modelBuilder.Entity<Challenge>().Property(p => p.Name).IsRequired();
 
             modelBuilder.Entity<Fact>().ToTable("Facts");
             modelBuilder.Entity<Fact>().HasKey(k => k.FactId);

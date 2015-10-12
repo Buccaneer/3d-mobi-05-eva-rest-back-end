@@ -3,13 +3,6 @@
   <Comment CommentText="Alle nederlands talige dingen naar engels&#xD;&#xA;&#xD;&#xA;Kijken voor taalsysteem (eventueel eens kijken naar designpatterns hiervoor)">
     <Position X="11.625" Y="0.865" Height="1.333" Width="2.377" />
   </Comment>
-  <Class Name="EVARest.Models.ApplicationDbContext" Collapsed="true">
-    <Position X="16.75" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\IdentityModels.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="EVARest.Models.Domain.Badge">
     <Position X="8.75" Y="2.5" Width="3" />
     <TypeIdentifier>
@@ -44,7 +37,7 @@
   <Class Name="EVARest.Models.Domain.Feedback">
     <Position X="12.75" Y="5.25" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAABAAAEAAAAAAAAAAAAAAAAAAAAAAgBAAQAAAAAAAA=</HashCode>
+      <HashCode>AAABAAAEAAAAAAAAAAAIAAAAAAAAAAgBAAQAAAAAAAA=</HashCode>
       <FileName>Models\Domain\Feedback.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -64,20 +57,16 @@
   <Class Name="EVARest.Models.Domain.RecipeProperty">
     <Position X="8.25" Y="9" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAQAgAAAAAAA=</HashCode>
       <FileName>Models\Domain\RecipeProperty.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EVARest.Models.Domain.Recipe">
     <Position X="3.5" Y="10.25" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAiQQAAAAAAACQAAAAAABAAAQAACAACAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAACQAAAAAABAAAAAACAACAAA=</HashCode>
       <FileName>Models\Domain\Recipe.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Difficulty" />
-      <Property Name="Type" />
-    </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="Ingredients" />
       <Property Name="Properties" />
@@ -100,7 +89,7 @@
   <Class Name="EVARest.Models.Domain.RecipeChallenge">
     <Position X="6.5" Y="13.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Domain\RecipeChallenge.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -113,6 +102,9 @@
       <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Domain\RestaurantChallenge.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Restaurant" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="EVARest.Models.Domain.NewsletterChallenge">
     <Position X="11.5" Y="13.5" Width="1.5" />
@@ -187,20 +179,6 @@
       <FileName>Models\Domain\Enums.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="EVARest.Models.Domain.Difficulty">
-    <Position X="0.5" Y="7.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AACAAAAAAAAAAAAAAAABAAAAAAAAgAAAAAAAAAAAAAQ=</HashCode>
-      <FileName>Models\Domain\Enums.cs</FileName>
-    </TypeIdentifier>
-  </Enum>
-  <Enum Name="EVARest.Models.Domain.CookingTime">
-    <Position X="0.5" Y="10.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAEAAA=</HashCode>
-      <FileName>Models\Domain\Enums.cs</FileName>
-    </TypeIdentifier>
-  </Enum>
   <Enum Name="EVARest.Models.Domain.Sex">
     <Position X="11.5" Y="9.5" Width="1.5" />
     <TypeIdentifier>
@@ -211,7 +189,7 @@
   <Enum Name="EVARest.Models.Domain.TargetSubject">
     <Position X="3.5" Y="16.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAgAABAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAgAABAAAAAAAAAABAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
       <FileName>Models\Domain\Enums.cs</FileName>
     </TypeIdentifier>
   </Enum>

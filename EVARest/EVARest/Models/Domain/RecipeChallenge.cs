@@ -13,7 +13,7 @@ namespace EVARest.Models.Domain
             get; set;
         }
 
-        public TargetSubject PreparesFor
+        public TargetSubject PrepareFor
         {
             get; set;
         }

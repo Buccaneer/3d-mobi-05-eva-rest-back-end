@@ -8,12 +8,23 @@ namespace EVARest.Models.Domain
 {
     public class RecipeProperty
     {
-        public string Description
+        public string Value
         {
             get; set;
         }
 
         public int PropertyId
+        {
+            get; set;
+        }
+
+        /**
+         *   Voorbeelden
+         *      Difficulty
+         *      CookingTime
+         *      NumberOfPeople
+         */
+        public string Type
         {
             get; set;
         }

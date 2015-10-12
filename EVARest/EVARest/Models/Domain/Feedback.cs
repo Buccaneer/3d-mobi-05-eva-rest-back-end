@@ -10,6 +10,10 @@ namespace EVARest.Models.Domain
 {
     public class Feedback
     {
+        public int FeedbackId
+        {
+            get; set;
+        }
         public TimeSpan TimeSpan
         {
             get; set;

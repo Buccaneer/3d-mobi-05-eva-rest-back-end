@@ -23,20 +23,8 @@ namespace EVARest.Models.Domain
     {
         Self,
         Friends,
-        LovedOnes
-    }
-    public enum Difficulty
-    {
-        Starter,
-        Beginner,
-        Intermediate,
-        Expert
+        Family,
+        LovedOne
     }
 
-    public enum CookingTime
-    {
-        Fast,
-        Medium,
-        Long
-    }
 }
