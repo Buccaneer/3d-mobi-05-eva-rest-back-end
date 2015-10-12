@@ -1,4 +1,5 @@
-﻿using EVARest.Models.Domain;
+﻿using System.Data;
+using EVARest.Models.Domain;
 using Microsoft.AspNet.Identity.EntityFramework;
 using MySql.Data.Entity;
 using System.Data.Entity;
@@ -11,6 +12,14 @@ namespace EVARest.Models.DAL
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class RestContext : IdentityDbContext<ApplicationUser>
     {
+
+        //public new DbSet<ApplicationUser> Users { get; set; }
+        public DbSet<Challenge> Challenges { get; set; }
+        public DbSet<Restaurant> Restaurants { get; set; }
+        public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
+        public DbSet<Fact> Facts { get; set; } 
+
         static RestContext()
         {
             DbConfiguration.SetConfiguration(new MySqlEFConfiguration());
@@ -23,7 +32,10 @@ namespace EVARest.Models.DAL
             base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Configurations.AddFromAssembly(Assembly.GetExecutingAssembly());
-            
+
+            modelBuilder.Entity<ApplicationUser>().ToTable("Users");
+            modelBuilder.Entity<ApplicationUser>().HasKey(k => k.Id);
+
             modelBuilder.Entity<Badge>().ToTable("Badges");
             modelBuilder.Entity<Badge>().HasKey(k => k.BadgeId);
             //modelBuilder.Entity<Badge>().Property(p => p.Description).IsRequired();
