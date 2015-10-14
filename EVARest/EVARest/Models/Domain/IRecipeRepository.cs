@@ -10,13 +10,13 @@ namespace EVARest.Models.Domain
 {
     public interface IRecipeRepository
     {
-        IQueryable<Recipe> Recipes { get; set; }
+        IQueryable<Recipe> Recipes { get;  }
 
-        IQueryable<Recipe> FindRecipesByIngredients(IEnumerable<Ingredient> ingredients);
+        IQueryable<Recipe> FindRecipesByIngredients(IEnumerable<string> ingredients);
         Recipe FindRecipeById(int id);
         IQueryable<Recipe> FindRecipesWithoutIngredients(IEnumerable<Ingredient> ingredients);
-        IQueryable<Recipe> FindRecipesByCookingTime(RecipeProperty cookingTime);
+   
         IQueryable<Recipe> FindRecipesByProperty(RecipeProperty property);
-        IQueryable<Recipe> FindRecipesByProperties(IEnumerable<RecipeProperty> properties);
+        IQueryable<Recipe> FindRecipesByProperties(IEnumerable<string> properties);
     }
 }

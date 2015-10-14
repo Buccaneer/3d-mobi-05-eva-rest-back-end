@@ -29,7 +29,7 @@ namespace EVARest.Models.Domain
             get; set;
         }
 
-        public IList<RecipeProperty> Properties {
+        public virtual IList<RecipeProperty> Properties {
             get; set;
         }
 

@@ -13,7 +13,7 @@ namespace EVARest.Models.Domain
             get; set;
         }
 
-        public Ingredient Ingredient
+        public virtual Ingredient Ingredient
         {
             get; set;
         }

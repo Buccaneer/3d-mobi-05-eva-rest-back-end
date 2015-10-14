@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity;
 
 namespace EVARest.Models.DAL
 {
-    public class RestInitializer : System.Data.Entity.DropCreateDatabaseAlways<RestContext>
+    public class RestInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<RestContext>
     {
         protected override void Seed(RestContext context)
         {
