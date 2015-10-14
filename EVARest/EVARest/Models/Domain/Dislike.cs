@@ -8,6 +8,8 @@ namespace EVARest.Models.Domain
 {
     public class Dislike
     {
+
+        public int DislikeId { get; set; }
         public Ingredient Ingredient
         {
             get; set;

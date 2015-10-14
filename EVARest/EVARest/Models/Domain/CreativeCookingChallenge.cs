@@ -8,5 +8,9 @@ namespace EVARest.Models.Domain
         {
             get; set;
         }
+
+        public CreativeCookingChallenge() : base() {
+            Ingredients = new List<Ingredient>();
+        }
     }
 }

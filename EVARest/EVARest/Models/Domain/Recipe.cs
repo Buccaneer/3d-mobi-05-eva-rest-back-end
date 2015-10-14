@@ -8,37 +8,35 @@ using System.Collections.Generic;
 
 namespace EVARest.Models.Domain
 {
-    public class Recipe
-    {
-        public virtual ICollection<Component> Ingredients
-        {
+    public class Recipe {
+        public virtual ICollection<Component> Ingredients {
             get; set;
         }
 
-        public string Name
-        {
+        public string Name {
             get; set;
         }
 
-        public string Description
-        {
+        public string Description {
             get; set;
         }
 
-        public string Image
-        {
+        public string Image {
             get; set;
         }
 
-        public int RecipeId
-        {
-            get; set; 
-        }
-
-        public IList<RecipeProperty> Properties
-        {
+        public int RecipeId {
             get; set;
         }
 
+        public IList<RecipeProperty> Properties {
+            get; set;
+        }
+
+        public Recipe() {
+            Properties = new List<RecipeProperty>();
+            Ingredients = new List<Component>();
+
+        }
     }
 }

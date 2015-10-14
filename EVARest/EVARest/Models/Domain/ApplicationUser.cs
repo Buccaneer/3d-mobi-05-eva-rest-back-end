@@ -47,5 +47,11 @@ namespace EVARest.Models.Domain
             var userIdentity = await userManager.CreateIdentityAsync(this, authenticationType);
             return userIdentity;
         }
+
+        public ApplicationUser() : base() {
+            Badges = new List<Badge>();
+            Challenges = new List<Challenge>();
+
+        }
     }
 }

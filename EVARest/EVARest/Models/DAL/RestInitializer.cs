@@ -6,6 +6,7 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using EVARest.Models.Domain;
+using Microsoft.AspNet.Identity;
 
 namespace EVARest.Models.DAL
 {
@@ -16,11 +17,8 @@ namespace EVARest.Models.DAL
             try
             {
                 Badge badge = new Badge() {BadgeId = 1, Name = "NameBadge", Description = "DescriptionBadge"};
-                ApplicationUser user = new ApplicationUser()
-                {
-                    Id = "UserId",
-                    Badges = {badge}
-                };
+                ApplicationUser user = CreateAccount(context);
+                user.Badges.Add(badge);
                 Feedback feedback = new Feedback()
                 {
                     FeedbackId = 1,
@@ -66,7 +64,7 @@ namespace EVARest.Models.DAL
                     Name = "ChallengeName"
                 };
                 Fact fact = new Fact() {FactId = 1, Description = "FactDescription"};
-                context.Users.Add(user);
+            //    context.Users.Add(user);
                 context.Challenges.Add(cookingChallenge);
                 context.Restaurants.Add(restaurant);
                 context.Recipes.Add(recipe);
@@ -89,6 +87,25 @@ namespace EVARest.Models.DAL
                 }
                 throw new Exception(s);
             }
+        }
+
+        private ApplicationUser CreateAccount(RestContext context) {
+            var userStore = new UserStore<ApplicationUser>(context);
+            var userManager = new UserManager<ApplicationUser>(userStore);
+            var roleStore = new RoleStore<IdentityRole>(context);
+            var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+            var role = new IdentityRole("admin");
+            roleManager.Create(role);
+
+            const string name = "ss@hogent.be";
+            const string password = "P@ssword1";
+            ApplicationUser admin = new ApplicationUser { UserName = name, Email = name };
+            userManager.Create(admin, password);
+            userManager.SetLockoutEnabled(admin.Id, false);
+            userManager.AddToRole(admin.Id, "admin");
+            return admin;
+
         }
     }
 }

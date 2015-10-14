@@ -6,6 +6,7 @@ namespace EVARest.Models.Domain
 {
     public class Component
     {
+        public int ComponentId { get; set; }
 
         public double Quantity
         {

@@ -422,3 +422,11 @@ C:\Users\Pieter-Jan\Documents\HoGent\Project\eva-rest-back-end\EVARest\EVARest\b
 C:\Users\Pieter-Jan\Documents\HoGent\Project\eva-rest-back-end\EVARest\EVARest\obj\Debug\EVARest.csprojResolveAssemblyReference.cache
 C:\Users\Pieter-Jan\Documents\HoGent\Project\eva-rest-back-end\EVARest\EVARest\obj\Debug\EVARest.dll
 C:\Users\Pieter-Jan\Documents\HoGent\Project\eva-rest-back-end\EVARest\EVARest\obj\Debug\EVARest.pdb
+C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\Microsoft.Owin.Cors.dll
+C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\Microsoft.Owin.Security.Jwt.dll
+C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\System.Web.Cors.dll
+C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\System.Web.dll
+C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\Microsoft.Owin.Cors.xml
+C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\Microsoft.Owin.Security.Jwt.xml
+C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\System.IdentityModel.Tokens.Jwt.xml
