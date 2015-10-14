@@ -51,7 +51,7 @@ namespace EVARest.Models.Domain
         public ApplicationUser() : base() {
             Badges = new List<Badge>();
             Challenges = new List<Challenge>();
-
+            Dislikes = new List<Dislike>();
         }
     }
 }
