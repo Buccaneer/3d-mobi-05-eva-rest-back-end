@@ -32,5 +32,12 @@ namespace EVARest.Models.Domain
         {
             get; set;
         }
+
+        public string Type {
+            get {
+                string name = GetType().Name;
+                return name.Remove(name.IndexOf("Cha"));
+            }
+        }
     }
 }

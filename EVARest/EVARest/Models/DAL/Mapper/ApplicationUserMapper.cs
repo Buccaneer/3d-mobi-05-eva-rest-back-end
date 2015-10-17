@@ -12,6 +12,7 @@ namespace EVARest.Models.DAL.Mapper
         public ApplicationUserMapper()
         {
             this.ToTable("AspNetUsers").Property(c => c.UserName).HasMaxLength(128).IsRequired();
+            HasMany(u => u.Challenges).WithRequired();
         }
     }
 }

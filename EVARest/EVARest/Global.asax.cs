@@ -1,5 +1,6 @@
 ﻿using EVARest.App_Start;
 using EVARest.Models.DAL;
+using EVARest.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace EVARest
     {
         protected void Application_Start()
         {
+
+           
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
@@ -23,6 +26,8 @@ namespace EVARest
 
             new RestContext().Database.Initialize(true);
             NinjectWebCommon.RegisterNinject(GlobalConfiguration.Configuration);
+
+     
         }
     }
 }

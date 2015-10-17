@@ -12,11 +12,12 @@ namespace EVARest.Models.DAL {
     public class RestContext : IdentityDbContext<ApplicationUser> {
 
         //public new DbSet<ApplicationUser> Users { get; set; }
-        public DbSet<Challenge> Challenges { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Fact> Facts { get; set; }
+
+        public DbSet<Ingredient> Ingredients { get; set; }
 
         static RestContext() {
             DbConfiguration.SetConfiguration(new MySqlEFConfiguration());
@@ -42,6 +43,7 @@ namespace EVARest.Models.DAL {
 
             modelBuilder.Entity<Challenge>().ToTable("Challenges");
             modelBuilder.Entity<Challenge>().HasKey(k => k.ChallengeId);
+            modelBuilder.Entity<Challenge>().Ignore(c => c.Type);
             //modelBuilder.Entity<Challenge>().Property(p => p.Name).IsRequired();
 
             modelBuilder.Entity<Fact>().ToTable("Facts");

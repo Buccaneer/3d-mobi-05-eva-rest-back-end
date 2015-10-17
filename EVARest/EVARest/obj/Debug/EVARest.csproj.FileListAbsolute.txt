@@ -155,7 +155,6 @@ C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\
 C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\System.Web.Http.Owin.xml
-C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\obj\Debug\EVARest.csprojResolveAssemblyReference.cache
 C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\obj\Debug\EVARest.dll
 C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\obj\Debug\EVARest.pdb
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\roslyn\csc.exe
@@ -438,3 +437,4 @@ C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\
 C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\Ninject.Web.Common.xml
 C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\Ninject.Web.Mvc.xml
 C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\XmlDocument.xml
+C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\obj\Debug\EVARest.csprojResolveAssemblyReference.cache

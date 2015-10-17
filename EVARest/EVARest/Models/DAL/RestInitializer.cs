@@ -64,8 +64,9 @@ namespace EVARest.Models.DAL
                     Name = "ChallengeName"
                 };
                 Fact fact = new Fact() {FactId = 1, Description = "FactDescription"};
-            //    context.Users.Add(user);
-                context.Challenges.Add(cookingChallenge);
+                //    context.Users.Add(user);
+                context.Ingredients.Add(ingredient);
+                user.Challenges.Add(cookingChallenge);
                 context.Restaurants.Add(restaurant);
                 context.Recipes.Add(recipe);
                 context.Feedbacks.Add(feedback);

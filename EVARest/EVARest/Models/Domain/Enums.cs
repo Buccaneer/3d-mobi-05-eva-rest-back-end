@@ -19,12 +19,12 @@ namespace EVARest.Models.Domain
         Dislike = 2
     }
 
-    public enum TargetSubject
+    public enum TargetSubject : int
     {
-        Self,
-        Friends,
-        Family,
-        LovedOne
+        Self = 0,
+        Friends = 1,
+        Family = 2,
+        LovedOne = 3
     }
 
 }

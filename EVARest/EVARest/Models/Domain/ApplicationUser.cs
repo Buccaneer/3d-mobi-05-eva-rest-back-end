@@ -53,5 +53,13 @@ namespace EVARest.Models.Domain
             Challenges = new List<Challenge>();
             Dislikes = new List<Dislike>();
         }
+
+        public void AddChallenge(Challenge challenge) {
+            if (Challenges.Any(c => c.Date.Date == DateTime.Today))
+                throw new ArgumentException("A challenge has been chosen for today.");
+
+            Challenges.Add(challenge);
+            challenge.Name = $"Challenge {Challenges.Count}";
+        }
     }
 }

@@ -9,8 +9,12 @@ using EVARest.ViewModels;
 
 namespace EVARest.Controllers
 {
+    /// <summary>
+    /// Recipe resource
+    /// </summary>
     [Authorize]
     [RoutePrefix("api/Recipes")]
+   
     public class RecipeController : ApiController
     {
         private IRecipeRepository _recipeRepository;
@@ -44,18 +48,7 @@ namespace EVARest.Controllers
         }
 
 
-        private ApplicationUser User {
-            get {
-                if (_user != null)
-                    return _user;
-                var username = RequestContext.Principal.Identity.Name;
-                var user = _context.Users.FirstOrDefault(u => u.UserName == username
-
-                   );
-                _user = user;
-                return user;
-            }
-        }
+      
 
 
 
@@ -96,6 +89,19 @@ namespace EVARest.Controllers
             return Ok(_recipeRepository
                 .FindRecipesByIngredients(lsvm.Values)
                 .ToList());
+        }
+
+        private ApplicationUser User {
+            get {
+                if (_user != null)
+                    return _user;
+                var username = RequestContext.Principal.Identity.Name;
+                var user = _context.Users.FirstOrDefault(u => u.UserName == username
+
+                   );
+                _user = user;
+                return user;
+            }
         }
 
         public RecipeController (IRecipeRepository recipeRepository, RestContext context) {
