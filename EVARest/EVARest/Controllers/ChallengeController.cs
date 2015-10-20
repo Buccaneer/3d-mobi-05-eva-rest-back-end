@@ -66,6 +66,8 @@ new {
         /// Creates a challenge for the user, according to user preferences.
         /// 
         /// A user can only request one challenge a day.
+        /// 
+        /// Supported: Recipe, CreativeCooking, Restaurant
         /// </summary>
         /// <remarks>A user can only request one challenge a day.</remarks>
         /// <exception cref="ArgumentException">When this function gets called more than once a day.</exception>
@@ -82,7 +84,7 @@ new {
                 }
                 var challenge = cvm.CreateFactory().CreateChallenge(_context, cvm);
                 User.AddChallenge(challenge);
-          
+
                 _context.SaveChanges();
                 return Ok();
             } catch (Exception ex) {
@@ -91,8 +93,62 @@ new {
 
         }
 
- 
-        
+        /// <summary>
+        /// Set the challenge generated today to be done. The earnings are added to the user points and batches are rewarded.
+        /// The challenge must be created today.
+        /// </summary>
+        /// <param name="id">The challenge that has been done.</param>
+        /// <returns></returns>
+        [HttpPost]
+        public IHttpActionResult MarkChallengeAsDone(int id) {
+            var challenge = User.Challenges.FirstOrDefault(c => c.ChallengeId == id);
+
+            if (challenge == null)
+                return BadRequest($"Challenge resource with id {id} does not exist for the current user.");
+
+            try {
+                User.HasDoneChallenge(challenge);
+            } catch (Exception ex) {
+                return BadRequest(ex.Message);
+            }
+
+            _context.SaveChanges();
+
+            return Ok();
+
+
+        }
+
+        /// <summary>
+        /// Delete all the challenges that the users has.
+        /// </summary>
+        /// <returns></returns>
+        [HttpDelete]
+        public IHttpActionResult DeleteAllChallenges() {
+            User.DeleteChallenges();
+            _context.SaveChanges();
+            return Ok();
+        }
+
+        /// <summary>
+        /// Deletes a challenge that the user has.
+        /// </summary>
+        /// <param name="id">The id of the challenge.</param>
+        /// <returns></returns>
+        [HttpDelete]
+        public IHttpActionResult DeleteChallenge(int id) {
+            var challenge = User.Challenges.FirstOrDefault(c => c.ChallengeId == id);
+
+            if (challenge == null)
+                return BadRequest($"Challenge resource with id {id} does not exist for the current user.");
+
+            User.DeleteChallenge(challenge);
+            _context.SaveChanges();
+            return Ok();
+        }
+
+
+
 
 
         public ChallengeController(RestContext context) {

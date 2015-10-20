@@ -56,10 +56,28 @@ namespace EVARest.Models.Domain
 
         public void AddChallenge(Challenge challenge) {
             if (Challenges.Any(c => c.Date.Date == DateTime.Today))
-                throw new ArgumentException("A challenge has been chosen for today.");
+                throw new ArgumentException("A challenge has already been chosen for today.");
 
             Challenges.Add(challenge);
             challenge.Name = $"Challenge {Challenges.Count}";
+
+            if (Challenges.Count == 1)
+                StartedAt = DateTime.Now;
+        }
+
+        public void HasDoneChallenge(Challenge challenge) {
+            if (challenge.Date.Date != DateTime.Today)
+                throw new ArgumentException("You cannot do a challenge that is from the past.");
+            challenge.Done = true;
+            Points += challenge.Earnings;
+        }
+
+        public void DeleteChallenges() {
+            Challenges.Clear();
+        }
+
+        public void DeleteChallenge(Challenge challenge) {
+            Challenges.Remove(challenge);
         }
     }
 }

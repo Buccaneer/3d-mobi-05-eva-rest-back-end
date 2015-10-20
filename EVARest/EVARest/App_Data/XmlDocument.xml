@@ -526,6 +526,8 @@
             Creates a challenge for the user, according to user preferences.
             
             A user can only request one challenge a day.
+            
+            Supported: Recipe, CreativeCooking, Restaurant
             </summary>
             <remarks>A user can only request one challenge a day.</remarks>
             <exception cref="T:System.ArgumentException">When this function gets called more than once a day.</exception>
@@ -533,6 +535,27 @@
             <returns>200: Challenge was succesfully added.
             400: An exception has accord. (Message)
             </returns>
+        </member>
+        <member name="M:EVARest.Controllers.ChallengeController.MarkChallengeAsDone(System.Int32)">
+            <summary>
+            Set the challenge generated today to be done. The earnings are added to the user points and batches are rewarded.
+            The challenge must be created today.
+            </summary>
+            <param name="id">The challenge that has been done.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EVARest.Controllers.ChallengeController.DeleteAllChallenges">
+            <summary>
+            Delete all the challenges that the users has.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:EVARest.Controllers.ChallengeController.DeleteChallenge(System.Int32)">
+            <summary>
+            Deletes a challenge that the user has.
+            </summary>
+            <param name="id">The id of the challenge.</param>
+            <returns></returns>
         </member>
         <member name="T:EVARest.Controllers.RecipeController">
             <summary>

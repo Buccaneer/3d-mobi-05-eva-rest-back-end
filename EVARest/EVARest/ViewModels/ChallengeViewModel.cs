@@ -12,18 +12,27 @@ namespace EVARest.ViewModels {
     public class ChallengeViewModel {
         [Required]
         public string Type { get; set; }
-        
+
         public int[] IngredientsId { get; set; }
         public int RecipeId { get; set; }
 
+        public int RestaurantId { get; set; }
+
         public ChallengeFactory CreateFactory() {
-            var factoryClassName ="EVARest.ViewModels." +  Type + "ChallengeFactory";
-            Type type = Assembly.GetAssembly(typeof(ChallengeFactory)).GetType(factoryClassName);
-            return (ChallengeFactory) Activator.CreateInstance(type);
+            try {
+                var factoryClassName = "EVARest.ViewModels." + Type + "ChallengeFactory";
+                Type type = Assembly.GetAssembly(typeof(ChallengeFactory)).GetType(factoryClassName);
+                return (ChallengeFactory)Activator.CreateInstance(type);
+            } catch 
+            {
+                throw new ArgumentException("This type of challenge is not supported (yet).");
+            }
         }
 
       
-       
+       public ChallengeViewModel() {
+            RestaurantId = RecipeId = -1;
+        }
 
     }
 
@@ -99,6 +108,24 @@ namespace EVARest.ViewModels {
             c.Recipe = recipe;
             c.PrepareFor = (TargetSubject)R.Next(0, 4);
             c.Earnings = 1;
+        }
+    }
+
+    public class RestaurantChallengeFactory : ChallengeFactory {
+        protected override Challenge CreateInstance() {
+            return new RestaurantChallenge();
+        }
+
+        protected override void FillSpecificData(Challenge challenge, RestContext context, ChallengeViewModel data) {
+            var restaurant = context.Restaurants.FirstOrDefault(r => r.RestaurantId == data.RestaurantId);
+            var c = (challenge as RestaurantChallenge);
+            if (restaurant == null)
+                throw new NullReferenceException($"Restaurant with id {data.RestaurantId} was not found.");
+
+            c.Earnings = 3;
+            c.Restaurant = restaurant;
+         
+
         }
     }
 }
