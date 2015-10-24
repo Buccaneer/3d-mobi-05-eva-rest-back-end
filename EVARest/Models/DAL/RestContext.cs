@@ -1,15 +1,13 @@
 ﻿using System.Data;
 using EVARest.Models.Domain;
-using Microsoft.AspNet.Identity.EntityFramework;
 using MySql.Data.Entity;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Reflection;
-using System.Web.Mvc;
 
 namespace EVARest.Models.DAL {
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
-    public class RestContext : IdentityDbContext<ApplicationUser> {
+    public class RestContext : DbContext {
 
         //public new DbSet<ApplicationUser> Users { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
@@ -75,12 +73,5 @@ namespace EVARest.Models.DAL {
             modelBuilder.Entity<Component>().ToTable("Components").HasKey(c => c.ComponentId);
         }
 
-        public static RestContext Create() {
-            return DependencyResolver.Current.GetService<RestContext>();
-        }
-
-        public override int SaveChanges() {
-            return base.SaveChanges();
-        }
     }
 }

@@ -438,3 +438,4 @@ C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\
 C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\Ninject.Web.Mvc.xml
 C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\XmlDocument.xml
 C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\obj\Debug\EVARest.csprojResolveAssemblyReference.cache
+C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\proefdata.json

@@ -30,7 +30,7 @@ namespace EVARest.Controllers
              var ingredients = user.Dislikes.Select(s => s.Ingredient);
             return _recipeRepository
                 .FindRecipesWithoutIngredients(ingredients)
-                .TakeRandom(50)
+                .TakeRandom(5)
                 .ToList();
         }
         /// <summary>
@@ -68,6 +68,7 @@ namespace EVARest.Controllers
             var ingredients = user.Dislikes.Select(s => s.Ingredient);
             return Ok(_recipeRepository
                 .FindRecipesByProperties(lsvm.Values)
+                .TakeRandom(5)
                 .ToList());
                 
         }
@@ -88,6 +89,7 @@ namespace EVARest.Controllers
             var ingredients = user.Dislikes.Select(s => s.Ingredient);
             return Ok(_recipeRepository
                 .FindRecipesByIngredients(lsvm.Values)
+                .TakeRandom(5)
                 .ToList());
         }
 
