@@ -20,7 +20,7 @@ namespace EVARest.Controllers
         // GET: Filler
         public IHttpActionResult Index()
         {
-            string filename = @"C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\proefdata.json";
+            string filename = @"D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\proefdata.json";
 
             IDictionary<string, RecipeProperty> properties = new Dictionary<string, RecipeProperty>();
             IDictionary<string, Ingredient> ingredients = new Dictionary<string, Ingredient>();

@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Reflection;
 using System.Web.Mvc;
+using EVARest.Models.Domain.I18n;
 
 namespace EVARest.Models.DAL {
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
@@ -17,13 +18,15 @@ namespace EVARest.Models.DAL {
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Fact> Facts { get; set; }
 
+        public DbSet<OverrideLanguageSpecification> LanguageSpecifications {get;set;}
+
         public DbSet<Ingredient> Ingredients { get; set; }
 
         static RestContext() {
             DbConfiguration.SetConfiguration(new MySqlEFConfiguration());
         }
 
-        public RestContext() : base(nameOrConnectionString: "server=127.0.0.1;port=3306;database=evarest;uid=root;password=jasperke2") { }
+        public RestContext() : base(nameOrConnectionString: "server=127.0.0.1;port=3306;database=evarest;uid=root") { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {
             base.OnModelCreating(modelBuilder);
@@ -73,7 +76,9 @@ namespace EVARest.Models.DAL {
 
             modelBuilder.Entity<Dislike>().ToTable("Dislikes").HasKey(d => d.DislikeId);
             modelBuilder.Entity<Component>().ToTable("Components").HasKey(c => c.ComponentId);
-        }
+
+            modelBuilder.Entity<OverrideLanguageSpecification>().ToTable("Languages").HasKey(l => l.LanguageStringId);
+         }
 
         public static RestContext Create() {
             return DependencyResolver.Current.GetService<RestContext>();

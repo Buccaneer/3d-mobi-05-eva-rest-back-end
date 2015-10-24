@@ -331,8 +331,6 @@ A:\coding\projecten\rest\EVARest\EVARest\obj\Debug\EVARest.csprojResolveAssembly
 A:\coding\projecten\rest\EVARest\EVARest\obj\Debug\EVARest.dll
 A:\coding\projecten\rest\EVARest\EVARest\obj\Debug\EVARest.pdb
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\System.Web.Cors.dll
-D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\System.Web.Http.Cors.dll
-D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\System.Web.Http.Cors.xml
 C:\Users\Pieter-Jan\Documents\HoGent\Project\eva-rest-back-end\EVARest\EVARest\bin\roslyn\csc.exe
 C:\Users\Pieter-Jan\Documents\HoGent\Project\eva-rest-back-end\EVARest\EVARest\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 C:\Users\Pieter-Jan\Documents\HoGent\Project\eva-rest-back-end\EVARest\EVARest\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -439,3 +437,14 @@ C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\
 C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\XmlDocument.xml
 C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\obj\Debug\EVARest.csprojResolveAssemblyReference.cache
 C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\proefdata.json
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\proefdata.json
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\XmlDocument.xml
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\Microsoft.Owin.Cors.dll
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\Ninject.dll
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\Ninject.Web.Common.dll
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\Ninject.Web.Mvc.dll
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\WebActivatorEx.dll
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\Microsoft.Owin.Cors.xml
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\Ninject.xml
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\Ninject.Web.Common.xml
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\Ninject.Web.Mvc.xml
