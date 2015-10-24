@@ -6,16 +6,18 @@ using System.ComponentModel;
 
 namespace EVARest.Models.Domain
 {
-    public class RecipeChallenge : Challenge
+    public class Badge
     {
-        public virtual Recipe Recipe
+        public string Name
         {
             get; set;
         }
 
-        public TargetSubject PrepareFor
+        public string Description
         {
             get; set;
         }
+
+        public int BadgeId { get; set; }
     }
 }

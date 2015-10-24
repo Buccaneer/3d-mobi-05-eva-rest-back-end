@@ -9,8 +9,12 @@ using EVARest.ViewModels;
 
 namespace EVARest.Controllers
 {
+    /// <summary>
+    /// Recipe resource
+    /// </summary>
     [Authorize]
     [RoutePrefix("api/Recipes")]
+   
     public class RecipeController : ApiController
     {
         private IRecipeRepository _recipeRepository;
@@ -26,7 +30,7 @@ namespace EVARest.Controllers
              var ingredients = user.Dislikes.Select(s => s.Ingredient);
             return _recipeRepository
                 .FindRecipesWithoutIngredients(ingredients)
-                .TakeRandom(50)
+                .TakeRandom(5)
                 .ToList();
         }
         /// <summary>
@@ -44,18 +48,7 @@ namespace EVARest.Controllers
         }
 
 
-        private ApplicationUser User {
-            get {
-                if (_user != null)
-                    return _user;
-                var username = RequestContext.Principal.Identity.Name;
-                var user = _context.Users.FirstOrDefault(u => u.UserName == username
-
-                   );
-                _user = user;
-                return user;
-            }
-        }
+      
 
 
 
@@ -75,6 +68,7 @@ namespace EVARest.Controllers
             var ingredients = user.Dislikes.Select(s => s.Ingredient);
             return Ok(_recipeRepository
                 .FindRecipesByProperties(lsvm.Values)
+                .TakeRandom(5)
                 .ToList());
                 
         }
@@ -95,7 +89,21 @@ namespace EVARest.Controllers
             var ingredients = user.Dislikes.Select(s => s.Ingredient);
             return Ok(_recipeRepository
                 .FindRecipesByIngredients(lsvm.Values)
+                .TakeRandom(5)
                 .ToList());
+        }
+
+        private ApplicationUser User {
+            get {
+                if (_user != null)
+                    return _user;
+                var username = RequestContext.Principal.Identity.Name;
+                var user = _context.Users.FirstOrDefault(u => u.UserName == username
+
+                   );
+                _user = user;
+                return user;
+            }
         }
 
         public RecipeController (IRecipeRepository recipeRepository, RestContext context) {

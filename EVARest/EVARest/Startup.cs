@@ -5,6 +5,8 @@ using Microsoft.Owin;
 using Owin;
 using MySql.Data.Entity;
 using System.Data.Entity;
+using EVARest.ViewModels;
+using System.Web.Mvc;
 
 [assembly: OwinStartupAttribute(typeof(EVARest.Startup))]
 namespace EVARest

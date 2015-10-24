@@ -6,14 +6,16 @@ using System.ComponentModel;
 
 namespace EVARest.Models.Domain
 {
-    public class RecipeChallenge : Challenge
+    public class Dislike
     {
-        public virtual Recipe Recipe
+
+        public int DislikeId { get; set; }
+        public Ingredient Ingredient
         {
             get; set;
         }
 
-        public TargetSubject PrepareFor
+        public Reason Reason
         {
             get; set;
         }

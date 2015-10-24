@@ -6,38 +6,36 @@ using System.ComponentModel;
 
 namespace EVARest.Models.Domain
 {
-    public abstract class Challenge
+    public class Restaurant
     {
-        public DateTime Date
-        {
-            get; set;
-        }
-
         public string Name
         {
             get; set;
         }
 
-        public bool Done
+        public double Longitute
         {
             get; set;
         }
 
-        public int Earnings
+        public double Latitude
         {
             get; set;
         }
 
-        public int ChallengeId
+        public string Description
         {
             get; set;
         }
 
-        public string Type {
-            get {
-                string name = GetType().Name;
-                return name.Remove(name.IndexOf("Cha"));
-            }
+        public string Website
+        {
+            get; set;
+        }
+
+        public int RestaurantId
+        {
+            get; set;
         }
     }
 }

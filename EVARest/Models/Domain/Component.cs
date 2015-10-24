@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Web;
-using System.Web.Services;
-using System.Web.Services.Protocols;
 using System.ComponentModel;
 
 namespace EVARest.Models.Domain
 {
-    public class RecipeChallenge : Challenge
+    public class Component
     {
-        public virtual Recipe Recipe
+        public int ComponentId { get; set; }
+
+        public double Quantity
         {
             get; set;
         }
 
-        public TargetSubject PrepareFor
+        public virtual Ingredient Ingredient
         {
             get; set;
         }

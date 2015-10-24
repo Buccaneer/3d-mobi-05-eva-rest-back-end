@@ -503,6 +503,65 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:EVARest.Controllers.ChallengeController">
+            <summary>
+            The challenge resource.
+            </summary>
+        </member>
+        <member name="M:EVARest.Controllers.ChallengeController.GetChallenges">
+            <summary>
+            Gets all the challenges the user has done. It can be that the user skipped days.
+            </summary>
+            <returns>Challenge data</returns>
+        </member>
+        <member name="M:EVARest.Controllers.ChallengeController.GetChallenge(System.Int32)">
+            <summary>
+            Returns all the information about a challenge that a user has.
+            </summary>
+            <param name="id">The challengeid</param>
+            <returns>The requested challenge, with all the information</returns>
+        </member>
+        <member name="M:EVARest.Controllers.ChallengeController.InsertChallenge(EVARest.ViewModels.ChallengeViewModel)">
+            <summary>
+            Creates a challenge for the user, according to user preferences.
+            
+            A user can only request one challenge a day.
+            
+            Supported: Recipe, CreativeCooking, Restaurant
+            </summary>
+            <remarks>A user can only request one challenge a day.</remarks>
+            <exception cref="T:System.ArgumentException">When this function gets called more than once a day.</exception>
+            <param name="cvm"></param>
+            <returns>200: Challenge was succesfully added.
+            400: An exception has accord. (Message)
+            </returns>
+        </member>
+        <member name="M:EVARest.Controllers.ChallengeController.MarkChallengeAsDone(System.Int32)">
+            <summary>
+            Set the challenge generated today to be done. The earnings are added to the user points and batches are rewarded.
+            The challenge must be created today.
+            </summary>
+            <param name="id">The challenge that has been done.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EVARest.Controllers.ChallengeController.DeleteAllChallenges">
+            <summary>
+            Delete all the challenges that the users has.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:EVARest.Controllers.ChallengeController.DeleteChallenge(System.Int32)">
+            <summary>
+            Deletes a challenge that the user has.
+            </summary>
+            <param name="id">The id of the challenge.</param>
+            <returns></returns>
+        </member>
+        <member name="T:EVARest.Controllers.RecipeController">
+            <summary>
+            Recipe resource
+            </summary>
+        </member>
         <member name="M:EVARest.Controllers.RecipeController.GetAllRecipes">
             <summary>
             Returns a max of 50 random recipes that doesn't use recipes in user dislike.
@@ -535,6 +594,19 @@
                Difficulty
                CookingTime
                NumberOfPeople
+        </member>
+        <member name="M:EVARest.ViewModels.ChallengeFactory.FillSpecificData(EVARest.Models.Domain.Challenge,EVARest.Models.DAL.RestContext,EVARest.ViewModels.ChallengeViewModel)">
+            <summary>
+            Fill the challenge with challengespecific data.
+            </summary>
+            <param name="challenge">The object to be filled.</param>
+            <param name="context">Context where you can get data.</param>
+        </member>
+        <member name="M:EVARest.ViewModels.ChallengeFactory.CreateInstance">
+            <summary>
+            Creates an empty challenge object.
+            </summary>
+            <returns>According to witch type of ChallengeViewModel an according Challenge type.</returns>
         </member>
     </members>
 </doc>

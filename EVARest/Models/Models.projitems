@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>357be579-7d27-4835-9c5c-41a81db2aa29</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" />
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AccountBindingModels.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AccountViewModels.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DAL\ExtentionMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DAL\Mapper\ApplicationUserMapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DAL\Mapper\IdentityRoleMapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DAL\RecipeRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DAL\RestContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DAL\RestInitializer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\ApplicationUser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\Badge.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\Challenge.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\Component.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\CreativeCookingChallenge.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\Dislike.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\Enums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\Fact.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\Feedback.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\I18n\ILanguageProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\I18n\OverrideLanguageSpecification.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\Ingredient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\IRecipeRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\IRestaurantRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\NewsletterChallenge.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\Recipe.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\RecipeChallenge.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\RecipeProperty.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\RegionRecipeChallenge.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\RegionRestaurantChallenge.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\Restaurant.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\RestaurantChallenge.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Domain\WorkshopChallenge.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)CD.cd" />
+  </ItemGroup>
+</Project>
