@@ -16,62 +16,76 @@ namespace EVARest.Models.DAL
         {
             try
             {
-                //Badge badge = new Badge() {BadgeId = 1, Name = "NameBadge", Description = "DescriptionBadge"};
-                //ApplicationUser user = CreateAccount(context);
-                //user.Badges.Add(badge);
-                //Feedback feedback = new Feedback()
-                //{
-                //    FeedbackId = 1,
-                //    Comment = "CommentFeedback",
-                //    Date = new DateTime(2015, 10, 12),
-                //    StillVegan = true,
-                //    TimeSpan = new TimeSpan(21, 0, 0, 0),
-                //    User = user
-                //};
-                //Restaurant restaurant = new Restaurant()
-                //{
-                //    RestaurantId = 1,
-                //    Description = "RestaurantDescription",
-                //    Latitude = 0.0,
-                //    Longitute = 0.0,
-                //    Name = "RestaurantName",
-                //    Website = "http://www.google.be"
-                //};
-                //Ingredient ingredient = new Ingredient() {IngredientId = 1, Name = "IngredientName", Unit = "Kilo"};
-                //Component component = new Component() {Ingredient = ingredient, Quantity = 1.0};
-                //RecipeProperty property = new RecipeProperty()
-                //{
-                //    PropertyId = 1,
-                //    Value = "PropertyValue",
-                //    Type = "PropertyType"
-                //};
-                //Recipe recipe = new Recipe()
-                //{
-                //    RecipeId = 1,
-                //    Description = "RecipeDescription",
-                //    Image = "ImageURL",
-                //    Ingredients = {component},
-                //    Name = "RecipeName",
-                //    Properties = {property}
-                //};
-                //Challenge cookingChallenge = new CreativeCookingChallenge()
-                //{
-                //    ChallengeId = 1,
-                //    Date = new DateTime(2015, 10, 12),
-                //    Done = true,
-                //    Ingredients = {ingredient},
-                //    Earnings = 5,
-                //    Name = "ChallengeName"
-                //};
-                //Fact fact = new Fact() {FactId = 1, Description = "FactDescription"};
-                ////    context.Users.Add(user);
-                //context.Ingredients.Add(ingredient);
-                //user.Challenges.Add(cookingChallenge);
-                //context.Restaurants.Add(restaurant);
-                //context.Recipes.Add(recipe);
-                //context.Feedbacks.Add(feedback);
-                //context.Facts.Add(fact);
-                //context.SaveChanges();
+
+                // BADGES
+                Badge badge1 = new Badge() { BadgeId = 1, Name = "Week long", Description = "Well done, you've been completing daily challenges for a full week." };
+                Badge badge2 = new Badge() { BadgeId = 2, Name = "Two weeks in", Description = "Keep it up! You're now two weeks in the challenge. Only one more week to go." };
+                Badge badge3 = new Badge() { BadgeId = 3, Name = "Made it", Description = "Congratulations, you've made it! You completed the 21 day challenge. Feel free to keep completing daily challenges." };
+                Badge badge4 = new Badge() { BadgeId = 4, Name = "Month long", Description = "We're so happy to see you continue completing challenges!" };
+                Badge badge5 = new Badge() { BadgeId = 5, Name = "A year gone by", Description = "It's been a year since you started completing challenges." };
+
+                // RESTAURANTS
+                Restaurant restaurant1 = new Restaurant()
+                {
+                    RestaurantId = 1,
+                    Description = "Better than The Fat Duck.",
+                    Latitude = 51.0,
+                    Longitute = 44.0,
+                    Name = "The Vegan Duck",
+                    Website = "http://www.google.be"
+                };
+                Restaurant restaurant2 = new Restaurant()
+                {
+                    RestaurantId = 2,
+                    Description = "Delicious dishes.",
+                    Latitude = 51.0,
+                    Longitute = 44.0,
+                    Name = "Quomodo",
+                    Website = "http://www.google.be"
+                };
+                Restaurant restaurant3 = new Restaurant()
+                {
+                    RestaurantId = 3,
+                    Description = "This bar serves 100% vegetal beer.",
+                    Latitude = 51.0,
+                    Longitute = 44.0,
+                    Name = "The World's End",
+                    Website = "http://www.google.be"
+                };
+                Restaurant restaurant4 = new Restaurant()
+                {
+                    RestaurantId = 4,
+                    Description = "We serve delicious fruity cocktails and soy milkshakes.",
+                    Latitude = 51.0,
+                    Longitute = 44.0,
+                    Name = "Raspberry",
+                    Website = "http://www.google.be"
+                };
+                Restaurant restaurant5 = new Restaurant()
+                {
+                    RestaurantId = 5,
+                    Description = "All sorts of vegetal pie. Do not ask for meat pie.",
+                    Latitude = 51.0,
+                    Longitute = 44.0,
+                    Name = "Pi",
+                    Website = "http://www.google.be"
+                };
+
+                
+                
+                // FACTS
+                Fact fact = new Fact() {FactId = 1, Description = "FactDescription"};
+
+                // ADD EVERYTHING TO CONTEXT
+                //context.Users.Add(user);
+                context.Restaurants.Add(restaurant1);
+                context.Restaurants.Add(restaurant2);
+                context.Restaurants.Add(restaurant3);
+                context.Restaurants.Add(restaurant4);
+                context.Restaurants.Add(restaurant5);
+             
+                context.Facts.Add(fact);
+                context.SaveChanges();
             }
             catch (DbEntityValidationException e)
             {

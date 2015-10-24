@@ -52,6 +52,7 @@ namespace EVARest.Models.Domain
             Badges = new List<Badge>();
             Challenges = new List<Challenge>();
             Dislikes = new List<Dislike>();
+
         }
 
         public void AddChallenge(Challenge challenge) {
@@ -78,6 +79,7 @@ namespace EVARest.Models.Domain
 
         public void DeleteChallenge(Challenge challenge) {
             Challenges.Remove(challenge);
+
         }
     }
 }
