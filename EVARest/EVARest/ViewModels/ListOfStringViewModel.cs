@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EVARest.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace EVARest.ViewModels {
 
     public class ListOfStringViewModel {
         
-        [Required]
+        [Required(ErrorMessageResourceName = "ListOfStringValuesRequired", ErrorMessageResourceType =typeof(Resources))]
         public IEnumerable<string> Values { get; set; }
     }
 }

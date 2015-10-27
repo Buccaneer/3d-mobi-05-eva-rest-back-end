@@ -448,3 +448,11 @@ D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\Microsoft.Owin.Cors.xml
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\Ninject.xml
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\Ninject.Web.Common.xml
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\Ninject.Web.Mvc.xml
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\en-GB\EVARest.resources.dll
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\obj\Debug\EVARest.Properties.Resources.resources
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\obj\Debug\EVARest.Properties.Resources.en-GB.resources
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\obj\Debug\EVARest.csproj.GenerateResource.Cache
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\obj\Debug\en-GB\EVARest.resources.dll
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\fr-FR\EVARest.resources.dll
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\obj\Debug\EVARest.Properties.Resources.fr-FR.resources
+D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\obj\Debug\fr-FR\EVARest.resources.dll

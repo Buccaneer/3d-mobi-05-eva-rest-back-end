@@ -566,11 +566,11 @@
             <summary>
             Returns a max of 50 random recipes that doesn't use recipes in user dislike.
             </summary>
-            <returns>Recipes</returns>²
+            <returns>Recipes</returns>
         </member>
         <member name="M:EVARest.Controllers.RecipeController.GetRecipe(System.Int32)">
             <summary>
-            Gives a recipe according to its id,
+            Gives a recipe according to its id
             </summary>
             <param name="id">the id of the recipe</param>
             <returns>A recipe</returns>
@@ -594,6 +594,152 @@
                Difficulty
                CookingTime
                NumberOfPeople
+        </member>
+        <member name="T:EVARest.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.AddExternalLoginExternalAccessTokenRequired">
+            <summary>
+              Looks up a localized string similar to Externe toegang token moet ingevuld zijn.
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.ChallengeTypeRequired">
+            <summary>
+              Looks up a localized string similar to challenge type verplicht.
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.ChangePasswordConfirmPasswordCompare">
+            <summary>
+              Looks up a localized string similar to Het nieuw wachtwoord en confirmatie passwoord zijn niet gelijk..
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.ChangePasswordNewPasswordRequired">
+            <summary>
+              Looks up a localized string similar to Nieuw wachtwoord verplicht.
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.ChangePasswordNewPasswordStringLength">
+            <summary>
+              Looks up a localized string similar to Het {0} moet tenminste {2} karakters lang zijn..
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.ChangePasswordOldPasswordRequired">
+            <summary>
+              Looks up a localized string similar to Oud wachtwoord is moet ingevuld zijn.
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.ConfirmNewPassword">
+            <summary>
+              Looks up a localized string similar to nieuw wachtwoord.
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.ConfirmPassword">
+            <summary>
+              Looks up a localized string similar to confirmatie wachtwoord.
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.Email">
+            <summary>
+              Looks up a localized string similar to e-mail.
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.ExternalAccessToken">
+            <summary>
+              Looks up a localized string similar to Extern toegang token.
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.ListOfStringValuesRequired">
+            <summary>
+              Looks up a localized string similar to lijst van string waarden verplicht.
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.LoginProvider">
+            <summary>
+              Looks up a localized string similar to login provider.
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.NewPassword">
+            <summary>
+              Looks up a localized string similar to Nieuw wachtwoord.
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.OldPassword">
+            <summary>
+              Looks up a localized string similar to Huidig wachtwoord.
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.Password">
+            <summary>
+              Looks up a localized string similar to wachtwoord.
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.ProviderKey">
+            <summary>
+              Looks up a localized string similar to provider sleutel.
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.RegisterConfirmPasswordCompare">
+            <summary>
+              Looks up a localized string similar to Het wachtwoord en confirmatie wachtwoord komen niet overeen..
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.RegisterEmailRequired">
+            <summary>
+              Looks up a localized string similar to E-mail is verplicht.
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.RegisterExternalEmailRequired">
+            <summary>
+              Looks up a localized string similar to Extern email verplicht.
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.RegisterPasswordRequired">
+            <summary>
+              Looks up a localized string similar to Wachtwoord verplicht.
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.RegisterPasswordStringLength">
+            <summary>
+              Looks up a localized string similar to Het {0} moet minstens {2} karakters lang zijn..
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.RemoveLoginLoginProviderRequired">
+            <summary>
+              Looks up a localized string similar to Login provider verplicht.
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.RemoveLoginProviderKeyRequired">
+            <summary>
+              Looks up a localized string similar to Login provider sleutel verplicht.
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.SetPasswordConfirmPasswordCompare">
+            <summary>
+              Looks up a localized string similar to Het nieuw wachtwoord en confirmatie wachtwoord komen niet overeen..
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.SetPasswordNewPasswordRequired">
+            <summary>
+              Looks up a localized string similar to Nieuw wachtwoord verplicht.
+            </summary>
+        </member>
+        <member name="P:EVARest.Properties.Resources.SetPasswordNewPasswordStringLength">
+            <summary>
+              Looks up a localized string similar to Het {0} moet tenminste {2} karakters lang zijn..
+            </summary>
         </member>
         <member name="M:EVARest.ViewModels.ChallengeFactory.FillSpecificData(EVARest.Models.Domain.Challenge,EVARest.Models.DAL.RestContext,EVARest.ViewModels.ChallengeViewModel)">
             <summary>
