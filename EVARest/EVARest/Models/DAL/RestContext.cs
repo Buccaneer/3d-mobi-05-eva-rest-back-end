@@ -23,7 +23,7 @@ namespace EVARest.Models.DAL {
             DbConfiguration.SetConfiguration(new MySqlEFConfiguration());
         }
 
-        public RestContext() : base(nameOrConnectionString: "server=127.0.0.1;port=3306;database=evarest;uid=root;password=jasperke2") { }
+        public RestContext() : base(nameOrConnectionString: "server=eu-cdbr-azure-west-c.cloudapp.net;port=3306;database=evavzwrest;uid=bbe87c16c15f06;password=925a4732") { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {
             base.OnModelCreating(modelBuilder);

@@ -334,7 +334,11 @@
     <Content Include="proefdata.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\climo4u - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\climo4u - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\evavzwrest - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\evavzwrest - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\evavzwrest - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\evavzwrest - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
