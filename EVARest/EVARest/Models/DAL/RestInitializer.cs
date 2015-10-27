@@ -24,53 +24,6 @@ namespace EVARest.Models.DAL
                 Badge badge4 = new Badge() { BadgeId = 4, Name = "Month long", Description = "We're so happy to see you continue completing challenges!" };
                 Badge badge5 = new Badge() { BadgeId = 5, Name = "A year gone by", Description = "It's been a year since you started completing challenges." };
 
-                // RESTAURANTS
-                Restaurant restaurant1 = new Restaurant()
-                {
-                    RestaurantId = 1,
-                    Description = "Better than The Fat Duck.",
-                    Latitude = 51.0,
-                    Longitute = 44.0,
-                    Name = "The Vegan Duck",
-                    Website = "http://www.google.be"
-                };
-                Restaurant restaurant2 = new Restaurant()
-                {
-                    RestaurantId = 2,
-                    Description = "Delicious dishes.",
-                    Latitude = 51.0,
-                    Longitute = 44.0,
-                    Name = "Quomodo",
-                    Website = "http://www.google.be"
-                };
-                Restaurant restaurant3 = new Restaurant()
-                {
-                    RestaurantId = 3,
-                    Description = "This bar serves 100% vegetal beer.",
-                    Latitude = 51.0,
-                    Longitute = 44.0,
-                    Name = "The World's End",
-                    Website = "http://www.google.be"
-                };
-                Restaurant restaurant4 = new Restaurant()
-                {
-                    RestaurantId = 4,
-                    Description = "We serve delicious fruity cocktails and soy milkshakes.",
-                    Latitude = 51.0,
-                    Longitute = 44.0,
-                    Name = "Raspberry",
-                    Website = "http://www.google.be"
-                };
-                Restaurant restaurant5 = new Restaurant()
-                {
-                    RestaurantId = 5,
-                    Description = "All sorts of vegetal pie. Do not ask for meat pie.",
-                    Latitude = 51.0,
-                    Longitute = 44.0,
-                    Name = "Pi",
-                    Website = "http://www.google.be"
-                };
-
                 
                 
                 // FACTS
@@ -78,11 +31,6 @@ namespace EVARest.Models.DAL
 
                 // ADD EVERYTHING TO CONTEXT
                 //context.Users.Add(user);
-                context.Restaurants.Add(restaurant1);
-                context.Restaurants.Add(restaurant2);
-                context.Restaurants.Add(restaurant3);
-                context.Restaurants.Add(restaurant4);
-                context.Restaurants.Add(restaurant5);
              
                 context.Facts.Add(fact);
                 context.SaveChanges();

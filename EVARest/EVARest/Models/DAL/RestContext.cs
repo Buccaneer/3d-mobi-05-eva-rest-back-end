@@ -23,7 +23,7 @@ namespace EVARest.Models.DAL {
             DbConfiguration.SetConfiguration(new MySqlEFConfiguration());
         }
 
-        public RestContext() : base(nameOrConnectionString: "server=eu-cdbr-azure-west-c.cloudapp.net;port=3306;database=evavzwrest;uid=bbe87c16c15f06;password=925a4732") { }
+        public RestContext() : base(nameOrConnectionString: "server=127.0.0.1;port=3306;database=evarest;uid=root;password=jasperke2") { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {
             base.OnModelCreating(modelBuilder);
@@ -70,6 +70,13 @@ namespace EVARest.Models.DAL {
 
             modelBuilder.Entity<Restaurant>().ToTable("Restaurants");
             modelBuilder.Entity<Restaurant>().HasKey(k => k.RestaurantId);
+            var restaurant = modelBuilder.Entity<Restaurant>();
+            restaurant.Property(r => r.City).HasMaxLength(64);
+            restaurant.Property(r => r.Email).HasMaxLength(255);
+            restaurant.Property(r => r.Name).HasMaxLength(48);
+            restaurant.Property(r => r.Street).HasMaxLength(120);
+            restaurant.Property(r => r.Website).HasMaxLength(512);
+            restaurant.Property(r => r.Phone).HasMaxLength(90);
 
             modelBuilder.Entity<Dislike>().ToTable("Dislikes").HasKey(d => d.DislikeId);
             modelBuilder.Entity<Component>().ToTable("Components").HasKey(c => c.ComponentId);

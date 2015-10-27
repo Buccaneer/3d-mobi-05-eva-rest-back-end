@@ -33,6 +33,16 @@ namespace EVARest.Models.Domain
             get; set;
         }
 
+        public string Email { get; set; }
+
+        public string Phone { get; set; }
+
+        public string Street { get; set; }
+
+        public int Postal { get; set; }
+
+        public string City { get; set; }
+
         public int RestaurantId
         {
             get; set;
