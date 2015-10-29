@@ -1,0 +1,21 @@
+﻿using System;
+using System.Web;
+using System.ComponentModel;
+
+namespace EVARest.Models.Domain
+{
+    public class Component
+    {
+        public int ComponentId { get; set; }
+
+        public double Quantity
+        {
+            get; set;
+        }
+
+        public virtual Ingredient Ingredient
+        {
+            get; set;
+        }
+    }
+}

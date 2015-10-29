@@ -13,6 +13,7 @@ namespace EVARest.App_Start
     using Models.DAL;
     using Models.Domain;
     using System.Web.Http;
+    using Models.Domain.I18n;
 
     public static class NinjectWebCommon 
     {
@@ -72,6 +73,7 @@ namespace EVARest.App_Start
         {
             kernel.Bind<RestContext>().ToSelf().InRequestScope();
             kernel.Bind<IRecipeRepository>().To<RecipeRepository>().InRequestScope();
+            kernel.Bind<ILanguageProvider>().To<LanguageProvider>().InRequestScope();
         }        
     }
 }

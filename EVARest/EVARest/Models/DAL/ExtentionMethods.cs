@@ -12,19 +12,22 @@ namespace EVARest.Models.DAL {
             if (count <= 0)
                 throw new Exception("Cant draw a negative number of recipes");
 
-            int left = recipes.Count();
-            int c = left;
-            int taken = 0;
-            var r = new Random();
-            Func<int,bool> canTake = (l) => r.NextDouble() <= (double)l / (double)c;
-
-            foreach (var recipe in recipes) {
-                if (canTake(left - taken)) {
-                    yield return recipe;
-                    taken++;
+            int left = count;
+            int tries = 0;
+            ISet<int> taken = new HashSet<int>();
+            Random r = new Random();
+            int C = recipes.Max(pr => pr.RecipeId);
+            while (left > 0 ||tries < count * count) {
+                var id = r.Next(C);
+                var item = recipes.FirstOrDefault(rr => rr.RecipeId == id);
+                if (item != null && !taken.Contains(item.RecipeId)) {
+                    taken.Add(item.RecipeId);
+                    yield return item;
+                    left--;
                 }
-                left--;
+                tries++;
             }
+           
 
         }
     }

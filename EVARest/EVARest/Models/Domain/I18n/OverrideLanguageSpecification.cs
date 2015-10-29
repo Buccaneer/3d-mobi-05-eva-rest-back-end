@@ -32,5 +32,7 @@ namespace EVARest.Models.Domain.I18n
         {
             get; set;
         }
+
+        public string Type { get; set; }
     }
 }
