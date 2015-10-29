@@ -6,6 +6,9 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Reflection;
 using System.Web.Mvc;
+using EVARest.Models.Domain.I18n;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Infrastructure.Annotations;
 
 namespace EVARest.Models.DAL {
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
@@ -16,6 +19,8 @@ namespace EVARest.Models.DAL {
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Fact> Facts { get; set; }
+
+        public DbSet<OverrideLanguageSpecification> LanguageSpecifications {get;set;}
 
         public DbSet<Ingredient> Ingredients { get; set; }
 
@@ -80,6 +85,13 @@ namespace EVARest.Models.DAL {
 
             modelBuilder.Entity<Dislike>().ToTable("Dislikes").HasKey(d => d.DislikeId);
             modelBuilder.Entity<Component>().ToTable("Components").HasKey(c => c.ComponentId);
+
+            modelBuilder.Entity<OverrideLanguageSpecification>().ToTable("Languages").HasKey(l => l.LanguageStringId);
+            modelBuilder.Entity<OverrideLanguageSpecification>().Property(l => l.Type).HasMaxLength(255);
+            modelBuilder.Entity<OverrideLanguageSpecification>().Property(l => l.Language).HasMaxLength(255);
+            modelBuilder.Entity<OverrideLanguageSpecification>().Property(l => l.EntityPrimaryKey).HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("ix_languages", 1)));
+            modelBuilder.Entity<OverrideLanguageSpecification>().Property(l => l.Type).HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("ix_languages", 2)));
+            modelBuilder.Entity<OverrideLanguageSpecification>().Property(l => l.Language).HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("ix_languages", 3)));
         }
 
         public static RestContext Create() {

@@ -1,5 +1,6 @@
 ﻿using EVARest.Models.DAL;
 using EVARest.Models.Domain;
+using EVARest.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace EVARest.ViewModels {
     public class ChallengeViewModel {
-        [Required]
+        [Required(ErrorMessageResourceName ="ChallengeTypeRequired", ErrorMessageResourceType =typeof(Resources))]
         public string Type { get; set; }
 
         public int[] IngredientsId { get; set; }

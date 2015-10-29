@@ -1,5 +1,6 @@
 ﻿using EVARest.Models.DAL;
 using EVARest.Models.Domain;
+using EVARest.Models.Domain.I18n;
 using EVARest.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -8,17 +9,29 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace EVARest.Controllers {
+namespace EVARest.Controllers
+{
     /// <summary>
     /// The challenge resource.
     /// </summary>
     [Authorize]
     [RoutePrefix("api/Challenges")]
-    public class ChallengeController : ApiController {
+    public class ChallengeController : ApiController
+    {
         private RestContext _context;
         private ApplicationUser _user;
-        private ApplicationUser User {
-            get {
+        private ILanguageProvider _languageProvider;
+
+        public ChallengeController(RestContext context, ILanguageProvider languageProvider)
+        {
+            _context = context;
+            _languageProvider = languageProvider;
+        }
+
+        private ApplicationUser User
+        {
+            get
+            {
                 if (_user != null)
                     return _user;
                 var username = RequestContext.Principal.Identity.Name;
@@ -35,17 +48,24 @@ namespace EVARest.Controllers {
         /// Gets all the challenges the user has done. It can be that the user skipped days.
         /// </summary>
         /// <returns>Challenge data</returns>
-        public IEnumerable<object> GetChallenges() {
-            return User.Challenges.Select(c =>
-new {
-    ChallengeId = c.ChallengeId,
-    Date = c.Date,
-    Done = c.Done,
-    Name = c.Name,
-    Earnings = c.Earnings
+        public IEnumerable<object> GetChallenges()
+        {
+            var acceptLanguages = Request.Headers.AcceptLanguage.FirstOrDefault();
+            string language = acceptLanguages == null ? "NL" : acceptLanguages.Value;
 
+            var challenges = User.Challenges;
 
-});
+            challenges.ToList().ForEach(c => _languageProvider.Translate(c, language));
+
+            return challenges.Select(c =>
+                new
+                {
+                    ChallengeId = c.ChallengeId,
+                    Date = c.Date,
+                    Done = c.Done,
+                    Name = c.Name,
+                    Earnings = c.Earnings
+                });
         }
 
         /// <summary>
@@ -53,10 +73,16 @@ new {
         /// </summary>
         /// <param name="id">The challengeid</param>
         /// <returns>The requested challenge, with all the information</returns>
-        public IHttpActionResult GetChallenge(int id) {
+        public IHttpActionResult GetChallenge(int id)
+        {
+            var acceptLanguages = Request.Headers.AcceptLanguage.FirstOrDefault();
+            string language = acceptLanguages == null ? "NL" : acceptLanguages.Value;
+
             var challenge = User.Challenges.FirstOrDefault(c => c.ChallengeId == id);
             if (challenge == null)
                 return BadRequest($"Challenge with {id} was not found for this user.");
+
+            _languageProvider.Translate(challenge, language);
 
             return Ok(challenge);
         }
@@ -76,10 +102,13 @@ new {
         /// 400: An exception has accord. (Message)
         /// </returns>
         [HttpPut]
-        public IHttpActionResult InsertChallenge(ChallengeViewModel cvm) {
-            try {
+        public IHttpActionResult InsertChallenge(ChallengeViewModel cvm)
+        {
+            try
+            {
 
-                if (cvm == null || cvm.Type == null) {
+                if (cvm == null || cvm.Type == null)
+                {
                     throw new ArgumentException("No data.");
                 }
                 var challenge = cvm.CreateFactory().CreateChallenge(_context, cvm);
@@ -87,7 +116,9 @@ new {
 
                 _context.SaveChanges();
                 return Ok();
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 return BadRequest(ex.Message);
             }
 
@@ -100,15 +131,19 @@ new {
         /// <param name="id">The challenge that has been done.</param>
         /// <returns></returns>
         [HttpPost]
-        public IHttpActionResult MarkChallengeAsDone(int id) {
+        public IHttpActionResult MarkChallengeAsDone(int id)
+        {
             var challenge = User.Challenges.FirstOrDefault(c => c.ChallengeId == id);
 
             if (challenge == null)
                 return BadRequest($"Challenge resource with id {id} does not exist for the current user.");
 
-            try {
+            try
+            {
                 User.HasDoneChallenge(challenge);
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 return BadRequest(ex.Message);
             }
 
@@ -124,7 +159,8 @@ new {
         /// </summary>
         /// <returns></returns>
         [HttpDelete]
-        public IHttpActionResult DeleteAllChallenges() {
+        public IHttpActionResult DeleteAllChallenges()
+        {
             User.DeleteChallenges();
             _context.SaveChanges();
             return Ok();
@@ -136,7 +172,8 @@ new {
         /// <param name="id">The id of the challenge.</param>
         /// <returns></returns>
         [HttpDelete]
-        public IHttpActionResult DeleteChallenge(int id) {
+        public IHttpActionResult DeleteChallenge(int id)
+        {
             var challenge = User.Challenges.FirstOrDefault(c => c.ChallengeId == id);
 
             if (challenge == null)
@@ -146,15 +183,5 @@ new {
             _context.SaveChanges();
             return Ok();
         }
-
-
-
-
-
-        public ChallengeController(RestContext context) {
-            _context = context;
-        }
-
-
     }
 }

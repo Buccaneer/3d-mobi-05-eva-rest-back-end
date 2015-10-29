@@ -20,9 +20,7 @@ namespace EVARest.Controllers
         // GET: Filler
         public IHttpActionResult Index()
         {
-            const string recipesFilename = @"C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\recipes.json";
-            const string restaurantsFilename = @"C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\restaurants.json";
-
+            string filename = @"D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\proefdata.json";
 
             IDictionary<string, RecipeProperty> properties = new Dictionary<string, RecipeProperty>();
             IDictionary<string, Ingredient> ingredients = new Dictionary<string, Ingredient>();
@@ -41,7 +39,7 @@ namespace EVARest.Controllers
 
             int successes = 0;
             int failures = 0;
-            using (StreamReader file = File.OpenText(recipesFilename))
+            using (StreamReader file = File.OpenText(filename))
             using (JsonTextReader reader = new JsonTextReader(file)) {
                 JArray recepten = (JArray)JToken.ReadFrom(reader);
 
@@ -83,56 +81,10 @@ namespace EVARest.Controllers
                         failures++;
                     }
                 }
-
-            
-                    Console.WriteLine($"ERROR: {failures}");
+                Console.WriteLine($"ERROR: {failures}");
                 Console.WriteLine($"SUCCES: {successes}");
             }
 
-            const string res_name = "name";
-            const string res_long = "lng";
-            const string res_lat = "lat";
-            const string res_website = "website";
-            const string res_street = "street";
-            const string res_postal = "postal";
-            const string res_city = "city";
-            const string res_phone = "phone";
-            const string res_mail = "mail";
-            const string res_description = "body";
-
-            IList<Restaurant> frestaurants = new List<Restaurant>();
-            using (StreamReader file = File.OpenText(restaurantsFilename))
-            using (JsonTextReader reader = new JsonTextReader(file)) {
-                JArray restaurants = (JArray)JToken.ReadFrom(reader);
-
-                foreach (var restaurantJson in restaurants) {
-                    Restaurant r = new Restaurant();
-                    r.City = (restaurantJson[res_city] ?? string.Empty).ToString();
-                    r.Name = (restaurantJson[res_name] ?? string.Empty).ToString();
-                    r.Description = (restaurantJson[res_description] ?? string.Empty).ToString();
-                    r.Email = (restaurantJson[res_mail] ?? string.Empty).ToString();
-                    
-                    r.Phone = (restaurantJson[res_phone] ?? string.Empty).ToString();
-
-                    int value;
-
-                    if (int.TryParse((restaurantJson[res_postal] ?? string.Empty).ToString(), out value))
-                        r.Postal = value;
-
-                    double val;
-                    if (double.TryParse((restaurantJson[res_lat] ?? string.Empty).ToString().Replace(".", ","), out val))
-                        r.Latitude = val;
-                    else
-                        r.Latitude = -1;
-                    if (double.TryParse((restaurantJson[res_long] ?? string.Empty).ToString().Replace(".",","), out val))
-                        r.Longitute = val;
-                    else r.Longitute = -1;
-                  
-                    r.Street = (restaurantJson[res_street] ?? string.Empty).ToString();
-                    r.Website = (restaurantJson[res_website] ?? string.Empty).ToString();
-                    frestaurants.Add(r);
-                }
-            }
             try {
                 Console.WriteLine("Attempting connection with database.");
             
@@ -147,13 +99,10 @@ namespace EVARest.Controllers
                 }
 
                 _context.SaveChanges();
-                _context.Restaurants.AddRange(frestaurants);
-
-                _context.SaveChanges();
                 Console.WriteLine("Connection closed.");
             } catch (Exception ex) {
                 Console.Error.WriteLine(ex.Message);
-                throw   ex;
+                return InternalServerError();
            
             }
             return Ok();
