@@ -20,7 +20,7 @@ namespace EVARest.Models.DAL
         public void Translate<T>(T obj, string language)
         {
             language = language.ToUpper();
-            if (language.Equals("NL"))
+            if (language.Equals("nl-BE"))
                 return;
 
             if (obj is Recipe)

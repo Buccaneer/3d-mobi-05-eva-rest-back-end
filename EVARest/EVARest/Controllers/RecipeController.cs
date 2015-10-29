@@ -41,7 +41,7 @@ namespace EVARest.Controllers
             var ingredients = user.Dislikes.Select(s => s.Ingredient);
 
             var acceptLanguages = Request.Headers.AcceptLanguage.FirstOrDefault();
-            string language = acceptLanguages == null ? "NL" : acceptLanguages.Value;
+            string language = acceptLanguages == null ? "nl-BE" : acceptLanguages.Value;
 
             IEnumerable<Recipe> recipes = _recipeRepository
                 .FindRecipesWithoutIngredients(ingredients)
@@ -65,7 +65,7 @@ namespace EVARest.Controllers
             }
 
             var acceptLanguages = Request.Headers.AcceptLanguage.FirstOrDefault();
-            string language = acceptLanguages == null ? "NL" : acceptLanguages.Value;
+            string language = acceptLanguages == null ? "nl-BE" : acceptLanguages.Value;
 
             _languageProvider.Translate<Recipe>(recipe, language);
 
@@ -85,7 +85,7 @@ namespace EVARest.Controllers
             }
 
             var acceptLanguages = Request.Headers.AcceptLanguage.FirstOrDefault();
-            string language = acceptLanguages == null ? "NL" : acceptLanguages.Value;
+            string language = acceptLanguages == null ? "nl-BE" : acceptLanguages.Value;
 
             var user = User;
 
@@ -114,7 +114,7 @@ namespace EVARest.Controllers
             }
 
             var acceptLanguages = Request.Headers.AcceptLanguage.FirstOrDefault();
-            string language = acceptLanguages == null ? "NL" : acceptLanguages.Value;
+            string language = acceptLanguages == null ? "nl-BE" : acceptLanguages.Value;
 
             var recipes = _recipeRepository
                 .FindRecipesByIngredients(lsvm.Values)

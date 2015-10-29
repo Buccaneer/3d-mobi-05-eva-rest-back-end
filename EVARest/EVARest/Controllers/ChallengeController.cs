@@ -51,7 +51,7 @@ namespace EVARest.Controllers
         public IEnumerable<object> GetChallenges()
         {
             var acceptLanguages = Request.Headers.AcceptLanguage.FirstOrDefault();
-            string language = acceptLanguages == null ? "NL" : acceptLanguages.Value;
+            string language = acceptLanguages == null ? "nl-BE" : acceptLanguages.Value;
 
             var challenges = User.Challenges;
 
@@ -76,7 +76,7 @@ namespace EVARest.Controllers
         public IHttpActionResult GetChallenge(int id)
         {
             var acceptLanguages = Request.Headers.AcceptLanguage.FirstOrDefault();
-            string language = acceptLanguages == null ? "NL" : acceptLanguages.Value;
+            string language = acceptLanguages == null ? "nl-BE" : acceptLanguages.Value;
 
             var challenge = User.Challenges.FirstOrDefault(c => c.ChallengeId == id);
             if (challenge == null)
