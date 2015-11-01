@@ -17,7 +17,7 @@ namespace EVARest.Models.DAL {
             ISet<int> taken = new HashSet<int>();
             Random r = new Random();
             int C = recipes.Max(pr => pr.RecipeId);
-            while (left > 0 ||tries < count * count) {
+            while (left > 0 && tries < count * count) {
                 var id = r.Next(C);
                 var item = recipes.FirstOrDefault(rr => rr.RecipeId == id);
                 if (item != null && !taken.Contains(item.RecipeId)) {

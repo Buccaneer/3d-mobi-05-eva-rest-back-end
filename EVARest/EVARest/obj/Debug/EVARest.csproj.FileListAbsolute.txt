@@ -438,7 +438,6 @@ C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\
 C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\obj\Debug\EVARest.csprojResolveAssemblyReference.cache
 C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\recipes.json
 C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\restaurants.json
-C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\proefdata.json
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\proefdata.json
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\XmlDocument.xml
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\Microsoft.Owin.Cors.dll
@@ -458,3 +457,13 @@ D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\obj\Debug\en-GB\EVARest.resou
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\bin\fr-FR\EVARest.resources.dll
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\obj\Debug\EVARest.Properties.Resources.fr-FR.resources
 D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\obj\Debug\fr-FR\EVARest.resources.dll
+C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\WebApi.OutputCache.Core.dll
+C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\WebApi.OutputCache.V2.dll
+C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\fr-FR\EVARest.resources.dll
+C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\bin\en-GB\EVARest.resources.dll
+C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\obj\Debug\EVARest.Properties.Resources.resources
+C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\obj\Debug\EVARest.Properties.Resources.fr-FR.resources
+C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\obj\Debug\EVARest.Properties.Resources.en-GB.resources
+C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\obj\Debug\EVARest.csproj.GenerateResource.Cache
+C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\obj\Debug\fr-FR\EVARest.resources.dll
+C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\obj\Debug\en-GB\EVARest.resources.dll

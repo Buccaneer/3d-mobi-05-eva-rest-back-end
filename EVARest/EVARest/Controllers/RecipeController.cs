@@ -7,7 +7,7 @@ using EVARest.Models.DAL;
 using System.Linq;
 using EVARest.ViewModels;
 using EVARest.Models.Domain.I18n;
-using System;
+using EVARest.App_Start;
 
 namespace EVARest.Controllers
 {
@@ -36,7 +36,9 @@ namespace EVARest.Controllers
         /// </summary>
         /// <returns>Recipes</returns>
         [Route("")]
+        [WebApiOutputCache(60*15, 60, false)]
         public IEnumerable<Recipe> GetAllRecipes() {
+            
             var user = User;
             var ingredients = user.Dislikes.Select(s => s.Ingredient);
 
