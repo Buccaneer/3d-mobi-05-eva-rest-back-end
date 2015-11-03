@@ -18,6 +18,8 @@ using EVARest.Providers;
 using EVARest.Results;
 using EVARest.Models.Domain;
 using Newtonsoft.Json.Linq;
+using EVARest.Models.DAL;
+using System.Linq;
 
 namespace EVARest.Controllers
 {
@@ -27,16 +29,21 @@ namespace EVARest.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
+        private RestContext _context;
 
-        public AccountController()
+        private ApplicationUser _user;
+
+        public AccountController(RestContext context)
         {
+            _context = context;
         }
 
         public AccountController(ApplicationUserManager userManager,
-            ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
+            ISecureDataFormat<AuthenticationTicket> accessTokenFormat, RestContext context)
         {
             UserManager = userManager;
             AccessTokenFormat = accessTokenFormat;
+            _context = context;
         }
 
         public ApplicationUserManager UserManager
@@ -51,22 +58,84 @@ namespace EVARest.Controllers
             }
         }
 
+        private ApplicationUser AppUser {
+            get {
+                if (_user != null)
+                    return _user;
+                var username = RequestContext.Principal.Identity.Name;
+                var user = _context.Users.FirstOrDefault(u => u.UserName == username
+
+                   );
+                _user = user;
+                return user;
+            }
+        }
+
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
         // GET api/Account/UserInfo
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("UserInfo")]
-        public UserInfoViewModel GetUserInfo()
-        {
+        public UserInfoViewModel GetUserInfo() {
             ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
 
-            return new UserInfoViewModel
-            {
+            return new UserInfoViewModel {
                 Email = User.Identity.GetUserName(),
                 HasRegistered = externalLogin == null,
-                LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
+                LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null,
+                Allergies = AppUser.Dislikes.Where(s => s.Reason == Reason.Allergy).Select(s => s.Ingredient).ToList(),
+                FirstName = AppUser.FirstName,
+                LastName = AppUser.LastName,
+                TypeOfVegan = AppUser.Type,
+                BirthDay = AppUser.Birthday,
+                ChallengesDone = AppUser.Challenges.Count(c => c.Done),
+                PeopleInFamily = AppUser.Children,
+                Budget = AppUser.Budget
+
+
             };
+
+
         }
+
+        [HttpPost]
+        [Route("UserInfo")]
+        public UserInfoViewModel SetUserInfo(SettableUserInfoViewModel uivm) {
+            var user = AppUser;
+
+            if (uivm.Allergies != null) {
+                user.Dislikes.Clear();
+                var ingredients = _context.Ingredients;
+
+                foreach (var id in uivm.Allergies) {
+                    var ingredient = ingredients.FirstOrDefault(i => i.IngredientId == id);
+
+                    if (ingredient != null)
+                        user.Dislikes.Add(new Dislike() { Ingredient = ingredient, Reason = Reason.Allergy });
+                }
+                _context.SaveChanges();
+            }
+
+            if (uivm.FirstName != null)
+                user.FirstName = uivm.FirstName;
+            if (uivm.LastName != null)
+                user.LastName = uivm.LastName;
+            if (uivm.TypeOfVegan != null)
+                user.Type = uivm.TypeOfVegan;
+            if (uivm.BirthDay != null)
+                user.Birthday = uivm.BirthDay;
+            if (uivm.Budget.HasValue)
+                user.Budget = uivm.Budget.Value;
+            if (uivm.PeopleInFamily.HasValue)
+                user.Children = (byte)(uivm.PeopleInFamily.Value % 255);
+
+
+            _context.SaveChanges();
+
+            return GetUserInfo();
+        }
+
+
 
         // POST api/Account/Logout
         [Route("Logout")]

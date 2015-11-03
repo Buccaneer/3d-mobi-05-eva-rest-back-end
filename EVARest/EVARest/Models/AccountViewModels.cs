@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EVARest.Models.Domain;
+using System;
 using System.Collections.Generic;
 
 namespace EVARest.Models
@@ -32,6 +33,17 @@ namespace EVARest.Models
         public bool HasRegistered { get; set; }
 
         public string LoginProvider { get; set; }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int ChallengesDone { get; set; }
+        public DateTime BirthDay { get; set; }
+
+        public double Budget { get; set; }
+
+        public string TypeOfVegan { get; set; }
+      public IEnumerable<Ingredient> Allergies { get; set; }
+        public byte PeopleInFamily { get; internal set; }
     }
 
     public class UserLoginInfoViewModel
@@ -39,5 +51,18 @@ namespace EVARest.Models
         public string LoginProvider { get; set; }
 
         public string ProviderKey { get; set; }
+    }
+
+    public class SettableUserInfoViewModel {
+        
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public DateTime BirthDay { get; set; }
+
+        public double? Budget { get; set; }
+
+        public string TypeOfVegan { get; set; }
+        public int[] Allergies { get; set; }
+        public int? PeopleInFamily { get;  set; }
     }
 }

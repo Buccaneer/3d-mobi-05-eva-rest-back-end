@@ -466,3 +466,4 @@ C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\
 C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\obj\Debug\EVARest.csproj.GenerateResource.Cache
 C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\obj\Debug\fr-FR\EVARest.resources.dll
 C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\obj\Debug\en-GB\EVARest.resources.dll
+C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\obj\Debug\EVARest.csprojResolveAssemblyReference.cache

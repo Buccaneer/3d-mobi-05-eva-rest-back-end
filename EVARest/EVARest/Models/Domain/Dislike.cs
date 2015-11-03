@@ -10,7 +10,7 @@ namespace EVARest.Models.Domain
     {
 
         public int DislikeId { get; set; }
-        public Ingredient Ingredient
+        public  virtual Ingredient Ingredient
         {
             get; set;
         }

@@ -18,6 +18,11 @@ namespace EVARest.Models.Domain
 
         public byte Children { get; set; }
 
+        public string Type { get; set; }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
         public Sex Sex { get; set; }
 
         public DateTime Birthday { get; set; }
@@ -31,6 +36,7 @@ namespace EVARest.Models.Domain
         public virtual ICollection<Badge> Badges { get; set; }
 
         public int Points { get; set; }
+        public double Budget { get;  set; }
 
         //public virtual Customer Customer { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
