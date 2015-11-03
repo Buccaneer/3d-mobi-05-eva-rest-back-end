@@ -8,6 +8,7 @@ using System.Linq;
 using EVARest.ViewModels;
 using EVARest.Models.Domain.I18n;
 using EVARest.App_Start;
+using WebApi.OutputCache.V2;
 
 namespace EVARest.Controllers
 {
@@ -36,7 +37,7 @@ namespace EVARest.Controllers
         /// </summary>
         /// <returns>Recipes</returns>
         [Route("")]
-       [WebApiOutputCache(60*15, 60, false)]
+     [CacheOutput(ServerTimeSpan =15*60, ClientTimeSpan =15 * 60)]
         public IEnumerable<Recipe> GetAllRecipes() {
             
             var user = User;
@@ -135,9 +136,7 @@ namespace EVARest.Controllers
                 if (_user != null)
                     return _user;
                 var username = RequestContext.Principal.Identity.Name;
-                var user = _context.Users.FirstOrDefault(u => u.UserName == username
-
-                   );
+                var user = _context.Users.FirstOrDefault(u => u.UserName == username);
                 _user = user;
                 return user;
             }
