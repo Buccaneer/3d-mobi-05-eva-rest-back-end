@@ -36,7 +36,7 @@ namespace EVARest.Controllers
         /// </summary>
         /// <returns>Recipes</returns>
         [Route("")]
-        [WebApiOutputCache(60*15, 60, false)]
+       [WebApiOutputCache(60*15, 60, false)]
         public IEnumerable<Recipe> GetAllRecipes() {
             
             var user = User;
