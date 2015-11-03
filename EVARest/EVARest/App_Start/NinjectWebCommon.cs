@@ -74,6 +74,8 @@ namespace EVARest.App_Start
             kernel.Bind<RestContext>().ToSelf().InRequestScope();
             kernel.Bind<IRecipeRepository>().To<RecipeRepository>().InRequestScope();
             kernel.Bind<ILanguageProvider>().To<LanguageProvider>().InRequestScope();
+            kernel.Bind<IRestaurantRepository>().To<RestaurantRepository>().InRequestScope();
+
         }        
     }
 }

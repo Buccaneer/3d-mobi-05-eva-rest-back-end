@@ -26,7 +26,7 @@ namespace EVARest.Models.DAL {
         /// <param name="latitude">Degrees</param>
         /// <param name="distance">Kilometers (straal)</param>
         /// <returns></returns>
-        public ICollection<Restaurant> FindRestaurantByDistance(double longitude, double latitude, double distance) {
+        public ICollection<Point> FindRestaurantByDistance(double longitude, double latitude, double distance) {
             var dLat = distance / 111.0; // 1 degree long = average(110.567,111.699) so km = degrees * 111 => degrees = km/ 111 
             var dLong = distance / (111.320 * Math.Cos(dLat));
             /* Conversie
@@ -34,13 +34,18 @@ namespace EVARest.Models.DAL {
                => distance / (111.320 * cos(dLat))
             */
             var square = _restaurants.Where(r => r.Longitute >= (longitude - dLong) && r.Longitute <= (longitude + dLong)
-                            && r.Latitude >= (latitude - dLat) && r.Latitude <= (latitude + dLat));
+                            && r.Latitude >= (latitude - dLat) && r.Latitude <= (latitude + dLat)).ToList();
 
             var kmLat = latitude * 111.0;
             var kmLong = longitude * (111.320 * Math.Cos(latitude));
 
-            return square.Where(r => Math.Sqrt(Math.Pow((r.Longitute * (111.320 * Math.Cos(r.Latitude))) - kmLong, 2) +
-                Math.Pow(r.Latitude * 111 - kmLat, 2)) <= distance).ToList();
+            return square.Select(r => new Point() {
+                Latitude = r.Latitude,
+                Longitude = r.Longitute,
+                Id = r.RestaurantId,
+                Distance = Math.Sqrt(Math.Pow((r.Longitute * (111.320 * Math.Cos(r.Latitude))) - kmLong, 2) +
+                Math.Pow(r.Latitude * 111 - kmLat, 2))
+            }).Where(p => p.Distance <= distance).ToList();
         }
 
         public RestaurantRepository(RestContext context) {

@@ -589,6 +589,33 @@
             <param name="lsvm">A collection of ingredientnames</param>
             <returns>Recipes</returns>
         </member>
+        <member name="M:EVARest.Controllers.RestaurantController.GetRestaurant(System.Int32)">
+            <summary>
+            Gets a restaurant
+            </summary>
+            <param name="id">The id of the restaurant.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EVARest.Controllers.RestaurantController.FindRestaurants(EVARest.ViewModels.GeoLocation)">
+            <summary>
+            Fetch all the restaurants within a region.
+            </summary>
+            <param name="longitude"></param>
+            <param name="latitude"></param>
+            <param name="distance">Distance in km</param>
+            <returns></returns>
+            
+        </member>
+        <member name="M:EVARest.Models.DAL.RestaurantRepository.FindRestaurantByDistance(System.Double,System.Double,System.Double)">
+            <summary>
+            
+            
+            </summary>
+            <param name="longitude">Degrees</param>
+            <param name="latitude">Degrees</param>
+            <param name="distance">Kilometers (straal)</param>
+            <returns></returns>
+        </member>
         <member name="P:EVARest.Models.Domain.RecipeProperty.Type">
             Voorbeelden
                Difficulty

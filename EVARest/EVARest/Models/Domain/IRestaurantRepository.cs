@@ -11,6 +11,16 @@ namespace EVARest.Models.Domain
     public interface IRestaurantRepository
     {
         IQueryable<Restaurant> Restaurants { get;  }
-        ICollection<Restaurant> FindRestaurantByDistance(double longitude, double latitude, double distance);
+        ICollection<Point> FindRestaurantByDistance(double longitude, double latitude, double distance);
     }
+
+    public class Point {
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+
+        public int Id { get; set; }
+
+        public double Distance { get; set; }
+    }
+
 }

@@ -329,6 +329,7 @@
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ChallengeViewModel.cs" />
+    <Compile Include="ViewModels\GeoLocation.cs" />
     <Compile Include="ViewModels\ListOfStringViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
