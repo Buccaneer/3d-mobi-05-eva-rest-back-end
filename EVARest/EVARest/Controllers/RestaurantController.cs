@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace EVARest.Controllers {
+    [Authorize]
     [RoutePrefix("api/Restaurants")]
     public class RestaurantController : ApiController
         {

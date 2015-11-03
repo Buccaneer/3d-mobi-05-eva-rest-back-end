@@ -268,6 +268,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\ChallengeController.cs" />
     <Compile Include="Controllers\FillerController.cs" />
+    <Compile Include="Controllers\IngredienController.cs" />
     <Compile Include="Controllers\RecipeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
