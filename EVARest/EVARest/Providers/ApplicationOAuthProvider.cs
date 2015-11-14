@@ -97,5 +97,8 @@ namespace EVARest.Providers
             };
             return new AuthenticationProperties(data);
         }
+
+     
+
     }
 }

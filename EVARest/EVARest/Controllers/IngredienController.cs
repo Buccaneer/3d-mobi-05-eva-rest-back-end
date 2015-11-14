@@ -1,5 +1,6 @@
 ﻿using EVARest.Models.DAL;
 using EVARest.Models.Domain;
+using EVARest.Models.Domain.I18n;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace EVARest.Controllers
     {
 
         private RestContext _context;
+        private ILanguageProvider _languageProvider;
 
         [HttpGet]
         [CacheOutput(ServerTimeSpan = 81000, ClientTimeSpan = 81000)]
@@ -23,8 +25,16 @@ namespace EVARest.Controllers
             return _context.Ingredients.Where(i => i.Name.ToLower().StartsWith(name.ToLower())).OrderBy(s => s.Name);
         }
 
-        public IngredientController(RestContext context) {
+        private string Language {
+            get {
+                var acceptLanguages = Request.Headers.AcceptLanguage.FirstOrDefault();
+                return acceptLanguages == null ? "nl-BE" : acceptLanguages.Value;
+            }
+        }
+
+        public IngredientController(RestContext context, ILanguageProvider languageProvider) {
             _context = context;
+            _languageProvider = languageProvider;
         }
     }
 }

@@ -616,6 +616,11 @@
             <param name="distance">Kilometers (straal)</param>
             <returns></returns>
         </member>
+        <member name="P:EVARest.Models.Domain.Point.Distance">
+            <summary>
+            Distance in KM
+            </summary>
+        </member>
         <member name="P:EVARest.Models.Domain.RecipeProperty.Type">
             Voorbeelden
                Difficulty

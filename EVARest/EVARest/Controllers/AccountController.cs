@@ -83,10 +83,13 @@ namespace EVARest.Controllers {
                 BirthDay = AppUser != null ? AppUser.Birthday : DateTime.Now,
                 ChallengesDone = AppUser != null ? AppUser.Challenges.Count(c => c.Done) : 0,
                 PeopleInFamily = AppUser != null ? AppUser.Children : byte.MinValue,
-                Budget = AppUser != null ? AppUser.Budget : int.MinValue
-
+                Budget = AppUser != null ? AppUser.Budget : int.MinValue,
+                DoneSetup = AppUser != null ? AppUser.DoneSetup : false
+               
 
             };
+
+           
 
 
         }
@@ -121,6 +124,8 @@ namespace EVARest.Controllers {
                 user.Budget = uivm.Budget.Value;
             if (uivm.PeopleInFamily.HasValue)
                 user.Children = (byte)(uivm.PeopleInFamily.Value % 255);
+            if (uivm.DoneSetup.HasValue)
+                user.DoneSetup = uivm.DoneSetup.Value;
 
 
             _context.SaveChanges();

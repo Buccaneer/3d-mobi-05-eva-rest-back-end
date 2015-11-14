@@ -44,7 +44,8 @@ namespace EVARest.Models.DAL {
                 Longitude = r.Longitute,
                 Id = r.RestaurantId,
                 Distance = Math.Sqrt(Math.Pow((r.Longitute * (111.320 * Math.Cos(r.Latitude))) - kmLong, 2) +
-                Math.Pow(r.Latitude * 111 - kmLat, 2))
+                Math.Pow(r.Latitude * 111 - kmLat, 2)),
+                Name = r.Name
             }).Where(p => p.Distance <= distance).ToList();
         }
 

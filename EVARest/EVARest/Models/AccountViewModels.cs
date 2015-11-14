@@ -44,6 +44,8 @@ namespace EVARest.Models
         public string TypeOfVegan { get; set; }
       public IEnumerable<Ingredient> Allergies { get; set; }
         public byte PeopleInFamily { get; internal set; }
+
+        public bool DoneSetup { get; set; }
     }
 
     public class UserLoginInfoViewModel
@@ -64,5 +66,7 @@ namespace EVARest.Models
         public string TypeOfVegan { get; set; }
         public int[] Allergies { get; set; }
         public int? PeopleInFamily { get;  set; }
+
+        public bool? DoneSetup { get; set; }
     }
 }

@@ -38,6 +38,8 @@ namespace EVARest.Models.Domain
         public int Points { get; set; }
         public double Budget { get;  set; }
 
+        public bool DoneSetup { get; set; }
+
         //public virtual Customer Customer { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

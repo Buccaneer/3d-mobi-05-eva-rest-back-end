@@ -1,4 +1,5 @@
 ﻿using EVARest.Models.Domain;
+using EVARest.Models.Domain.I18n;
 using EVARest.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace EVARest.Controllers {
         {
 
         private IRestaurantRepository _restaurantRepository;
+        private ILanguageProvider _languageProvider;
 
         /// <summary>
         /// Gets a restaurant
@@ -26,7 +28,7 @@ namespace EVARest.Controllers {
             var restaurant = _restaurantRepository.Restaurants.FirstOrDefault(r => r.RestaurantId == id);
             if (restaurant == null)
                 return BadRequest($"Restaurant with id {id} was not found.");
-
+            _languageProvider.Translate(restaurant, Language);
             return Ok(restaurant);
         }
 
@@ -48,8 +50,14 @@ namespace EVARest.Controllers {
         }
 
 
-        public RestaurantController(IRestaurantRepository restaurantRepository) {
+        private string Language { get {
+                var acceptLanguages = Request.Headers.AcceptLanguage.FirstOrDefault();
+                return  acceptLanguages == null ? "nl-BE" : acceptLanguages.Value;
+            } }
+
+        public RestaurantController(IRestaurantRepository restaurantRepository, ILanguageProvider languageProvider) {
             _restaurantRepository = restaurantRepository;
+            _languageProvider = languageProvider;
         }
 
 

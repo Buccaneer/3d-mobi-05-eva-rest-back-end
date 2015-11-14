@@ -19,8 +19,12 @@ namespace EVARest.Models.Domain
         public double Longitude { get; set; }
 
         public int Id { get; set; }
-
+        /// <summary>
+        /// Distance in KM
+        /// </summary>
         public double Distance { get; set; }
+
+        public string Name { get; set; }
     }
 
 }
