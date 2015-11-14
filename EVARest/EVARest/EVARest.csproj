@@ -366,9 +366,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Models\CD.cd" />
-    <Content Include="recipes.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="Properties\PublishProfiles\climo4u - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\climo4u - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\evavzwrest - FTP %282%29.pubxml" />
@@ -378,6 +375,7 @@
     <Content Include="restaurants.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="recepten.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

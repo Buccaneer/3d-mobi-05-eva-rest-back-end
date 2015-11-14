@@ -8,7 +8,7 @@ namespace EVARest.Models.Domain
     {
         public int ComponentId { get; set; }
 
-        public double? Quantity
+        public string Quantity
         {
             get; set;
         }

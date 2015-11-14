@@ -36,7 +36,7 @@ namespace EVARest.Models.Domain
         public virtual ICollection<Badge> Badges { get; set; }
 
         public int Points { get; set; }
-        public double Budget { get;  set; }
+        public string Budget { get;  set; }
 
         public bool DoneSetup { get; set; }
 

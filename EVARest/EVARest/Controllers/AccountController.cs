@@ -83,7 +83,7 @@ namespace EVARest.Controllers {
                 BirthDay = AppUser != null ? AppUser.Birthday : DateTime.Now,
                 ChallengesDone = AppUser != null ? AppUser.Challenges.Count(c => c.Done) : 0,
                 PeopleInFamily = AppUser != null ? AppUser.Children : byte.MinValue,
-                Budget = AppUser != null ? AppUser.Budget : int.MinValue,
+                Budget = AppUser != null ? AppUser.Budget : "",
                 DoneSetup = AppUser != null ? AppUser.DoneSetup : false
                
 
@@ -120,8 +120,8 @@ namespace EVARest.Controllers {
                 user.Type = uivm.TypeOfVegan;
             if (uivm.BirthDay != null)
                 user.Birthday = uivm.BirthDay;
-            if (uivm.Budget.HasValue)
-                user.Budget = uivm.Budget.Value;
+            if (uivm.Budget != null)
+                user.Budget = uivm.Budget;
             if (uivm.PeopleInFamily.HasValue)
                 user.Children = (byte)(uivm.PeopleInFamily.Value % 255);
             if (uivm.DoneSetup.HasValue)

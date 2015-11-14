@@ -10,17 +10,14 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace EVARest.Controllers
-{
-    [System.Web.Http.RoutePrefix("initDB")]
-    public class FillerController : ApiController
-    {
+namespace EVARest.Controllers {
+    [System.Web.Http.RoutePrefix("api/Filler")]
+    public class FillerController : ApiController {
         private string filename;
         private RestContext _context;
         // GET: Filler
-        public IHttpActionResult Index()
-        {
-            string filename = @"D:\Projecten 3\EVAVZW Rest service\EVARest\EVARest\proefdata.json";
+        public IHttpActionResult Index() {
+            string filename = @"C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\recepten.json";
 
             IDictionary<string, RecipeProperty> properties = new Dictionary<string, RecipeProperty>();
             IDictionary<string, Ingredient> ingredients = new Dictionary<string, Ingredient>();
@@ -54,8 +51,8 @@ namespace EVARest.Controllers
                         foreach (JObject component in recipeJson[r_ingredients]) {
                             Component c = new Component();
                             int amount = 0;
-                            if (int.TryParse(component[c_count].ToString(), out amount))
-                                c.Quantity = amount;
+                            // if (int.TryParse(component[c_count].ToString(), out amount))
+                            c.Quantity = component[c_count].ToString();
 
                             var iname = component[c_ingredient][i_name].ToString();
                             if (!ingredients.ContainsKey(iname)) {
@@ -77,6 +74,8 @@ namespace EVARest.Controllers
                         }
                         recipeObjects.Add(r);
                         successes++;
+
+
                     } catch {
                         failures++;
                     }
@@ -87,9 +86,9 @@ namespace EVARest.Controllers
 
             try {
                 Console.WriteLine("Attempting connection with database.");
-            
 
-                
+
+
 
                 Console.WriteLine("Connection succeeded.");
                 Console.WriteLine("Start Writing.");
@@ -102,8 +101,73 @@ namespace EVARest.Controllers
                 Console.WriteLine("Connection closed.");
             } catch (Exception ex) {
                 Console.Error.WriteLine(ex.Message);
-                return InternalServerError();
-           
+
+
+            }
+
+            try {
+
+                filename = @"C:\Users\Jasper De Vrient\Documents\Tin3\Project III\ApiBackEnd\EVARest\EVARest\restaurants.json";
+                const string rest_name = "name";
+                const string rest_lng = "lng";
+                const string rest_lat = "lat";
+                const string rest_website = "website";
+                const string rest_street = "street";
+                const string rest_postal = "postal";
+                const string rest_city = "city";
+                const string rest_phone = "phone";
+                const string rest_mail = "mail";
+                const string rest_body = "body";
+
+                using (StreamReader file = File.OpenText(filename))
+                using (JsonTextReader reader = new JsonTextReader(file)) {
+                    JArray restaurants = (JArray)JToken.ReadFrom(reader);
+
+                    foreach (var r in restaurants) {
+                        var restaurant = new Restaurant();
+
+                        restaurant.Name = r[rest_name].ToString();
+                        if (r[rest_lng] != null) {
+                            double outing;
+                            if (double.TryParse(r[rest_lng].ToString(), out outing))
+                                restaurant.Longitute = outing;
+                            
+                        }
+
+                        if (r[rest_lat] != null) {
+                            double outing;
+                            if (double.TryParse(r[rest_lat].ToString(), out outing))
+                                restaurant.Latitude = outing;
+
+                        }
+
+                        if (r[rest_postal] != null) {
+                            int outing;
+                            if (int.TryParse(r[rest_postal].ToString(), out outing))
+                                restaurant.Postal = outing;
+
+                        }
+
+                        if (r[rest_body] != null)
+                            restaurant.Description = r[rest_body].ToString();
+
+                        if (r[rest_city] != null)
+                            restaurant.City = r[rest_city].ToString();
+                        if (r[rest_mail] != null)
+                            restaurant.Email = r[rest_mail].ToString();
+                        if (r[rest_phone] != null)
+                            restaurant.Phone = r[rest_phone].ToString();
+                        if (r[rest_street] != null)
+                            restaurant.Street = r[rest_street].ToString();
+                        if (r[rest_website] != null)
+                            restaurant.Website = r[rest_website].ToString();
+                       
+                        _context.Restaurants.Add(restaurant);
+                    }
+                }
+                _context.SaveChanges();
+            } catch (Exception ex) {
+                Console.Error.WriteLine(ex.Message);
             }
             return Ok();
         }

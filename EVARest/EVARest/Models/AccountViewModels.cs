@@ -39,7 +39,7 @@ namespace EVARest.Models
         public int ChallengesDone { get; set; }
         public DateTime BirthDay { get; set; }
 
-        public double Budget { get; set; }
+        public string Budget { get; set; }
 
         public string TypeOfVegan { get; set; }
       public IEnumerable<Ingredient> Allergies { get; set; }
@@ -61,7 +61,7 @@ namespace EVARest.Models
         public string LastName { get; set; }
         public DateTime BirthDay { get; set; }
 
-        public double? Budget { get; set; }
+        public string Budget { get; set; }
 
         public string TypeOfVegan { get; set; }
         public int[] Allergies { get; set; }
