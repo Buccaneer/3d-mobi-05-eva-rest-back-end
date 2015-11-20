@@ -64,7 +64,8 @@ namespace EVARest.Controllers
                     Date = c.Date,
                     Done = c.Done,
                     Name = c.Name,
-                    Earnings = c.Earnings
+                    Earnings = c.Earnings,
+                    Type = c.Type
                 });
         }
 
@@ -93,7 +94,7 @@ namespace EVARest.Controllers
         /// 
         /// A user can only request one challenge a day.
         /// 
-        /// Supported: Recipe, CreativeCooking, Restaurant
+        /// Supported: (tag.)Recipe, CreativeCooking, Restaurant, other tag is converted to text challenge
         /// </summary>
         /// <remarks>A user can only request one challenge a day.</remarks>
         /// <exception cref="ArgumentException">When this function gets called more than once a day.</exception>

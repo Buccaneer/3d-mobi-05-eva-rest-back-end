@@ -48,7 +48,7 @@ namespace EVARest.Models.DAL {
 
             modelBuilder.Entity<Challenge>().ToTable("Challenges");
             modelBuilder.Entity<Challenge>().HasKey(k => k.ChallengeId);
-            modelBuilder.Entity<Challenge>().Ignore(c => c.Type);
+         //   modelBuilder.Entity<Challenge>().Ignore(c => c.Type);
             //modelBuilder.Entity<Challenge>().Property(p => p.Name).IsRequired();
 
             modelBuilder.Entity<Fact>().ToTable("Facts");

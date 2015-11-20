@@ -21,12 +21,17 @@ namespace EVARest.ViewModels {
 
         public ChallengeFactory CreateFactory() {
             try {
-                var factoryClassName = "EVARest.ViewModels." + Type + "ChallengeFactory";
+                var tt = Type;
+                if (Type.Contains(".")) {
+                    var t =Type.Split('.');
+                    tt = t[1];
+                }
+                var factoryClassName = "EVARest.ViewModels." + tt + "ChallengeFactory";
                 Type type = Assembly.GetAssembly(typeof(ChallengeFactory)).GetType(factoryClassName);
                 return (ChallengeFactory)Activator.CreateInstance(type);
             } catch 
             {
-                throw new ArgumentException("This type of challenge is not supported (yet).");
+                return new TextChallengeFactory();
             }
         }
 
@@ -57,6 +62,13 @@ namespace EVARest.ViewModels {
         private void FillGeneralData(Challenge challenge, ChallengeViewModel data) {
             challenge.Date = DateTime.Now;
             challenge.Done = false;
+            challenge.Type = data.Type;
+            if (data.Type.Contains(".")) {
+                string[] parts = data.Type.Split('.');
+                challenge.Type = parts[0];
+                data.Type = parts[1];
+            }
+            
 
         }
 
@@ -65,6 +77,16 @@ namespace EVARest.ViewModels {
         /// </summary>
         /// <returns>According to witch type of ChallengeViewModel an according Challenge type.</returns>
         protected abstract Challenge CreateInstance();
+    }
+
+    public class TextChallengeFactory : ChallengeFactory {
+        protected override Challenge CreateInstance() {
+            return new TextChallenge();
+        }
+
+        protected override void FillSpecificData(Challenge challenge, RestContext context, ChallengeViewModel data) {
+         
+        }
     }
 
     public class CreativeCookingChallengeFactory : ChallengeFactory {
