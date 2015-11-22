@@ -15,7 +15,7 @@ namespace EVARest.ViewModels {
         public string Type { get; set; }
 
         public int[] IngredientsId { get; set; }
-        public int RecipeId { get; set; }
+        public int RecipeId { get; set; } = -1;
 
         public int RestaurantId { get; set; }
 
@@ -103,11 +103,18 @@ namespace EVARest.ViewModels {
             if (data.IngredientsId == null)
                 throw new NullReferenceException("Ingredients are required.");
 
+            if (data.RecipeId == -1)
+                throw new ArgumentException("Well then please just give a recipe.");
+
+            var recipe = context.Recipes.FirstOrDefault(r => r.RecipeId == data.RecipeId);
+            if (recipe == null)
+                throw new NullReferenceException($"No recipe was found with id {data.RecipeId}.");
+            c.Recipe = recipe;
+
             foreach (int ingredientId in data.IngredientsId) {
                 var ingredient = context.Ingredients.FirstOrDefault(i => i.IngredientId == ingredientId);
                 if (ingredient != null)
                     c.Ingredients.Add(ingredient);
-
             }
 
             c.Earnings = (int)(1.5 * c.Ingredients.Count);

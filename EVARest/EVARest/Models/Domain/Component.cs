@@ -8,10 +8,8 @@ namespace EVARest.Models.Domain
     {
         public int ComponentId { get; set; }
 
-        public string Quantity
-        {
-            get; set;
-        }
+   public string Prefix { get; set; }
+        public string Postfix { get; set; }
 
         public virtual Ingredient Ingredient
         {

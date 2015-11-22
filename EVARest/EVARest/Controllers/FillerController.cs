@@ -28,10 +28,11 @@ namespace EVARest.Controllers {
             const string r_image = "image";
             const string r_description = "description";
             const string r_ingredients = "ingredients";
-            const string c_count = "count";
+            
             const string c_ingredient = "ingredient";
             const string i_name = "name";
-            const string i_unit = "unit";
+            const string i_prefix = "prefix";
+            const string i_postfix = "postfix";
 
 
             int successes = 0;
@@ -52,13 +53,13 @@ namespace EVARest.Controllers {
                             Component c = new Component();
                             int amount = 0;
                             // if (int.TryParse(component[c_count].ToString(), out amount))
-                            c.Quantity = component[c_count].ToString();
+                            c.Prefix = component[c_ingredient][i_prefix].ToString();
+                            c.Postfix = component[c_ingredient][i_postfix].ToString();
 
                             var iname = component[c_ingredient][i_name].ToString();
                             if (!ingredients.ContainsKey(iname)) {
                                 Ingredient i = new Ingredient();
                                 i.Name = component[c_ingredient][i_name].ToString();
-                                i.Unit = component[c_ingredient][i_unit].ToString();
                                 ingredients[i.Name] = i;
 
                             }

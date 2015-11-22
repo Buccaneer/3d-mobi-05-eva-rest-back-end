@@ -9,10 +9,19 @@ using System.Web.Mvc;
 using EVARest.Models.Domain.I18n;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Infrastructure.Annotations;
+using System.Diagnostics;
+using System.IO;
 
 namespace EVARest.Models.DAL {
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class RestContext : IdentityDbContext<ApplicationUser> {
+        //server=eu-cdbr-azure-west-c.cloudapp.net;database=evavzwrest;uid=bbe87c16c15f06;password=925a4732
+        //server=eu-cdbr-azure-west-c.cloudapp.net;port=3306;database=evavzwrest;uid=bbe87c16c15f06;password=925a4732
+        public RestContext() : base(nameOrConnectionString: "server=eu-cdbr-azure-west-c.cloudapp.net;port=3306;database=evavzwrest;uid=bbe87c16c15f06;password=925a4732") {
+           // Database.Log = s => File.AppendAllText(@"A:\\logs\sql.log",s);
+           
+        }
+
 
         //public new DbSet<ApplicationUser> Users { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
@@ -27,8 +36,7 @@ namespace EVARest.Models.DAL {
         static RestContext() {
             DbConfiguration.SetConfiguration(new MySqlEFConfiguration());
         }
-        //server=eu-cdbr-azure-west-c.cloudapp.net;database=evavzwrest;uid=bbe87c16c15f06;password=925a4732
-        public RestContext() : base(nameOrConnectionString: "server=eu-cdbr-azure-west-c.cloudapp.net;database=evavzwrest;uid=bbe87c16c15f06;password=925a4732") { }
+      
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {
             base.OnModelCreating(modelBuilder);
@@ -56,6 +64,9 @@ namespace EVARest.Models.DAL {
 
             modelBuilder.Entity<Ingredient>().ToTable("Ingredients");
             modelBuilder.Entity<Ingredient>().HasKey(k => k.IngredientId);
+            modelBuilder.Entity<Ingredient>().Property(i => i.Name).HasMaxLength(100);
+            modelBuilder.Entity<Component>().Property(c => c.Postfix).HasMaxLength(256);
+            modelBuilder.Entity<Component>().Property(c => c.Prefix).HasMaxLength(256);
 
             modelBuilder.Entity<Recipe>().ToTable("Recipes");
             modelBuilder.Entity<Recipe>().HasKey(k => k.RecipeId);
@@ -75,6 +86,15 @@ namespace EVARest.Models.DAL {
 
             modelBuilder.Entity<Restaurant>().ToTable("Restaurants");
             modelBuilder.Entity<Restaurant>().HasKey(k => k.RestaurantId);
+
+            modelBuilder.Entity<CreativeCookingChallenge>().HasMany(c => c.Ingredients)
+                .WithMany().Map(m => {
+                    m.ToTable("cccstoingr");
+                    m.MapLeftKey("cccid");
+                    m.MapRightKey("ingrid");
+                
+
+                });
             var restaurant = modelBuilder.Entity<Restaurant>();
             restaurant.Property(r => r.City).HasMaxLength(64);
             restaurant.Property(r => r.Email).HasMaxLength(255);

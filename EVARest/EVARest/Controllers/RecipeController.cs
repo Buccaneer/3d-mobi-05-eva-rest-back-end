@@ -51,8 +51,9 @@ namespace EVARest.Controllers
                 .TakeRandom(5)
                 .ToList();
 
-            recipes.ToList().ForEach(r => _languageProvider.Translate<Recipe>(r, language));
+            recipes.ToList().ForEach(r => _languageProvider.Register(r));
 
+            _languageProvider.Translate(language);
             return recipes;
         }
         /// <summary>
@@ -60,7 +61,6 @@ namespace EVARest.Controllers
         /// </summary>
         /// <param name="id">the id of the recipe</param>
         /// <returns>A recipe</returns>
-        [Route("")]
         public IHttpActionResult GetRecipe(int id) {
             var recipe = _recipeRepository.FindRecipeById(id);
             if (recipe == null) {
@@ -70,8 +70,8 @@ namespace EVARest.Controllers
             var acceptLanguages = Request.Headers.AcceptLanguage.FirstOrDefault();
             string language = acceptLanguages == null ? "nl-BE" : acceptLanguages.Value;
 
-            _languageProvider.Translate<Recipe>(recipe, language);
-
+            _languageProvider.Register(recipe);
+            _languageProvider.Translate(language);
             return Ok(recipe);
         }
 
@@ -81,6 +81,8 @@ namespace EVARest.Controllers
         /// <param name="lsvm">A collection of properties.</param>
         /// <returns>Recipes</returns>
         [Route("ByProperty")]
+
+        [CacheOutput(ServerTimeSpan = 15 * 60, ClientTimeSpan = 15 * 60)]
         [System.Web.Http.HttpPost]
         public IHttpActionResult ByProperty([FromBody]ListOfStringViewModel lsvm) {
             if (lsvm == null || !ModelState.IsValid) {
@@ -94,12 +96,12 @@ namespace EVARest.Controllers
 
             var recipes = _recipeRepository
                 .FindRecipesByProperties(lsvm.Values)
-                .TakeRandom(5)
+                .TakeRandom(5,false)
                 .ToList();
 
-            recipes.ForEach(r => _languageProvider.Translate(r, language));
-
-            var ingredients = user.Dislikes.Select(s => s.Ingredient);
+            recipes.ForEach(r => _languageProvider.Register(r));
+            _languageProvider.Translate(language);
+            //var ingredients = user.Dislikes.Select(s => s.Ingredient);
             return Ok(recipes);
                 
         }
@@ -110,6 +112,8 @@ namespace EVARest.Controllers
         /// <param name="lsvm">A collection of ingredientnames</param>
         /// <returns>Recipes</returns>
         [Route("ByIngredient")]
+
+        [CacheOutput(ServerTimeSpan = 15 * 60, ClientTimeSpan = 15 * 60)]
         [System.Web.Http.HttpPost]
         public IHttpActionResult ByIngredient([FromBody]ListOfStringViewModel lsvm) {
             if (lsvm == null || !ModelState.IsValid) {
@@ -121,13 +125,13 @@ namespace EVARest.Controllers
 
             var recipes = _recipeRepository
                 .FindRecipesByIngredients(lsvm.Values)
-                .TakeRandom(5)
+                .TakeRandom(5,false)
                 .ToList();
 
-            recipes.ForEach(r => _languageProvider.Translate(r, language));
-
+            recipes.ForEach(r => _languageProvider.Register(r));
+            _languageProvider.Translate(language);
             var user = User;
-            var ingredients = user.Dislikes.Select(s => s.Ingredient);
+          //  var ingredients = user.Dislikes.Select(s => s.Ingredient);
             return Ok(recipes);
         }
 
@@ -136,7 +140,9 @@ namespace EVARest.Controllers
                 if (_user != null)
                     return _user;
                 var username = RequestContext.Principal.Identity.Name;
-                var user = _context.Users.FirstOrDefault(u => u.UserName == username);
+                var user = _context.Users
+                    .FirstOrDefault(u => u.UserName == username);
+                  
                 _user = user;
                 return user;
             }

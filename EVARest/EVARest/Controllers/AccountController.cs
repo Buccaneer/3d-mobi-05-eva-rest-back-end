@@ -56,6 +56,7 @@ namespace EVARest.Controllers {
                 if (_user != null)
                     return _user;
                 var username = RequestContext.Principal.Identity.Name;
+                
                 var user = _context.Users.FirstOrDefault(u => u.UserName == username
 
                    );

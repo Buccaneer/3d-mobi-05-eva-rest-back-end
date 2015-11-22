@@ -8,6 +8,7 @@ namespace EVARest.Models.Domain.I18n
 {
     public interface ILanguageProvider
     {
-        void Translate<T>(T entity, string language);
+        void Register<T>(T obj);
+        void Translate( string language);
     }
 }

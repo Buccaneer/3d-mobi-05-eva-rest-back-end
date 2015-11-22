@@ -13,11 +13,6 @@ namespace EVARest.Models.Domain
             get; set;
         }
 
-        public string Unit
-        {
-            get; set;
-        }
-
         public int IngredientId
         {
             get;set;

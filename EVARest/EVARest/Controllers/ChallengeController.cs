@@ -55,8 +55,9 @@ namespace EVARest.Controllers
 
             var challenges = User.Challenges;
 
-            challenges.ToList().ForEach(c => _languageProvider.Translate(c, language));
+            challenges.ToList().ForEach(c => _languageProvider.Register(c));
 
+            _languageProvider.Translate(language);
             return challenges.Select(c =>
                 new
                 {
@@ -83,7 +84,8 @@ namespace EVARest.Controllers
             if (challenge == null)
                 return BadRequest($"Challenge with {id} was not found for this user.");
 
-            _languageProvider.Translate(challenge, language);
+            _languageProvider.Register(challenge);
+            _languageProvider.Translate(language);
 
             return Ok(challenge);
         }

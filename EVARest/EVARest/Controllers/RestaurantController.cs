@@ -28,7 +28,8 @@ namespace EVARest.Controllers {
             var restaurant = _restaurantRepository.Restaurants.FirstOrDefault(r => r.RestaurantId == id);
             if (restaurant == null)
                 return BadRequest($"Restaurant with id {id} was not found.");
-            _languageProvider.Translate(restaurant, Language);
+            _languageProvider.Register(restaurant);
+            _languageProvider.Translate(Language);
             return Ok(restaurant);
         }
 
@@ -42,7 +43,6 @@ namespace EVARest.Controllers {
         /// 
         [Route("Find")]
         [System.Web.Http.HttpPost]
-        [CacheOutput(ServerTimeSpan = 3600, ClientTimeSpan = 3600)]
         public IEnumerable<Point> FindRestaurants(GeoLocation loc) {
             if (!ModelState.IsValid)
                 throw new ArgumentException("");

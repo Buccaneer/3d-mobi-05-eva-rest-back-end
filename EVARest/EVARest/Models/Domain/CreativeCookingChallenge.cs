@@ -9,6 +9,8 @@ namespace EVARest.Models.Domain
             get; set;
         }
 
+        public virtual Recipe Recipe { get; set; }
+
         public CreativeCookingChallenge() : base() {
             Ingredients = new List<Ingredient>();
         }

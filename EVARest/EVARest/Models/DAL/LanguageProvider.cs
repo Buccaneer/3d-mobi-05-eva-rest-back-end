@@ -9,71 +9,243 @@ namespace EVARest.Models.DAL
 {
     public class LanguageProvider : ILanguageProvider
     {
+        private IList<object> _objectStore = new List<object>();
+        private class FetchingObject {
+            public int PrimaryKey;
+            public string Type;
+            public string Language;
+           
+
+        }
+        private class FetchedData {
+            public string Column { get; set; }
+            public string Content { get; set; }
+        }
+        private IList<FetchingObject> _toFetch;
         private RestContext _context;
+
+        private IDictionary<string, IDictionary<string,string>> _data = new Dictionary<string, IDictionary<string,string>>();
 
         public LanguageProvider(RestContext context)
         {
             _context = context;
 
         }
+        private void Begin() {
+            _toFetch = new List<FetchingObject>();
+            _data.Clear();
+            _objectStore.Clear();
+        }
 
-        public void Translate<T>(T obj, string language)
-        {
+        public void Translate(string language) {
+            
             language = language.ToUpper();
-            if (language.Equals("nl-BE"))
+            if (language.Equals("NL-BE"))
                 return;
+            FetchAll( language);
+            foreach (object obj in _objectStore) {
+                if (obj is Recipe)
+                    TranslateRecipe(obj as Recipe, language);
+                else if (obj is Ingredient)
+                    TranslateIngredient(obj as Ingredient, language);
+                else if (obj is RecipeProperty)
+                    TranslateRecipeProperty(obj as RecipeProperty, language);
+                else if (obj is CreativeCookingChallenge)
+                    TranslateCCC(obj as CreativeCookingChallenge, language);
+                else if (obj is Restaurant)
+                    TranslateRestaurant(obj as Restaurant, language);
+                else if (obj is RecipeChallenge)
+                    TranslateRecipeChallenge(obj as RecipeChallenge, language);
+                else if (obj is Dislike)
+                    TranslateDislike(obj as Dislike, language);
+                else if (obj is ApplicationUser)
+                    TranslateApplicationUser(obj as ApplicationUser, language);
+                else if (obj is Badge)
+                    TranslateBadge(obj as Badge, language);
+                else if (obj is Component)
+                    TranslateComponent(obj as Component, language);
+                else if (obj is RestaurantChallenge)
+                    TranslateRestaurantChallenge(obj as RestaurantChallenge, language);
+                else if (obj is Feedback)
+                    TranslateFeedback(obj as Feedback, language);
+                else if (obj is Fact)
+                    TranslateFact(obj as Fact, language);
+                else
+                    throw new ArgumentException($"Type of {obj.GetType().Name} is not supported.");
+            }
+            Begin();
+        }
+        public void Register<T>(T obj)
+        {
+
+
+            if (_toFetch == null)
+                Begin();
 
             if (obj is Recipe)
-                TranslateRecipe(obj as Recipe, language);
+                AskForRecipe(obj as Recipe);
             else if (obj is Ingredient)
-                TranslateIngredient(obj as Ingredient, language);
+                AskForIngredient(obj as Ingredient);
             else if (obj is RecipeProperty)
-                TranslateRecipeProperty(obj as RecipeProperty, language);
+                AskForRecipeProperty(obj as RecipeProperty);
             else if (obj is CreativeCookingChallenge)
-                TranslateCCC(obj as CreativeCookingChallenge, language);
+                AskForCCC(obj as CreativeCookingChallenge);
             else if (obj is Restaurant)
-                TranslateRestaurant(obj as Restaurant, language);
-            else if (obj is WorkshopChallenge) //Workshopchalleng empty?
-                TranslateWorkshopChallenge(obj as WorkshopChallenge, language);
-            else if (obj is RegionRestaurantChallenge) //Also empty
-                TranslateRegionRestaurantChallenge(obj as RegionRestaurantChallenge, language);
+                AskForRestaurant(obj as Restaurant);
             else if (obj is RecipeChallenge)
-                TranslateRecipeChallenge(obj as RecipeChallenge, language);
-            else if (obj is RegionRecipeChallenge)
-                TranslateRegionRecipeChallenge(obj as RegionRecipeChallenge, language);
+                AskForRecipeChallenge(obj as RecipeChallenge);
             else if (obj is Dislike)
-                TranslateDislike(obj as Dislike, language);
+                AskForDislike(obj as Dislike);
             else if (obj is ApplicationUser)
-                TranslateApplicationUser(obj as ApplicationUser, language);
+                AskForApplicationUser(obj as ApplicationUser);
             else if (obj is Badge)
-                TranslateBadge(obj as Badge, language);
+                AskForBadge(obj as Badge);
             else if (obj is Component)
-                TranslateComponent(obj as Component, language);
+                AskForComponent(obj as Component);
             else if (obj is RestaurantChallenge)
-                TranslateRestaurantChallenge(obj as RestaurantChallenge, language);
+                AskForRestaurantChallenge(obj as RestaurantChallenge);
             else if (obj is Feedback)
-                TranslateFeedback(obj as Feedback, language);
+                AskForFeedback(obj as Feedback);
             else if (obj is Fact)
-                TranslateFact(obj as Fact, language);
-            else if (obj is NewsletterChallenge)//Also empty
-                TranslateNewsletterChallenge(obj as NewsletterChallenge, language);
-            else
-                throw new ArgumentException($"Type of {obj.GetType().Name} is not supported.");
+                AskForFact(obj as Fact);
+
+          
+
+
+        }
+
+        private void AskForFact(Fact fact) {
+          //  throw new NotImplementedException();
+        }
+
+        private void AskForFeedback(Feedback feedback) {
+          //  throw new NotImplementedException();
+        }
+
+        private void AskForRestaurantChallenge(RestaurantChallenge restaurantChallenge) {
+            _toFetch.Add(new FetchingObject() {
+                PrimaryKey = restaurantChallenge.ChallengeId,
+                Type = "RestaurantChallenge"
+            });
+
+            AskForRestaurant(restaurantChallenge.Restaurant);
+        }
+
+        private void AskForComponent(Component component) {
+            AskForIngredient(component.Ingredient);
+        }
+
+        private void AskForBadge(Badge badge) {
+            _toFetch.Add(new FetchingObject() {
+                PrimaryKey = badge.BadgeId,
+                Type = "Badge"
+            });
+        }
+
+        private void AskForApplicationUser(ApplicationUser applicationUser) {
+            foreach (var dislike in applicationUser.Dislikes)
+                AskForDislike(dislike);
+            foreach (var challenge in applicationUser.Challenges)
+                if (challenge is RecipeChallenge)
+                    AskForRecipeChallenge(challenge as RecipeChallenge);
+                else if (challenge is RestaurantChallenge)
+                    AskForRestaurantChallenge(challenge as RestaurantChallenge);
+                else if (challenge is CreativeCookingChallenge)
+                    AskForCCC(challenge as CreativeCookingChallenge);
+        }
+
+        private void AskForDislike(Dislike dislike) {
+            //_toFetch.Add(new FetchingObject() {
+            //    Language = language,
+            //    PrimaryKey = dislike.DislikeId,
+            //    Type = "Dislike"
+            //});
+            AskForIngredient(dislike.Ingredient);
+
+        }
+
+        private void AskForRecipeChallenge(RecipeChallenge recipeChallenge) {
+            _toFetch.Add(new FetchingObject() {
+                PrimaryKey = recipeChallenge.ChallengeId,
+                Type = "RecipeChallenge"
+            });
+
+            AskForRecipe(recipeChallenge.Recipe);
+        }
+
+        private void AskForRestaurant(Restaurant restaurant) {
+            _toFetch.Add(new FetchingObject() {
+                PrimaryKey = restaurant.RestaurantId,
+                Type = "Restaurant"
+            });
+        }
+
+        private void AskForCCC(CreativeCookingChallenge creativeCookingChallenge) {
+            _toFetch.Add(new FetchingObject() {
+                PrimaryKey = creativeCookingChallenge.ChallengeId,
+                Type = "CreativeCookingChallenge"
+            });
+
+            AskForRecipe(creativeCookingChallenge.Recipe);
+            foreach (var ingredient in creativeCookingChallenge.Ingredients)
+                AskForIngredient(ingredient);
+        }
+
+        private void FetchAll(string language) {
+            _data.Clear();
+            var ids = _toFetch.Select(t => t.PrimaryKey).Distinct();
+            var types = _toFetch.Select(t => t.Type).Distinct();
+            var data = _context.LanguageSpecifications
+                .Where(l => ids.Contains(l.EntityPrimaryKey) 
+                && types.Contains(l.Type) 
+                && l.Language == language);
+
+            foreach (var id in ids)
+                foreach (var type in types)
+                    _data.Add($"{id}{type}", new Dictionary<string, string>());
+
+            foreach (var result in data) {
+                var key = $"{result.EntityPrimaryKey}{result.Type}";
+                if (!_data.ContainsKey(key)) 
+                    _data.Add(key, new Dictionary<string, string>());
+                
+                _data[key].Add(result.PropertyKey, result.Content);
+            }
+        }
+
+        private void AskForRecipe(Recipe recipe) {
+            _toFetch.Add(new FetchingObject() { PrimaryKey = recipe.RecipeId, Type = "Recipe" });
+
+            foreach (var component in recipe.Ingredients) {
+                AskForIngredient(component.Ingredient);
+            }
+
+            foreach (var prop in recipe.Properties)
+                AskForRecipeProperty(prop);
+        }
+
+        private void AskForRecipeProperty(RecipeProperty prop) {
+            _toFetch.Add(new FetchingObject() {
+                PrimaryKey = prop.PropertyId,
+                Type = "RecipeProperty"
+            });
+        }
+
+        private void AskForIngredient(Ingredient ingredient) {
+            _toFetch.Add(new FetchingObject() {
+                PrimaryKey = ingredient.IngredientId,
+                Type = "Ingredient"
+            });
         }
 
         private void TranslateRecipe(Recipe recipe, string language)
         {
-            var specs = _context.LanguageSpecifications
-                .Where(l => l.EntityPrimaryKey == recipe.RecipeId && l.Type == "Recipe" && l.Language == language)
-                .Select(l => new { Key = l.PropertyKey, Value = l.Content });
+            var specs = _data[$"{recipe.RecipeId}Recipe"];
+            if (specs.ContainsKey("Name"))
+                recipe.Name = specs["Name"];
 
-            var name = specs.FirstOrDefault(s => s.Key == "Name");
-            if (name != null)
-                recipe.Name = name.Value;
-
-            var description = specs.FirstOrDefault(s => s.Key == "Description");
-            if (description != null)
-                recipe.Description = description.Value;
+            if (specs.ContainsKey("Description"))
+                recipe.Description = specs["Description"];
 
             foreach (Component component in recipe.Ingredients)
             {
@@ -88,67 +260,49 @@ namespace EVARest.Models.DAL
 
         private void TranslateIngredient(Ingredient ingredient, string language)
         {
-            var specs = _context.LanguageSpecifications
-                .Where(l => l.EntityPrimaryKey == ingredient.IngredientId && l.Type == "Ingredient" && l.Language == language)
-                .Select(l => new { Key = l.PropertyKey, Value = l.Content });
+            var specs =  _data[$"{ingredient.IngredientId}Ingredient"];
+            if (specs.ContainsKey("Name"))
+                ingredient.Name = specs["Name"];
 
-            var name = specs.FirstOrDefault(s => s.Key == "Name");
-            if (name != null)
-                ingredient.Name = name.Value;
-
-            var unit = specs.FirstOrDefault(s => s.Key == "Unit");
-            if (unit != null)
-                ingredient.Unit = unit.Value;
+           
         }
 
         private void TranslateRecipeProperty(RecipeProperty prop, string language)
         {
-            var specs = _context.LanguageSpecifications
-                .Where(l => l.EntityPrimaryKey == prop.PropertyId && l.Type == "RecipeProperty" && l.Language == language)
-                .Select(l => new { Key = l.PropertyKey, Value = l.Content });
+            var specs = _data[$"{prop.PropertyId}RecipeProperty"];
 
-            var type = specs.FirstOrDefault(s => s.Key == "Type");
-            if (type != null)
-                prop.Type = type.Value;
+            if (specs.ContainsKey("Type"))
+                prop.Type = specs["Type"];
 
-            var value = specs.FirstOrDefault(s => s.Key == "Value");
-            if (value != null)
-                prop.Value = value.Value;
+            if (specs.ContainsKey("Value"))
+                prop.Value = specs["Value"];
         }
 
         private void TranslateCCC(CreativeCookingChallenge creativeCookingChallenge, string language)
         {
-            var specs = _context.LanguageSpecifications
-                .Where(l => l.EntityPrimaryKey == creativeCookingChallenge.ChallengeId && l.Type == "CreativeCookingChallenge" && l.Language == language)
-                .Select(l => new { Key = l.PropertyKey, Value = l.Content });
+            var specs = _data[$"{creativeCookingChallenge.ChallengeId}CreativeCookingChallenge"];
 
             foreach (Ingredient ingredient in creativeCookingChallenge.Ingredients)
             {
                 TranslateIngredient(ingredient, language);
             }
 
-            var name = specs.FirstOrDefault(s => s.Key == "Name");
-            if (name != null)
-                creativeCookingChallenge.Name = name.Value;
+            if (specs.ContainsKey("Name"))
+                creativeCookingChallenge.Name = specs["Name"];
         }
 
         private void TranslateRestaurant(Restaurant restaurant, string language)
         {
-            var specs = _context.LanguageSpecifications
-                .Where(l => l.EntityPrimaryKey == restaurant.RestaurantId && l.Type == "Restaurant" && l.Language == language)
-                .Select(l => new { Key = l.PropertyKey, Value = l.Content });
+            var specs = _data[$"{restaurant.RestaurantId}Restaurant"];
 
-            var name = specs.FirstOrDefault(s => s.Key == "Name");
-            if (name != null)
-                restaurant.Name = name.Value;
+            if (specs.ContainsKey("Name"))
+                restaurant.Name = specs["Name"];
 
-            var description = specs.FirstOrDefault(s => s.Key == "Description");
-            if (description != null)
-                restaurant.Description = description.Value;
+            if (specs.ContainsKey("Description"))
+                restaurant.Description = specs["Description"];
 
-            var website = specs.FirstOrDefault(s => s.Key == "Website");
-            if (website != null)
-                restaurant.Website = website.Value;
+            if (specs.ContainsKey("Website"))
+                restaurant.Website = specs["Website"];
         }
 
         private void TranslateWorkshopChallenge(WorkshopChallenge workshopChallenge, string language)
@@ -175,13 +329,10 @@ namespace EVARest.Models.DAL
 
         private void TranslateRecipeChallenge(RecipeChallenge recipeChallenge, string language)
         {
-            var specs = _context.LanguageSpecifications
-                .Where(l => l.EntityPrimaryKey == recipeChallenge.ChallengeId && l.Type == "RecipeChallenge" && l.Language == language)
-                .Select(l => new { Key = l.PropertyKey, Value = l.Content });
+            var specs = _data[$"{recipeChallenge.ChallengeId}RecipeChallenge"];
 
-            var name = specs.FirstOrDefault(s => s.Key == "Name");
-            if (name != null)
-                recipeChallenge.Name = name.Value;
+            if (specs.ContainsKey("Name"))
+                recipeChallenge.Name = specs["Name"];
 
             TranslateRecipe(recipeChallenge.Recipe, language);
         }
@@ -200,18 +351,12 @@ namespace EVARest.Models.DAL
         }
         private void TranslateDislike(Dislike dislike, string language)
         {
-            var specs = _context.LanguageSpecifications
-                .Where(l => l.EntityPrimaryKey == dislike.DislikeId && l.Type == "Dislike" && l.Language == language)
-                .Select(l => new { Key = l.PropertyKey, Value = l.Content });
-
             TranslateIngredient(dislike.Ingredient, language);
         }
 
         private void TranslateApplicationUser(ApplicationUser applicationUser, string language)
         {
-            var specs = _context.LanguageSpecifications
-                .Where(l => l.EntityPrimaryKey.ToString() == applicationUser.Id && l.Type == "ApplicationUser" && l.Language == language)
-                .Select(l => new { Key = l.PropertyKey, Value = l.Content });
+  
 
             foreach (Challenge challenge in applicationUser.Challenges)
             {
@@ -234,17 +379,13 @@ namespace EVARest.Models.DAL
 
         private void TranslateBadge(Badge badge, string language)
         {
-            var specs = _context.LanguageSpecifications
-                .Where(l => l.EntityPrimaryKey == badge.BadgeId && l.Type == "Badge" && l.Language == language)
-                .Select(l => new { Key = l.PropertyKey, Value = l.Content });
+            var specs = _data[$"{badge.BadgeId}Badge"];
 
-            var name = specs.FirstOrDefault(s => s.Key == "Name");
-            if (name != null)
-                badge.Name = name.Value;
+            if (specs.ContainsKey("Name"))
+                badge.Name = specs["Name"];
 
-            var description = specs.FirstOrDefault(s => s.Key == "Description");
-            if (description != null)
-                badge.Description = description.Value;
+            if (specs.ContainsKey("Description"))
+                badge.Description = specs["Description"];
         }
 
         private void TranslateComponent(Component component, string language)
@@ -254,13 +395,10 @@ namespace EVARest.Models.DAL
 
         private void TranslateRestaurantChallenge(RestaurantChallenge restaurantChallenge, string language)
         {
-            var specs = _context.LanguageSpecifications
-                .Where(l => l.EntityPrimaryKey == restaurantChallenge.ChallengeId && l.Type == "RestaurantChallenge" && l.Language == language)
-                .Select(l => new { Key = l.PropertyKey, Value = l.Content });
+            var specs = _data[$"{restaurantChallenge.ChallengeId}RestaurantChallenge"];
 
-            var name = specs.FirstOrDefault(s => s.Key == "Name");
-            if (name != null)
-                restaurantChallenge.Name = name.Value;
+            if (specs.ContainsKey("Name"))
+                restaurantChallenge.Name = specs["Name"];
 
             TranslateRestaurant(restaurantChallenge.Restaurant, language);
         }

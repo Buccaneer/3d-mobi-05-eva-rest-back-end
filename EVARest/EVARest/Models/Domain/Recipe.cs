@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace EVARest.Models.Domain
 {
     public class Recipe {
-        public virtual ICollection<Component> Ingredients {
+        public virtual  ICollection<Component> Ingredients {
             get; set;
         }
 
