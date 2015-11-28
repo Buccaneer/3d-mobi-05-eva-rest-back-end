@@ -87,7 +87,7 @@ namespace EVARest.Controllers {
                 Budget = AppUser != null ? AppUser.Budget : "",
                 DoneSetup = AppUser != null ? AppUser.DoneSetup : false,
                 Points = AppUser != null ? AppUser.Points : 0,
-                Badges = AppUser != null ? AppUser.Badges : new List<Badge>()
+                Badges = AppUser != null ? AppUser.Badges.Select(s => s.Name) : new List<string>()
                
 
             };

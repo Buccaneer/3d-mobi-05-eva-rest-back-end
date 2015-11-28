@@ -25,9 +25,16 @@ namespace EVARest.Models.Domain {
         public int ChallengeId {
             get; set;
         }
+        private string _type;
 
+        protected virtual void OnTypeChanged() { }
         public string Type {
-            get;set;
+            get {
+                return _type;
+            } set {
+                _type = value;
+                OnTypeChanged();
+            }
         }
     }
 }

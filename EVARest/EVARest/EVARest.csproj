@@ -293,6 +293,7 @@
     <Compile Include="Models\DAL\RestInitializer.cs" />
     <Compile Include="Models\Domain\ApplicationUser.cs" />
     <Compile Include="Models\Domain\Badge.cs" />
+    <Compile Include="Models\Domain\BadgeSigner.cs" />
     <Compile Include="Models\Domain\Challenge.cs" />
     <Compile Include="Models\Domain\Component.cs" />
     <Compile Include="Models\Domain\CreativeCookingChallenge.cs" />

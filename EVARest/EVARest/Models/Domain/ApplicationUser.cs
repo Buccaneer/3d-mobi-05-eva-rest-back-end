@@ -38,6 +38,14 @@ namespace EVARest.Models.Domain
         public int Points { get; set; }
         public string Budget { get;  set; }
 
+        public bool HasBadge(string badgeName) {
+            return Badges.Any(b => b.Name.Equals(badgeName));
+        }
+
+        public Badge GiveBadge(string badgeName) {
+            return Badges.FirstOrDefault(b => b.Name.Equals(badgeName));
+        }
+
         public bool DoneSetup { get; set; }
 
         //public virtual Customer Customer { get; set; }
@@ -72,6 +80,7 @@ namespace EVARest.Models.Domain
 
             if (Challenges.Count == 1)
                 StartedAt = DateTime.Now;
+            BadgeSigner.Instance.RewardBadges(this, challenge);
         }
 
         public void HasDoneChallenge(Challenge challenge) {
@@ -79,6 +88,7 @@ namespace EVARest.Models.Domain
                 throw new ArgumentException("You cannot do a challenge that is from the past.");
             challenge.Done = true;
             Points += challenge.Earnings;
+            BadgeSigner.Instance.RewardBadges(this, challenge);
         }
 
         public void DeleteChallenges() {

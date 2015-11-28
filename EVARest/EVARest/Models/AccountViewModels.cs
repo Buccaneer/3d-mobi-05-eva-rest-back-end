@@ -47,7 +47,7 @@ namespace EVARest.Models
 
         public bool DoneSetup { get; set; }
         public int Points { get; set; }
-        public IEnumerable<Badge> Badges { get; set; }
+        public IEnumerable<string> Badges { get; set; }
     }
 
     public class UserLoginInfoViewModel
