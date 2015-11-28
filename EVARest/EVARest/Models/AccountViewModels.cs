@@ -46,6 +46,8 @@ namespace EVARest.Models
         public byte PeopleInFamily { get; internal set; }
 
         public bool DoneSetup { get; set; }
+        public int Points { get; set; }
+        public IEnumerable<Badge> Badges { get; set; }
     }
 
     public class UserLoginInfoViewModel

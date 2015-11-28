@@ -45,6 +45,22 @@ namespace EVARest.Controllers
 
 
         /// <summary>
+        /// This fancy method returns the challenge for today.
+        /// </summary>
+        /// <returns>Challenge</returns>
+        [HttpGet()]
+        [Route("ForToday")]
+       
+        public IHttpActionResult FindForToday() {
+            var challenge = User.Challenges.FirstOrDefault(c => c.Date.Date == DateTime.Today);
+            if (challenge != null)
+                return Ok(challenge);
+            else
+                return BadRequest("Pick a challenge for today.");
+
+        }
+
+        /// <summary>
         /// Gets all the challenges the user has done. It can be that the user skipped days.
         /// </summary>
         /// <returns>Challenge data</returns>
@@ -101,7 +117,7 @@ namespace EVARest.Controllers
         /// <remarks>A user can only request one challenge a day.</remarks>
         /// <exception cref="ArgumentException">When this function gets called more than once a day.</exception>
         /// <param name="cvm"></param>
-        /// <returns>200: Challenge was succesfully added.
+        /// <returns>200: Challenge was succesfully added returns the created challenge.
         /// 400: An exception has accord. (Message)
         /// </returns>
         [HttpPut]
@@ -118,7 +134,7 @@ namespace EVARest.Controllers
                 User.AddChallenge(challenge);
 
                 _context.SaveChanges();
-                return Ok();
+                return Ok(challenge);
             }
             catch (Exception ex)
             {

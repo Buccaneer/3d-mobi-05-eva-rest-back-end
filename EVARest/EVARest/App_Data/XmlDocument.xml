@@ -508,6 +508,12 @@
             The challenge resource.
             </summary>
         </member>
+        <member name="M:EVARest.Controllers.ChallengeController.FindForToday">
+            <summary>
+            This fancy method returns the challenge for today.
+            </summary>
+            <returns>Challenge</returns>
+        </member>
         <member name="M:EVARest.Controllers.ChallengeController.GetChallenges">
             <summary>
             Gets all the challenges the user has done. It can be that the user skipped days.
@@ -532,7 +538,7 @@
             <remarks>A user can only request one challenge a day.</remarks>
             <exception cref="T:System.ArgumentException">When this function gets called more than once a day.</exception>
             <param name="cvm"></param>
-            <returns>200: Challenge was succesfully added.
+            <returns>200: Challenge was succesfully added returns the created challenge.
             400: An exception has accord. (Message)
             </returns>
         </member>

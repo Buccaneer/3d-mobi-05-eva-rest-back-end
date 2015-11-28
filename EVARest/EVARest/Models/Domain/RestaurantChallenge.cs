@@ -8,7 +8,7 @@ namespace EVARest.Models.Domain
 {
     public class RestaurantChallenge : Challenge
     {
-        public Restaurant Restaurant
+        public virtual Restaurant Restaurant
         {
             get;set;
         }

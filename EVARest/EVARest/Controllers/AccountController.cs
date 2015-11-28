@@ -85,7 +85,9 @@ namespace EVARest.Controllers {
                 ChallengesDone = AppUser != null ? AppUser.Challenges.Count(c => c.Done) : 0,
                 PeopleInFamily = AppUser != null ? AppUser.Children : byte.MinValue,
                 Budget = AppUser != null ? AppUser.Budget : "",
-                DoneSetup = AppUser != null ? AppUser.DoneSetup : false
+                DoneSetup = AppUser != null ? AppUser.DoneSetup : false,
+                Points = AppUser != null ? AppUser.Points : 0,
+                Badges = AppUser != null ? AppUser.Badges : new List<Badge>()
                
 
             };

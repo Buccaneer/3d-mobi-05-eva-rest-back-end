@@ -123,6 +123,8 @@ namespace EVARest.Models.DAL
         }
 
         private void AskForRestaurantChallenge(RestaurantChallenge restaurantChallenge) {
+            if (restaurantChallenge == null)
+                return;
             _toFetch.Add(new FetchingObject() {
                 PrimaryKey = restaurantChallenge.ChallengeId,
                 Type = "RestaurantChallenge"
@@ -132,10 +134,14 @@ namespace EVARest.Models.DAL
         }
 
         private void AskForComponent(Component component) {
+            if (component == null)
+                return;
             AskForIngredient(component.Ingredient);
         }
 
         private void AskForBadge(Badge badge) {
+            if (badge == null)
+                return;
             _toFetch.Add(new FetchingObject() {
                 PrimaryKey = badge.BadgeId,
                 Type = "Badge"
@@ -143,6 +149,8 @@ namespace EVARest.Models.DAL
         }
 
         private void AskForApplicationUser(ApplicationUser applicationUser) {
+            if (applicationUser == null)
+                return;
             foreach (var dislike in applicationUser.Dislikes)
                 AskForDislike(dislike);
             foreach (var challenge in applicationUser.Challenges)
@@ -155,6 +163,8 @@ namespace EVARest.Models.DAL
         }
 
         private void AskForDislike(Dislike dislike) {
+            if (dislike == null)
+                return;
             //_toFetch.Add(new FetchingObject() {
             //    Language = language,
             //    PrimaryKey = dislike.DislikeId,
@@ -165,6 +175,8 @@ namespace EVARest.Models.DAL
         }
 
         private void AskForRecipeChallenge(RecipeChallenge recipeChallenge) {
+            if (recipeChallenge == null)
+                return;
             _toFetch.Add(new FetchingObject() {
                 PrimaryKey = recipeChallenge.ChallengeId,
                 Type = "RecipeChallenge"
@@ -174,6 +186,8 @@ namespace EVARest.Models.DAL
         }
 
         private void AskForRestaurant(Restaurant restaurant) {
+            if (restaurant == null)
+                return;
             _toFetch.Add(new FetchingObject() {
                 PrimaryKey = restaurant.RestaurantId,
                 Type = "Restaurant"
@@ -181,6 +195,8 @@ namespace EVARest.Models.DAL
         }
 
         private void AskForCCC(CreativeCookingChallenge creativeCookingChallenge) {
+            if (creativeCookingChallenge == null)
+                return;
             _toFetch.Add(new FetchingObject() {
                 PrimaryKey = creativeCookingChallenge.ChallengeId,
                 Type = "CreativeCookingChallenge"
@@ -214,6 +230,8 @@ namespace EVARest.Models.DAL
         }
 
         private void AskForRecipe(Recipe recipe) {
+            if (recipe == null)
+                return;
             _toFetch.Add(new FetchingObject() { PrimaryKey = recipe.RecipeId, Type = "Recipe" });
 
             foreach (var component in recipe.Ingredients) {
@@ -225,6 +243,8 @@ namespace EVARest.Models.DAL
         }
 
         private void AskForRecipeProperty(RecipeProperty prop) {
+            if (prop == null)
+                return;
             _toFetch.Add(new FetchingObject() {
                 PrimaryKey = prop.PropertyId,
                 Type = "RecipeProperty"
@@ -232,6 +252,8 @@ namespace EVARest.Models.DAL
         }
 
         private void AskForIngredient(Ingredient ingredient) {
+            if (ingredient == null)
+                return;
             _toFetch.Add(new FetchingObject() {
                 PrimaryKey = ingredient.IngredientId,
                 Type = "Ingredient"
@@ -240,6 +262,8 @@ namespace EVARest.Models.DAL
 
         private void TranslateRecipe(Recipe recipe, string language)
         {
+            if (recipe == null)
+                return;
             var specs = _data[$"{recipe.RecipeId}Recipe"];
             if (specs.ContainsKey("Name"))
                 recipe.Name = specs["Name"];
@@ -260,6 +284,8 @@ namespace EVARest.Models.DAL
 
         private void TranslateIngredient(Ingredient ingredient, string language)
         {
+            if (ingredient == null)
+                return;
             var specs =  _data[$"{ingredient.IngredientId}Ingredient"];
             if (specs.ContainsKey("Name"))
                 ingredient.Name = specs["Name"];
@@ -269,6 +295,8 @@ namespace EVARest.Models.DAL
 
         private void TranslateRecipeProperty(RecipeProperty prop, string language)
         {
+            if (prop == null)
+                return;
             var specs = _data[$"{prop.PropertyId}RecipeProperty"];
 
             if (specs.ContainsKey("Type"))
@@ -280,6 +308,8 @@ namespace EVARest.Models.DAL
 
         private void TranslateCCC(CreativeCookingChallenge creativeCookingChallenge, string language)
         {
+            if (creativeCookingChallenge == null)
+                return;
             var specs = _data[$"{creativeCookingChallenge.ChallengeId}CreativeCookingChallenge"];
 
             foreach (Ingredient ingredient in creativeCookingChallenge.Ingredients)
@@ -293,6 +323,8 @@ namespace EVARest.Models.DAL
 
         private void TranslateRestaurant(Restaurant restaurant, string language)
         {
+            if (restaurant == null)
+                return;
             var specs = _data[$"{restaurant.RestaurantId}Restaurant"];
 
             if (specs.ContainsKey("Name"))
@@ -307,6 +339,8 @@ namespace EVARest.Models.DAL
 
         private void TranslateWorkshopChallenge(WorkshopChallenge workshopChallenge, string language)
         {
+            if (workshopChallenge == null)
+                return;
             var specs = _context.LanguageSpecifications
                 .Where(l => l.EntityPrimaryKey == workshopChallenge.ChallengeId && l.Type == "WorkshopChallenge" && l.Language == language)
                 .Select(l => new { Key = l.PropertyKey, Value = l.Content });
@@ -318,6 +352,8 @@ namespace EVARest.Models.DAL
 
         private void TranslateRegionRestaurantChallenge(RegionRestaurantChallenge regionRestaurantChallenge, string language)
         {
+            if (regionRestaurantChallenge == null)
+                return;
             var specs = _context.LanguageSpecifications
                 .Where(l => l.EntityPrimaryKey == regionRestaurantChallenge.ChallengeId && l.Type == "RegionRestaurantChallenge" && l.Language == language)
                 .Select(l => new { Key = l.PropertyKey, Value = l.Content });
@@ -329,6 +365,8 @@ namespace EVARest.Models.DAL
 
         private void TranslateRecipeChallenge(RecipeChallenge recipeChallenge, string language)
         {
+            if (recipeChallenge == null)
+                return;
             var specs = _data[$"{recipeChallenge.ChallengeId}RecipeChallenge"];
 
             if (specs.ContainsKey("Name"))
@@ -339,6 +377,8 @@ namespace EVARest.Models.DAL
 
         private void TranslateRegionRecipeChallenge(RegionRecipeChallenge regionRecipeChallenge, string language)
         {
+            if (regionRecipeChallenge == null)
+                return;
             var specs = _context.LanguageSpecifications
                 .Where(l => l.EntityPrimaryKey == regionRecipeChallenge.ChallengeId && l.Type == "RegionRecipeChallenge" && l.Language == language)
                 .Select(l => new { Key = l.PropertyKey, Value = l.Content });
@@ -351,12 +391,15 @@ namespace EVARest.Models.DAL
         }
         private void TranslateDislike(Dislike dislike, string language)
         {
+            if (dislike == null)
+                return;
             TranslateIngredient(dislike.Ingredient, language);
         }
 
         private void TranslateApplicationUser(ApplicationUser applicationUser, string language)
         {
-  
+            if (applicationUser == null)
+                return;
 
             foreach (Challenge challenge in applicationUser.Challenges)
             {
@@ -379,6 +422,8 @@ namespace EVARest.Models.DAL
 
         private void TranslateBadge(Badge badge, string language)
         {
+            if (badge == null)
+                return;
             var specs = _data[$"{badge.BadgeId}Badge"];
 
             if (specs.ContainsKey("Name"))
@@ -390,11 +435,15 @@ namespace EVARest.Models.DAL
 
         private void TranslateComponent(Component component, string language)
         {
+            if (component == null)
+                return;
             TranslateIngredient(component.Ingredient, language);
         }
 
         private void TranslateRestaurantChallenge(RestaurantChallenge restaurantChallenge, string language)
         {
+            if (restaurantChallenge == null)
+                return;
             var specs = _data[$"{restaurantChallenge.ChallengeId}RestaurantChallenge"];
 
             if (specs.ContainsKey("Name"))
@@ -405,6 +454,8 @@ namespace EVARest.Models.DAL
 
         private void TranslateFeedback(Feedback feedback, string language)
         {
+            if (feedback == null)
+                return;
             var specs = _context.LanguageSpecifications
                 .Where(l => l.EntityPrimaryKey == feedback.FeedbackId && l.Type == "Feedback" && l.Language == language)
                 .Select(l => new { Key = l.PropertyKey, Value = l.Content });
@@ -418,6 +469,8 @@ namespace EVARest.Models.DAL
 
         private void TranslateFact(Fact fact, string language)
         {
+            if (fact == null)
+                return;
             var specs = _context.LanguageSpecifications
                 .Where(l => l.EntityPrimaryKey == fact.FactId && l.Type == "Fact" && l.Language == language)
                 .Select(l => new { Key = l.PropertyKey, Value = l.Content });
@@ -430,6 +483,8 @@ namespace EVARest.Models.DAL
 
         private void TranslateNewsletterChallenge(NewsletterChallenge newsletterChallenge, string language)
         {
+            if (newsletterChallenge == null)
+                return;
             var specs = _context.LanguageSpecifications
                 .Where(l => l.EntityPrimaryKey == newsletterChallenge.ChallengeId && l.Type == "NewsletterChallenge" && l.Language == language)
                 .Select(l => new { Key = l.PropertyKey, Value = l.Content });
