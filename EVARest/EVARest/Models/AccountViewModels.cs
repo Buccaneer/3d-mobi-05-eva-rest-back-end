@@ -48,6 +48,7 @@ namespace EVARest.Models
         public bool DoneSetup { get; set; }
         public int Points { get; set; }
         public IEnumerable<string> Badges { get; set; }
+        public bool HasRequestedChallengeToday { get; internal set; }
     }
 
     public class UserLoginInfoViewModel
