@@ -8,9 +8,6 @@ namespace EVARest.Models.Domain
 {
     public class RegionRecipeChallenge : RecipeChallenge
     {
-        public RecipeProperty Region
-        {
-            get; set;
-        }
+     
     }
 }

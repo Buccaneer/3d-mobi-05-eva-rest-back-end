@@ -72,7 +72,7 @@ namespace EVARest.Models.Domain
         }
 
         public void AddChallenge(Challenge challenge) {
-            if (Challenges.Any(c => c.Date.Date == DateTime.Today))
+            if (Challenges.Any(c => (c.TimeToAccept > 0 && c.Done == false)))
                 throw new ArgumentException("A challenge has already been chosen for today.");
 
             Challenges.Add(challenge);
@@ -84,7 +84,7 @@ namespace EVARest.Models.Domain
         }
 
         public void HasDoneChallenge(Challenge challenge) {
-            if (challenge.Date.Date != DateTime.Today)
+            if (challenge.TimeToAccept < 0)
                 throw new ArgumentException("You cannot do a challenge that is from the past.");
             challenge.Done = true;
             Points += challenge.Earnings;

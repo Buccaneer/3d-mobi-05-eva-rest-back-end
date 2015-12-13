@@ -386,8 +386,7 @@ namespace EVARest.Models.DAL
             var name = specs.FirstOrDefault(s => s.Key == "Name");
             if (name != null)
                 regionRecipeChallenge.Name = name.Value;
-
-            TranslateRecipeProperty(regionRecipeChallenge.Region, language);
+            
         }
         private void TranslateDislike(Dislike dislike, string language)
         {

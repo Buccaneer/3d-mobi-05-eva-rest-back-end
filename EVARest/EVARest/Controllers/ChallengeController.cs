@@ -52,7 +52,7 @@ namespace EVARest.Controllers
         [Route("ForToday")]
        
         public IHttpActionResult FindForToday() {
-            var challenge = User.Challenges.FirstOrDefault(c => c.Date.Date == DateTime.Today);
+            var challenge = User.Challenges.FirstOrDefault(c => c.TimeToAccept > 0 && c.Done == false);
             if (challenge != null)
                 return Ok(challenge);
             else
@@ -71,9 +71,21 @@ namespace EVARest.Controllers
 
             var challenges = User.Challenges;
 
-            challenges.ToList().ForEach(c => _languageProvider.Register(c));
+          //  challenges.ToList().ForEach(c => _languageProvider.Register(c));
 
-            _languageProvider.Translate(language);
+            foreach (Challenge c in challenges) {
+               if (c.Thumbnail == null) {
+                    if (c is CreativeCookingChallenge) {
+                        c.Thumbnail = (c as CreativeCookingChallenge).Recipe.Image;
+                        _context.SaveChanges();
+                    } else if (c is RecipeChallenge) {
+                        c.Thumbnail = (c as RecipeChallenge).Recipe.Image;
+                        _context.SaveChanges();
+                    }
+                }
+            }
+
+       //     _languageProvider.Translate(language);
             return challenges.Select(c =>
                 new
                 {
@@ -82,7 +94,12 @@ namespace EVARest.Controllers
                     Done = c.Done,
                     Name = c.Name,
                     Earnings = c.Earnings,
-                    Type = c.Type
+                    Type = c.Type,
+                    Thumbnail = c.Thumbnail,
+                    ExpireDate = c.ExpireDate,
+                    TimeToAccept = c.TimeToAccept,
+                    Rt = ((c is RecipeChallenge) ? (c as RecipeChallenge).Recipe.Properties.Any(p => p.Type.Equals("Regio")) : false)
+
                 });
         }
 

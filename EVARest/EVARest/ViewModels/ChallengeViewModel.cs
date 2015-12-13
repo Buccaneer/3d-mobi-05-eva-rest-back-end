@@ -42,6 +42,8 @@ namespace EVARest.ViewModels {
 
     }
 
+   
+
     public abstract class ChallengeFactory {
         public Challenge CreateChallenge(RestContext context, ChallengeViewModel cvm ) {
             var challenge = CreateInstance();
@@ -116,7 +118,7 @@ namespace EVARest.ViewModels {
                 if (ingredient != null)
                     c.Ingredients.Add(ingredient);
             }
-
+            c.Thumbnail = recipe.Image;
             c.Earnings = (int)(1.5 * c.Ingredients.Count);
         }
     }
@@ -138,6 +140,13 @@ namespace EVARest.ViewModels {
             c.Recipe = recipe;
             c.PrepareFor = (TargetSubject)R.Next(0, 4);
             c.Earnings = 1;
+            c.Thumbnail = recipe.Image;
+        }
+    }
+
+    public class RegionRecipeChallengeFactory : RecipeChallengeFactory {
+        protected override Challenge CreateInstance() {
+            return new RegionRecipeChallenge();
         }
     }
 

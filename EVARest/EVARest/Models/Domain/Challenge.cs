@@ -14,9 +14,23 @@ namespace EVARest.Models.Domain {
             get; set;
         }
 
+
+        public DateTime ExpireDate {
+            get {
+                return Date.AddHours(24);
+            }
+        }
+
+        public long TimeToAccept {
+            get {
+                return (long)(ExpireDate - DateTime.Now).TotalMinutes;
+            }
+        }
         public bool Done {
             get; set;
         }
+
+        public string Thumbnail { get; set; }
 
         public int Earnings {
             get; set;

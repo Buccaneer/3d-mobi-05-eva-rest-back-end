@@ -106,6 +106,9 @@ namespace EVARest.Models.DAL {
             modelBuilder.Entity<Dislike>().ToTable("Dislikes").HasKey(d => d.DislikeId);
             modelBuilder.Entity<Component>().ToTable("Components").HasKey(c => c.ComponentId);
 
+            modelBuilder.Entity<Challenge>().Ignore(c => c.ExpireDate);
+            modelBuilder.Entity<Challenge>().Ignore(c => c.TimeToAccept);
+
             modelBuilder.Entity<OverrideLanguageSpecification>().ToTable("Languages").HasKey(l => l.LanguageStringId);
             modelBuilder.Entity<OverrideLanguageSpecification>().Property(l => l.Type).HasMaxLength(255);
             modelBuilder.Entity<OverrideLanguageSpecification>().Property(l => l.Language).HasMaxLength(255);

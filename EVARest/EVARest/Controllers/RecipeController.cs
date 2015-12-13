@@ -54,7 +54,7 @@ namespace EVARest.Controllers
             recipes.ToList().ForEach(r => _languageProvider.Register(r));
 
             _languageProvider.Translate(language);
-            return recipes;
+            return recipes.ToList() ;
         }
         /// <summary>
         /// Gives a recipe according to its id
@@ -102,7 +102,7 @@ namespace EVARest.Controllers
             recipes.ForEach(r => _languageProvider.Register(r));
             _languageProvider.Translate(language);
             //var ingredients = user.Dislikes.Select(s => s.Ingredient);
-            return Ok(recipes);
+            return Ok(recipes.ToList());
                 
         }
 
@@ -132,7 +132,7 @@ namespace EVARest.Controllers
             _languageProvider.Translate(language);
             var user = User;
           //  var ingredients = user.Dislikes.Select(s => s.Ingredient);
-            return Ok(recipes);
+            return Ok(recipes.ToList());
         }
 
         private ApplicationUser User {
