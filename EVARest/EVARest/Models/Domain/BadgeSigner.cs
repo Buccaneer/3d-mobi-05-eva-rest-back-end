@@ -215,7 +215,7 @@ namespace EVARest.Models.Domain {
         }
     }
 
-    [BadgeAwarder("gastheer")]
+  //  [BadgeAwarder("gastheer")]
     public class GastheerBadgeRewarder : IBadgeRewarder {
         public void ChangeBadge(Badge badge, ApplicationUser user, Challenge currentChallenge) {
 

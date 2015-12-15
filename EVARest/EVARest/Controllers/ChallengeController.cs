@@ -97,8 +97,8 @@ namespace EVARest.Controllers
                     Type = c.Type,
                     Thumbnail = c.Thumbnail,
                     ExpireDate = c.ExpireDate,
-                    TimeToAccept = c.TimeToAccept,
-                    Rt = ((c is RecipeChallenge) ? (c as RecipeChallenge).Recipe.Properties.Any(p => p.Type.Equals("Regio")) : false)
+                    TimeToAccept = c.TimeToAccept
+                  //  Rt = ((c is RecipeChallenge) ? (c as RecipeChallenge).Recipe.Properties.Any(p => p.Type.Equals("Regio")) : false)
 
                 });
         }

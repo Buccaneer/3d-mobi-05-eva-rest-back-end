@@ -21,6 +21,8 @@ namespace EVARest.Models.DAL {
             if (!fastWay) {
                 possibleIds = recipes.Select(recipe => recipe.RecipeId).ToList();
                 C = possibleIds.Count;
+                if (C == 0)
+                    return new List<Recipe>();
                 while (left > 0 && tries < count * count) {
                     int id = possibleIds[r.Next(C)];
                     if (!taken.Contains(id)) {
@@ -48,6 +50,22 @@ namespace EVARest.Models.DAL {
         }
 
 
+        public static IQueryable<Recipe> FindRecipesByIngredients(this IQueryable<Recipe> recipes, IEnumerable<string> ingredients) {
+            return recipes.Where(r => r.Ingredients.Any(c => ingredients.Contains(c.Ingredient.Name)));
+        }
+
+        public static IQueryable<Recipe> FindRecipesByProperties(this IQueryable<Recipe> recipes, IEnumerable<string> properties) {
+            return recipes.Where(r => r.Properties.Any(p => properties.Contains(p.Value)));
+        }
+
+        public static IQueryable<Recipe> FindRecipesByProperty(this IQueryable<Recipe> recipes, RecipeProperty property) {
+            return recipes.Where(r => r.Properties.Contains(property));
+        }
+
+        public static IQueryable<Recipe> FindRecipesWithoutIngredients(this IQueryable<Recipe> recipes, IEnumerable<Ingredient> ingredients) {
+            var names = ingredients.Where(i => i != null).Select(i => i.Name).ToList();
+            return recipes.Where(r => r.Ingredients.All(c => !names.Contains(c.Ingredient.Name)));
+        }
     }
 }
 

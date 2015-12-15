@@ -13,11 +13,10 @@ using System.Diagnostics;
 using System.IO;
 
 namespace EVARest.Models.DAL {
-    [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class RestContext : IdentityDbContext<ApplicationUser> {
         //server=eu-cdbr-azure-west-c.cloudapp.net;database=evavzwrest;uid=bbe87c16c15f06;password=925a4732
         //server=eu-cdbr-azure-west-c.cloudapp.net;port=3306;database=evavzwrest;uid=bbe87c16c15f06;password=925a4732
-        public RestContext() : base(nameOrConnectionString: "server=eu-cdbr-azure-west-c.cloudapp.net;port=3306;database=evavzwrest;uid=bbe87c16c15f06;password=925a4732") {
+        public RestContext() : base("RestContext") {
            // Database.Log = s => File.AppendAllText(@"A:\\logs\sql.log",s);
            
         }
@@ -33,9 +32,7 @@ namespace EVARest.Models.DAL {
 
         public DbSet<Ingredient> Ingredients { get; set; }
 
-        static RestContext() {
-            DbConfiguration.SetConfiguration(new MySqlEFConfiguration());
-        }
+        
       
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {

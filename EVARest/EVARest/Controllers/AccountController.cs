@@ -88,7 +88,7 @@ namespace EVARest.Controllers {
                 DoneSetup = AppUser != null ? AppUser.DoneSetup : false,
                 Points = AppUser != null ? AppUser.Points : 0,
                 Badges = AppUser != null ? AppUser.Badges.Select(s => s.Name) : new List<string>(),
-                HasRequestedChallengeToday = AppUser != null ? AppUser.Challenges.Any(c => c.Date.Date == DateTime.Today) : false
+                HasRequestedChallengeToday = AppUser != null ? AppUser.Challenges.Any(c => c.TimeToAccept > 0 && c.Done == false) : false
 
             };
 

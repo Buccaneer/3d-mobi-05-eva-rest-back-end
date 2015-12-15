@@ -35,7 +35,8 @@ namespace EVARest.Models.DAL {
         }
 
         public IQueryable<Recipe> FindRecipesWithoutIngredients(IEnumerable<Ingredient> ingredients) {
-            return Recipes.Where(r => r.Ingredients.Any(c => !ingredients.Contains(c.Ingredient)));
+            var names = ingredients.Where(i => i != null).Select(i => i.Name).ToList();
+            return Recipes.Where(r => r.Ingredients.All(c => !names.Contains(c.Ingredient.Name)));
         }
         
 

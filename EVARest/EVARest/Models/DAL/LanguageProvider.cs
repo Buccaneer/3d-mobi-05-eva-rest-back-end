@@ -44,34 +44,36 @@ namespace EVARest.Models.DAL
                 return;
             FetchAll( language);
             foreach (object obj in _objectStore) {
-                if (obj is Recipe)
-                    TranslateRecipe(obj as Recipe, language);
-                else if (obj is Ingredient)
-                    TranslateIngredient(obj as Ingredient, language);
-                else if (obj is RecipeProperty)
-                    TranslateRecipeProperty(obj as RecipeProperty, language);
-                else if (obj is CreativeCookingChallenge)
-                    TranslateCCC(obj as CreativeCookingChallenge, language);
-                else if (obj is Restaurant)
-                    TranslateRestaurant(obj as Restaurant, language);
-                else if (obj is RecipeChallenge)
-                    TranslateRecipeChallenge(obj as RecipeChallenge, language);
-                else if (obj is Dislike)
-                    TranslateDislike(obj as Dislike, language);
-                else if (obj is ApplicationUser)
-                    TranslateApplicationUser(obj as ApplicationUser, language);
-                else if (obj is Badge)
-                    TranslateBadge(obj as Badge, language);
-                else if (obj is Component)
-                    TranslateComponent(obj as Component, language);
-                else if (obj is RestaurantChallenge)
-                    TranslateRestaurantChallenge(obj as RestaurantChallenge, language);
-                else if (obj is Feedback)
-                    TranslateFeedback(obj as Feedback, language);
-                else if (obj is Fact)
-                    TranslateFact(obj as Fact, language);
-                else
-                    throw new ArgumentException($"Type of {obj.GetType().Name} is not supported.");
+                try {
+                    if (obj is Recipe)
+                        TranslateRecipe(obj as Recipe, language);
+                    else if (obj is Ingredient)
+                        TranslateIngredient(obj as Ingredient, language);
+                    else if (obj is RecipeProperty)
+                        TranslateRecipeProperty(obj as RecipeProperty, language);
+                    else if (obj is CreativeCookingChallenge)
+                        TranslateCCC(obj as CreativeCookingChallenge, language);
+                    else if (obj is Restaurant)
+                        TranslateRestaurant(obj as Restaurant, language);
+                    else if (obj is RecipeChallenge)
+                        TranslateRecipeChallenge(obj as RecipeChallenge, language);
+                    else if (obj is Dislike)
+                        TranslateDislike(obj as Dislike, language);
+                    else if (obj is ApplicationUser)
+                        TranslateApplicationUser(obj as ApplicationUser, language);
+                    else if (obj is Badge)
+                        TranslateBadge(obj as Badge, language);
+                    else if (obj is Component)
+                        TranslateComponent(obj as Component, language);
+                    else if (obj is RestaurantChallenge)
+                        TranslateRestaurantChallenge(obj as RestaurantChallenge, language);
+                    else if (obj is Feedback)
+                        TranslateFeedback(obj as Feedback, language);
+                    else if (obj is Fact)
+                        TranslateFact(obj as Fact, language);
+                    else
+                        throw new ArgumentException($"Type of {obj.GetType().Name} is not supported.");
+                } catch { }
             }
             Begin();
         }

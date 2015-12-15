@@ -71,6 +71,12 @@ namespace EVARest.Models.Domain
 
         }
 
+        public ApplicationUser(string userName) :base(userName)  {
+            Badges = new List<Badge>();
+            Challenges = new List<Challenge>();
+            Dislikes = new List<Dislike>();
+        }
+
         public void AddChallenge(Challenge challenge) {
             if (Challenges.Any(c => (c.TimeToAccept > 0 && c.Done == false)))
                 throw new ArgumentException("A challenge has already been chosen for today.");

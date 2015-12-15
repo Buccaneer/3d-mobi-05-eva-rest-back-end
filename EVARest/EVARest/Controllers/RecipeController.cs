@@ -88,14 +88,18 @@ namespace EVARest.Controllers
             if (lsvm == null || !ModelState.IsValid) {
                 return BadRequest(ModelState);
             }
+            var user = User;
+            var ingredients = user.Dislikes.Select(s => s.Ingredient);
 
             var acceptLanguages = Request.Headers.AcceptLanguage.FirstOrDefault();
             string language = acceptLanguages == null ? "nl-BE" : acceptLanguages.Value;
 
-            var user = User;
+          
 
             var recipes = _recipeRepository
+               .FindRecipesWithoutIngredients(ingredients)
                 .FindRecipesByProperties(lsvm.Values)
+
                 .TakeRandom(5,false)
                 .ToList();
 
@@ -119,18 +123,21 @@ namespace EVARest.Controllers
             if (lsvm == null || !ModelState.IsValid) {
                 return BadRequest("Requires a collection of names.");
             }
+            var user = User;
+            var ingredients = user.Dislikes.Select(s => s.Ingredient);
 
             var acceptLanguages = Request.Headers.AcceptLanguage.FirstOrDefault();
             string language = acceptLanguages == null ? "nl-BE" : acceptLanguages.Value;
 
             var recipes = _recipeRepository
+                .FindRecipesWithoutIngredients(ingredients)
                 .FindRecipesByIngredients(lsvm.Values)
                 .TakeRandom(5,false)
                 .ToList();
 
             recipes.ForEach(r => _languageProvider.Register(r));
             _languageProvider.Translate(language);
-            var user = User;
+  
           //  var ingredients = user.Dislikes.Select(s => s.Ingredient);
             return Ok(recipes.ToList());
         }
