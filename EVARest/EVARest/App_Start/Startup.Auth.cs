@@ -9,7 +9,11 @@ using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using EVARest.Providers;
-using EVARest.Models;
+using EVARest.Models.DAL;
+using Microsoft.Owin.Cors;
+using Microsoft.Owin.Security.Facebook;
+using Microsoft.Owin.Security.MicrosoftAccount;
+using Microsoft.Owin.Security.Twitter;
 
 namespace EVARest
 {
@@ -22,8 +26,11 @@ namespace EVARest
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
+            // Allow all CORS requests
+            app.UseCors(CorsOptions.AllowAll);
+
             // Configure the db context and user manager to use a single instance per request
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
+            app.CreatePerOwinContext(RestContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
 
             // Enable the application to use a cookie to store information for the signed in user
@@ -47,23 +54,28 @@ namespace EVARest
             app.UseOAuthBearerTokens(OAuthOptions);
 
             // Uncomment the following lines to enable logging in with third party login providers
-            app.UseMicrosoftAccountAuthentication(
-                clientId: "000000004C16836C",
-                clientSecret: "R2GPxr8k-dIftBnAEhLRXLjuTsiIxNpl");
+            var microsoftAuthentication = new MicrosoftAccountAuthenticationOptions();
+            microsoftAuthentication.ClientId = "000000004C16836C";
+            microsoftAuthentication.ClientSecret = "R2GPxr8k-dIftBnAEhLRXLjuTsiIxNpl";
+            app.UseMicrosoftAccountAuthentication(microsoftAuthentication);
 
-            app.UseTwitterAuthentication(
-                consumerKey: "wOS8t5pPraOLwTH79OlgyttW6",
-                consumerSecret: "gj9iMcmsixA8UvcsTRqxxoCkzkrpDKc4vuzKGpFjTRiNv3aldl");
+            var twitterAuthentication = new TwitterAuthenticationOptions();
+            twitterAuthentication.ConsumerKey = "wOS8t5pPraOLwTH79OlgyttW6";
+            twitterAuthentication.ConsumerSecret = "gj9iMcmsixA8UvcsTRqxxoCkzkrpDKc4vuzKGpFjTRiNv3aldl";
+            app.UseTwitterAuthentication(twitterAuthentication);
 
-            app.UseFacebookAuthentication(
-                appId: "1645027742443677",
-                appSecret: "96812e9708c5d15833ff63830a2c3f93");
+            var facebookAuthenticationOptions = new FacebookAuthenticationOptions();
+            facebookAuthenticationOptions.AppId = "1645027742443677";
+            facebookAuthenticationOptions.AppSecret = "baf2eea96164855d5e0d436c6e4c9365";
+            app.UseFacebookAuthentication(facebookAuthenticationOptions);
 
-            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            {
-                ClientId = "867920998848-tgeip4e4n8figle6rgrhmedkiuok09gk.apps.googleusercontent.com",
-                ClientSecret = "Mb5yGgVYjgPcb_Nf8bmJAyLz"
-            });
+            var googleAuthenticationOptions = new GoogleOAuth2AuthenticationOptions();
+            googleAuthenticationOptions.ClientId = "867920998848-h8vsdddu2o8dkv72243d8phu599dejgt.apps.googleusercontent.com";
+            googleAuthenticationOptions.ClientSecret = "k25jN1BX4bBtWxlNbaBMeIIk";
+            googleAuthenticationOptions.CallbackPath = new PathString("/signin-google");
+            googleAuthenticationOptions.Provider = new GoogleOAuth2AuthenticationProvider();
+            googleAuthenticationOptions.Scope.Add("email");
+            app.UseGoogleAuthentication(googleAuthenticationOptions);
         }
     }
 }

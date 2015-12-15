@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Owin;
 using Owin;
+using MySql.Data.Entity;
+using System.Data.Entity;
+using EVARest.ViewModels;
+using System.Web.Mvc;
 
-[assembly: OwinStartup(typeof(EVARest.Startup))]
-
+[assembly: OwinStartupAttribute(typeof(EVARest.Startup))]
 namespace EVARest
 {
     public partial class Startup

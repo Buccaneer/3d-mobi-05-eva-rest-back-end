@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using EVARest.Models;
+using EVARest.Models.Domain;
 
 namespace EVARest.Providers
 {
@@ -29,6 +29,9 @@ namespace EVARest.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
+            //set AllowedOrigin
+            var allowedOrigin = context.OwinContext.Get<string>("as:clientAllowedOrigin") ?? "*";
+
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
             ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
@@ -94,5 +97,8 @@ namespace EVARest.Providers
             };
             return new AuthenticationProperties(data);
         }
+
+     
+
     }
 }
